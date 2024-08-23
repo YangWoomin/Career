@@ -17,10 +17,10 @@
 * "뇌를 자극하는 알고리즘" 책에 있는 내용들을 직접 구현
 #### LeetCode
 * https://github.com/YangWoomin/leetcode
-* LeetCode 문제 사이트에서 기억에 남는 몇몇 문제 풀이들을 정리
+* LeetCode 문제 사이트에서 풀었던 기억에 남는 몇몇 문제 풀이들을 정리
 #### DataStructure
 * https://github.com/YangWoomin/DataStructure
 * 학부생 때 "C 언어로 쉽게 풀어쓴 자료구조" 책을 읽고 직접 구현
 #### HackerRank
 * https://github.com/YangWoomin/HackerRank
-* 학부생 때 HackerRank 문제 사이트에서 C++ 카테고리에 속하는 문제 풀이들을 정리
+* 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
