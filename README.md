@@ -10,6 +10,16 @@
 ## 기타 개인 작업
 ### Introduction to Algorithms 
 * https://github.com/YangWoomin/Introduction-to-algorithms
-* ![introduction_to_algorithms](https://github.com/user-attachments/assets/0f0719dc-0c20-498b-ab9e-19eb727d52a2)
-* 책을 다 읽지는 못했고 일부 학습한 내용들을 직접 구현해보고 정리한 내용
+* 책을 다 읽지 못했고 일부 학습한 내용들을 직접 구현
 ### Algorithms 
+* https://github.com/YangWoomin/Algorithms
+* "뇌를 자극하는 알고리즘" 책에 있는 내용들을 직접 구현
+### LeetCode
+* https://github.com/YangWoomin/leetcode
+* LeetCode 문제 사이트에서 기억에 남는 몇몇 문제들 풀이들을 정리
+### DataStructure
+* https://github.com/YangWoomin/DataStructure
+* 학부생 때 "C 언어로 쉽게 풀어쓴 자료구조" 책을 읽고 직접 구현
+### HackerRank
+* https://github.com/YangWoomin/HackerRank
+* 학부생 때 HackerRank 문제 사이트에서 C++ 카테고리에 속하는 문제들 풀이들을 정리
