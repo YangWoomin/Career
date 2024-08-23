@@ -6,6 +6,7 @@
 | 2019.01 ~ | NCSOFT | [ncsoft_career.md](ncsoft_career.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) | A -> A -> A -> E -> E |
 | 2017.01 ~ 2018.12 | JOYCITY | [joycity_career.md](joycity_career.md) | - | GE -> GE |
 | ~ 2016.12 | 학생 | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | 3.45/4.5 |
+
 ** 평가 기준 : Greatly Exceed(GE) - Exceed(E) - Achieve(A) - Need Improvement(N) - Unsatisfactory(U)
 
 
