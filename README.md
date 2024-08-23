@@ -10,5 +10,6 @@
 ## 기타 개인 작업
 ### Introduction to Algorithms 
 * https://github.com/YangWoomin/Introduction-to-algorithms
-* 책을 다 읽지는 못했고 학습한 내용들을 직접 구현해보고 정리한 내용
+* ![introduction_to_algorithms](https://github.com/user-attachments/assets/0f0719dc-0c20-498b-ab9e-19eb727d52a2)
+* 책을 다 읽지는 못했고 일부 학습한 내용들을 직접 구현해보고 정리한 내용
 ### Algorithms 
