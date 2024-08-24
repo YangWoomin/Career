@@ -258,16 +258,55 @@
     + 주로 특정 함수 등의 수행 시간과 호출 횟수를 측정하기 위한 통계 서브시스템 인터페이스
       + sum 연산을 적용한 counter와 duration 필드로 수집
       + 초당 함수 호출 횟수와 초당 함수 처리 시간을 계산
-    + scope cycle 전용 클래스가 있으며 생성자에서 생성 시저믕ㄹ 기록하고 소멸자에서 생성 시점으로부터 걸린 시간을 계산하여 지표 수집기에 전달
+    + scope cycle 전용 클래스가 있으며 생성자에서 생성 시점을 기록하고 소멸자에서 생성 시점으로부터 걸린 시간을 계산하여 지표 수집기에 전달
       + counter는 소멸자에서 지표 수집기에 1 전달 (1 증가)
       + 측정할 함수에서는 scope cycle 클래스를 RAII 패턴으로 사용하며 측정할 block에 매크로로 클래스를 선언하여 측정
 * 실제 지표 측정 현황
   + ![game_server_statistics_1](https://github.com/user-attachments/assets/3353822f-5a63-499c-8d12-cbf04df42b25)
   + ![game_server_statistics_2](https://github.com/user-attachments/assets/0ec9f7ca-08a7-41c0-8c1e-c399e79d827e)
-# Development Environment
 # Statistics System
+## Summary (features)
+* 게임 서버 자체 상태와 월드 및 게임 오브젝트 관련 상태를 모니터링하기 위해 통계 지표를 처리하는 시스템
+### Statistics db (InfluxDB)
+* NoSQL 계열이며 데이터를 시간에 따라 효율적으로 저장/조회할 수 있는 시계열 데이터베이스
+* 스트림(브랜치) 또는 production 환경마다 전용 bucket(rdb의 database와 대응되는 개념)으로 데이터를 나누어 관리
+* InfluxQL이라는 자체 쿼리 언어로 효율적이고 다양한 방식으로 지표 조회가 가능
+  + ![KakaoTalk_20240727_211103085_02](https://github.com/user-attachments/assets/c4b80d84-3a49-4ba6-90d4-e5a09bb8faad)
+* 아직 database clustering 수준까지 진행하지는 못함
+### Viewer (Grafana)
+* Prometheus, InfluxDB, OpenTSDB 등의 시계열 데이터베이스로부터 지표를 수집하여 다양한 방식의 출력 방식(그래프 등)으로 지표를 시각화
+## World contents visualize
+### Summary
+* 게임 서버의 게임 오브젝트들을 지도(맵) 상에서의 분포를 쉽게 파악하기 위해 자체 개발한 툴
+* 통계 db로부터 게임 오브젝트 위치 데이터(지표)를 조회하여 동영상처럼 시간대 별로 맵 뷰어에 출력
+* 누구나 쉽게 접근하기 위해 웹으로 서비스 제공
+### Data pipeline
+* 게임 서버가 통계 서브시스템을 통해 통계 db에 game object location 지표를 적재
+  + 게임 서버에 있는 모든 게임 오브젝트의 현황인 snapshot을 적재하지 않고 위치 변화(diff)가 있는 게임 오브젝트만 위치 정보와 함께 적재
+* 통계 db에서 자체 task를 주기적으로 돌려 실시간으로 입력되는 게임 오브젝트의 diff 지표를 snapshot 지표로 변환
+  + 예를 들어 시점 1에 diff로 남은 오브젝트 A 위치 지표는 시점 2에 그 오브젝트 위치가 바뀌지 않아서 diff 지표가 남지 않더라도 시점 2 기준으로 조회를 했을 때 오브젝트 A가 계속 존재하는 것처럼 나타내기 위해 시점 2에 시점 1의 오브젝트 위치 데이터를 복제
+  + diff -> snapshot 형태의 데이터 변환에 추가로 필요한 요소는 게임 서버 실행중/재시작 시점 정보가 있음
+    + 서버 실행중인 상태와 종료된 상태를 인지하지 못하면 이전에 실행한 서버의 지표를 계속 snapshot으로 이어나갈 수 있는 문제가 있음
+    + 서버가 계속 실행 중임을 나타내는 근거로 서버의 cpu 지표를 사용 (cpu 지표가 없으면 서버가 종료된 것으로 판단)
+    + 서버가 재시작 된 것을 판단하기 위해 process id 지표를 사용 (재시작되면 process id가 달라짐)
+  + 게임 오브젝트가 많아질수록 task 처리가 지연되는 현상이 있고 이는 task를 여러 개로 돌려 분산 처리할 수 있도록 작업 필요
+* visualizer에서 가공된 snapshot 지표를 조회하여 시간대 별로 게임 오브젝트 현황을 파악할 수 있도록 동영상처럼 출력
+### Visualizer
+* frontend framework인 Vue.js 사용
+* 웹 브라우저에서 맵 뷰어로 OpenLayers 사용
+* UI 디자인은 Vuetify framework 사용
+* 스트리밍 형식으로 데이터를 조회하여 출력
+  + time bar에 설정된 전체 시간 구간에 대해 모든 데이터를 처음부터 다 조회하지 않고 time bar에서 현재 출력 시점을 나타내는 time cursor 기준으로 +5분 정도를 조회
+  + time bar를 플레이하면 time cursor가 초 단위로 증가 (동영상 재생 효과)
+  + time cursor가 앞서 데이터를 조회한 범위의 끝 부분에 다가오면 추가로 +5분 정도를 백그라운드로 조회 (반복)
+  + time cursor를 임의의 시점으로 사용자가 직접 옮겼을 때 그 시점의 데이터가 없을 경우 그 시점 기준으로 +5분의 데이터를 조회
+  + data pipeline 과정에서 통계 db의 task 처리 시간 확보를 위해 라이브 스트리밍은 1~3분 정도 딜레이를 설정
+* 맵 뷰어에서 게임 오브젝트 개수를 그리드맵(grid map) 형식으로 나누어 분포도를 지역적으로 한눈에 알 수 있도록 기능 제공
+* 실제 시연 영상
+  + https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98
 # Log System
 # Monitoring System
+# Development Environment
 # CI
 # CD
 ## K8s
