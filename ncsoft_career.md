@@ -305,7 +305,71 @@
 * 실제 시연 영상
   + https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98
 # Log System
+## Summary (features)
+* 게임 서버에서 발생한 로그를 통합 저장하고 관리할 수 있는 시스템
+* CD로 배포된 서버의 로그를 쉽게 조회할 수 있도록 접근성 제공
+* 개발자 또는 컨텐츠 기획자 등이 서버에서 발생한 로그를 활용(통계/분석 등)하여 필요한 정보를 획득
+### Log forwarder (Fluentd)
+* 게임 서버에서 남긴 로그 파일의 내용을 감시하면서 새로운 로그(행)가 추가되면 이를 추출하여 로그 수집기로 전송
+* 로그 파일 이름으로 실행된 서버의 스트림(브랜치), 맵 이름, 버전, 실행 호스트 등을 추출
+* 호스트에 직접 로그 forwarder(agent)를 설치하거나 컨테이너화한 후 서버가 실행되고 있는 호스트에 배포하여 서버 로그 전송
+### Log aggregator (Fluentd)
+* 여러 로그 전달자로부터 수집한 로그를 파싱하고 분류해서 로그 저장소에 적재
+* 로그의 날짜 및 시간, 카테고리, 레벨(debug, info 등), 소스 파일과 행(line) 등을 추출
+  + 서버의 어느 부분에서 로그를 많이 남기는지 파악하기 위해 소스파일 + 행 조합으로 통계를 내어 로그 관리 가능
+  + 뷰어로 로그 조회 시 로그 카테고리나 레벨로 필터링하여 조회 가능
+* 컨텐츠적인 로그도 따로 파싱 및 분류하여 통계를 낼 수 있도록 지원
+  + 서버의 공간 정보 쿼리 성능 측정을 위해 사용
+### Log storage (Elasticsearch)
+* 데이터를 문서(json) 형태로 저장하는 NoSQL 계열 검색 엔진
+* RESTful API로 제어가 가능하기 때문에 로그 관리 및 조회가 용이
+* single node로 운영하였으며 cluster 모드로 운영해보진 못함
+  + Elastic cloud라고 K8s operator 써서 cluster 배포해보긴 했는데 실제 적용 단계까지는 못해봄
+* Elasticsearch 로그 관리
+  + Elasticsearch에서 기본적으로 로그 1개 레코드를 document라는 단위로 관리하며 document들을 인덱스로 그룹화하여 관리
+  + 그리고 인덱스를 클러스터를 이루는 여러 노드들에 샤드들로 분산하여 저장 및 관리
+  + 로그 관리 작업은 대부분 인덱스 단위로 수행되며 적절히 그룹화하여 관리하기 위해 조직 환경에 맞는 용어들의 조합으로 인덱스를 네이밍하고 해당 로그를 저장
+  + 또한 보편적으로 로그를 최소 일별 단위로 관리하기 때문에 년월일까지 로그 인덱스의 네이밍에 사용
+  + repository는 로그 백업을 저장/복구하기 위한 논리적/물리적으로 분리된 공간이며 여러 인덱스 또는 하나의 인덱스를 하나의 repository에 저장하여 백업(snapshot) 및 복구(restore) 가능
+* log retention
+  + 사용자는 최근 30일 동안 남은 로그를 조회할 수 있도록 Elasticsearch에 1개월의 로그 인덱스만 로드하고 그 이전 로그는 로그 백업 파이프라인에 의해 백업되도록 자동화
+* lob backup & restore pipeline
+  + 로그 백업은 snapshot 개념으로 이뤄지며 repository에 여러 인덱스를 snapshot하여 백업
+  + repository 생성 -> 로그 인덱스를 지정하여 snapshot 수행 -> repository 디렉토리를 통째로 압축 후 아카이빙
+  + 반대로 복원은 아카이빙한 압축 파일을 미리 등록한 빈 repository에 풀고 Elasticsearch에서 해당 repository로부터 snapshot들을 사용하여 로그 인덱스를 복원
+* 로그 관리 정책
+  + 로그 인덱스 1개당 샤드 2개(primary + replica)
+    + single node에서 replica shard는 unassigned 상태 (싱글 노드니깐)
+  + 노드당 최대 샤드 개수 (max_shards_per_node)
+    + 일별 최대 50개 인덱스 * 2개 샤드 * 30일 = 3000개
+### Log viewer (Kibana)
+* Elasticsearch에 저장되어 있는 로그를 다양한 방식으로 조회할 수 있는 웹 서비스
+* 단순히 document 형식으로 조회 가능하고 다양한 graph 등을 사용하여 시각화 가능
 # Monitoring System
+## Summary (features)
+* 실에서 운영하는 장비들과 서비스(소프트웨어)들을 모니터링하기 위한 시스템
+### Metrics exporter
+* 모니터링할 대상으로부터 지표를 노출시킬 에이전트
+* exporter 종류
+  + Node exporter (Windows/Linux)
+    + 운영체제와 밀접하게 연동하여 운영체제의 여러 지표를 수집
+    + cpu, memory, disk, network, 그리고 운영체제 자체 정보들을 수집
+    + os마다 수집하는 지표가 다름
+  + MySQL exporter
+    + MySQL 데이터베이스에 MySQL 시스템적인 지표를 쿼리하여 수집
+    + MySQL 메모리 사용량, 클라이언트 연결, slow queries, table locks 등
+  + Elasticsearch exporter
+    + Elasticsearch에 시스템적인 지표를 쿼리하여 수집
+    + 클러스터 현황, JVM 메모리 사용량, cpu 및 메모리 사용량 등
+### Metrics db (Prometheus)
+* InfluxDB와 마찬가지로 시간에 따라 데이터를 효율적으로 저장/조회할 수 있는 시계열 데이터베이스
+* 내장된 자체 언어인 PromQL로 지표를 다양하게 조회할 수 있음
+### Alerter (AlertManager)
+* Prometheus와 연동하여 다양한 방식으로 알람을 전송할 수 있는 소프트웨어
+* e-mail, slack, teams 등 다양한 방식으로 알람 전송 가능
+### Metrics viewer (Grafana)
+* 시계열 데이터베이스로부터 다양한 방식의 출력 방식(그래프 등)으로 지표를 시각화
+* ![monitoring](https://github.com/user-attachments/assets/edc57fa5-ee77-484a-8808-e9090d75416a)
 # Development Environment
 # CI
 # CD
