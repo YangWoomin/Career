@@ -262,8 +262,8 @@
       + counter는 소멸자에서 지표 수집기에 1 전달 (1 증가)
       + 측정할 함수에서는 scope cycle 클래스를 RAII 패턴으로 사용하며 측정할 block에 매크로로 클래스를 선언하여 측정
 * 실제 지표 측정 현황
-  * ![KakaoTalk_20240727_211103085](https://github.com/user-attachments/assets/ca4b0963-5f7f-4da2-8c48-1c14da26572a)
-  * ![KakaoTalk_20240727_211103085_01](https://github.com/user-attachments/assets/dfed031c-faf3-4a96-9b3e-bf0874688078)
+  + ![game_server_statistics_1](https://github.com/user-attachments/assets/3353822f-5a63-499c-8d12-cbf04df42b25)
+  + ![game_server_statistics_2](https://github.com/user-attachments/assets/0ec9f7ca-08a7-41c0-8c1e-c399e79d827e)
 # Development Environment
 # Statistics System
 # Log System
