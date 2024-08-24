@@ -1,11 +1,11 @@
 
 ### 경력 기술서 및 포트폴리오
 
-| 기간 | 재직 회사(학부) | 근속년수 | 경력 기술서 | 포트폴리오 | 평가(학점) |
+| 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가(학점) |
 |----------|----------|----------|----------|----------|----------|
 | 2019.01 ~ 현재 | NCSOFT | 5 | [ncsoft_career.md](ncsoft_career.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) | A -> A -> A -> E -> E |
 | 2017.01 ~ 2018.12 | JOYCITY | 2 | [joycity_career.md](joycity_career.md) | - | GE -> GE |
-| ~ 2016.12 | 컴공 | - | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | 3.45/4.5 |
+| ~ 2016.12 | 학생 | - | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | 3.45/4.5 |
 
 ** 평가 기준 : Greatly Exceed(GE) - Exceed(E) - Achieve(A) - Need Improvement(N) - Unsatisfactory(U)
 
