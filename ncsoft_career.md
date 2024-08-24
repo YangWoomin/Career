@@ -271,7 +271,7 @@
 * NoSQL 계열이며 데이터를 시간에 따라 효율적으로 저장/조회할 수 있는 시계열 데이터베이스
 * 스트림(브랜치) 또는 production 환경마다 전용 bucket(rdb의 database와 대응되는 개념)으로 데이터를 나누어 관리
 * InfluxQL이라는 자체 쿼리 언어로 효율적이고 다양한 방식으로 지표 조회가 가능
-  + ![KakaoTalk_20240727_211103085_02](https://github.com/user-attachments/assets/c4b80d84-3a49-4ba6-90d4-e5a09bb8faad)
+  + ![influx_ql_example](https://github.com/user-attachments/assets/0c7049d2-8b18-4735-ac7a-4e910816055b)
 * 아직 database clustering 수준까지 진행하지는 못함
 ### Viewer (Grafana)
 * Prometheus, InfluxDB, OpenTSDB 등의 시계열 데이터베이스로부터 지표를 수집하여 다양한 방식의 출력 방식(그래프 등)으로 지표를 시각화
