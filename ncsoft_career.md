@@ -302,7 +302,7 @@
   + time cursor를 임의의 시점으로 사용자가 직접 옮겼을 때 그 시점의 데이터가 없을 경우 그 시점 기준으로 +5분의 데이터를 조회
   + data pipeline 과정에서 통계 db의 task 처리 시간 확보를 위해 라이브 스트리밍은 1~3분 정도 딜레이를 설정
 * 맵 뷰어에서 게임 오브젝트 개수를 그리드맵(grid map) 형식으로 나누어 분포도를 지역적으로 한눈에 알 수 있도록 기능 제공
-* 실제 시연 영상
+* 실제 시현 영상
   + https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98
 # Log System
 ## Summary (features)
@@ -371,7 +371,30 @@
 * 시계열 데이터베이스로부터 다양한 방식의 출력 방식(그래프 등)으로 지표를 시각화
 * ![monitoring](https://github.com/user-attachments/assets/edc57fa5-ee77-484a-8808-e9090d75416a)
 # Development Environment
+## VCS (Version control system)
+* Perforce 사용 (빌드관리팀이 직접 운영)
+* 기본적으로 프로그래머가 작업하는 스트림(브랜치)인 develop과 기획자나 아티스트가 작업하는 스트림을 internal, 그리고 이들을 daily merge하고 cooking 해서 릴리즈 버전으로 아카이빙하는 internalcook 스트림으로 운영
+## Build
+* 크로스플랫폼(Windows/Linux) 지원을 위해 CMake/Make 사용
+  + 리눅스 환경에서 CMake/Make는 매우 익숙하지만 윈도우 환경에서는 익숙하지 않음
+  + 윈도우 환경에서 CMake/Make 설치 프로그램으로 설치 후 사용
+* CMake를 사용하여 프로젝트 별로 Visual studio 프로젝트 파일 및 make 파일 생성
+  + 윈도우 환경에서 Visual studio를 사용하여 소스코드 작업
+  + Visual studio code도 사용
+* Make를 사용하여 빌드
+  + Linux 환경은 원래 Make 명령어로 빌드가 가능하지만 윈도우 환경에서는 Visual studio 프로젝트에서 빌드 (또는 msbuild.exe 사용)
+  + 빌드를 Make로 통일하기 위해 Make 스크립트를 사용하여 빌드
+* 컴파일러는 윈도우 환경에서 MSVC를, 리눅스 환경에서 Clang 사용 (GCC/G++ 대신 왜 Clnag을 사용했는지는 모름)
+* Run
+  + 서버 소스코드를 내려받아서 빌드를 돌리지 않아도 기본적으로 서버 CI에 의해 자동 서밋되는 서버 바이너리들로 서버 실행이 가능
+  + 서버 실행에만 필요한 설치 프로그램으로 vc_redist.x64(2022), mysql-odbc-connector(v8.0.28)이 있음
+* Database
+  + 별도 로컬 데이터베이스 운영을 지원하지 않고 공용 데이터베이스만 운영
+  + DBA가 db 작업이 있을 때만 로컬 db에 직접 세팅해서 테스트 해보고 소스파일 서밋할 때 공용 db에도 같이 적용
+  + 스트림마다 소스파일 및 바이너리를 merge할 때마다 공용으로 운영하는 db에도 맞춰서 업데이트 수행
 # CI
+* Teamcity에서 job(build configuration)으로 서버 모듈 별로 CI를 돌림
+  + Teamcity에 VCS로 P4를 지정하고 P4에서 각 모듈 별 소스 파일들 변경이 생기는지 감시하다가 변경이 발생하면 Teamcity가 트리거링 되어 CI 빌드 수행
 # CD
 ## K8s
 ## NCKUBE
