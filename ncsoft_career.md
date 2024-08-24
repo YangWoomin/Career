@@ -46,7 +46,7 @@
   + token signature : Bse64(hmac_sha256(token payload))
   + plain text token : token payload + token signature
   + encrypted token : aes_256_ecb(plain text token)
-  + (todo) Base64 encrypted token : Base64(encrypted token)
+  + (to do) Base64 encrypted token : Base64(encrypted token)
     + (as is) readable token : HexToString(encrypted token)
 * 토큰 암호화/복호화를 위해 openssl3 라이브러리 사용
   + 암호화 알고리즘으로 aes 256 ecb 사용
@@ -56,7 +56,7 @@
     + 암호화 키와 HMAC 키는 별개이며 모두 소스코드에 박혀져 있음
       + 해당 소스 코드는 접근 제한이 걸려 있음
 ## Lobby
-* (본래 로비 서버의 담당자가 따로 있었으나 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자로 담당자가 변경된 후 관련 작업한 내용을 정리)
+* (원래 로비 서버의 담당자가 따로 있었으나 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자로 담당자가 변경된 후 이미 있는 기능을 보완하거나 추가로 작업한 내용들을 정리)
 ### Summary (features)
 #### Login
 * 유저 로그인 및 유저 세션 관리
@@ -139,7 +139,131 @@
   + 팀 관련 이벤트
     + 게임 서버 <-> 팀 서버
 ### Scale out
+* 클라이언트는 특정 로비 서버와 연결(connection)을 맺고 있지만 어느 로비 서버(instance)로든 동일한 서비스를 제공받을 수 있기 때문에 로비 서버가 완전하게 stateless 하거나 stateful 하지 않음
+* 클라이언트와 연결을 맺은 서버는 지속적인 요청/응답을 주고 받는 면에서 stateful 하지만, 다른 어느 서버든 그 역할을 동일하게 수행할 수 있고 실제 데이터가 저장된 데이터베이스에 클라이언트의 요청 데이터를 입출력하는 대리자로서 역할을 수행하기 때문에 stateless 하다고 볼 수 있음
+* 즉, persistent layer는 memory database(redis) 또는 rdbms(MySQL)이기 때문에 연결을 유지하는 것만 제외하면 stateless함
+* 위와 같은 특징 때문에 로비 서버 앞단에 로드 밸런서 등을 위치시켜서 클라이언트의 연결을 여러 로비 서버에 분산시켜 처리할 수 있음
 ## World
+* (원래 월드 서버의 담당자가 따로 있었으나 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자로 담당자가 변경된 후 이미 있는 기능을 보완하거나 추가로 작업한 내용들을 정리)
+### Summary (features)
+* 게임 서버들이 월드 서버에 등록 요청을 하며 월드 서버는 게임 서버 매니저 역할을 담당
+* 게임 서버들이 모여서 하나의 월드를 구성
+* LLL은 단일 월드 체제
+#### User handover
+* 로비에서 인증된 클라이언트에게 월드 진입을 위해 접속 가능한 게임 서버의 접속 정보를 로비에게 전달
+* 클라이언트는 게임 서버 접속 정보를 사용하여 게임 서버에 접속
+#### Game server management
+* 게임 서버가 아래 필드들과 함께 월드 서버에 등록 요청
+  + server id
+    + 게임 서버 식별자
+  + cluster
+    + 월드(서버군)를 구분하기 위한 식별자
+  + address (ip/port)
+    + 클라이언트가 게임 서버에 접속하기 위한 접속 정보
+  + map name
+    + 클라이언트가 필요로 하는, 접속할 게임 서버의 맵 이름
+  + status
+    + 게임 서버의 상태
+    + loaded / ready (enterable) / closing
+    + 게임 서버 status가 업데이트되면 월드 서버에 갱신 요청
+* 게임 서버가 등록/제거되거나 상태(status)가 갱신되면 연결된 모든 로비 서버들에게 broadcasting
+  + 현재는 월드 서버에 등록된 게임 서버 정보를 로비 서버들에게 단순히 전달만 하는 수준
+  + (to do) 클라이언트가 월드 진입 요청 시 로비 서버는 월드 서버로부터 게임 서버 접속 정보를 획득하여 클라이언트에게 전달하는 구조로 변경 필요
+  + (to do) 월드 서버의 single point of failure를 대비하여 게임 서버 등록 정보를 메모리 데이터베이스(redis)에 저장하도록 개선 필요
+* cluster 필드는 월드를 구분하기 위한 group key
+  + LLL은 단일 월드 체제이고 멀티 월드와 서버 채널링에 대한 고려가 없는 상태
+  + 월드의 논리적 그룹화를 통한 유저풀 분리를 목적으로 멀티 월드를 자체적으로 구현
+  + 월드는 유저가 흔히 느끼는 서버(도시섭, 시골섭 등) 개념에 해당되며 게임 내에서 플레이어블한 공간을 논리적으로 분리한 형태
+  + 개발 환경에서는 게임 서버를 제외한 나머지 서버들의 공용화에 따라 작업자의 서버들 별로 고유의 월드를 보장하기 위해 멀티 월드 지원
+    + 차후 기획적으로 멀티 월드 지원을 요구할 수 있어서 미리 준비한 부분도 있음
+  + 채널링 도입은 고려되지 않은 상태 (서버팀 내부적으로 언급만 된 상태)
+    + 채널링은 월드의 맵을 지리(region)적으로 나눈 뒤 해당 지역을 여러 차원으로 instantiating한 개념이 파티션(partition)
+    + 어느 특정 지역에 대해 여러 파티션으로 구성하여 유저풀을 나누어 처리하도록 분산 처리가 고려된 시스템
+## Game
+* (게임 서버 담당자는 따로 있으며 아래 Summary에 정리된 내용은 서버 기능과 역할을 설명하기 위해 작성)
+* (위에서 언급한 로비 서버의 scale out 가능한 구조를 게임 서버에도 반영하기 위해 유저 세션 작업을 위한 세션 db 연동과 message queue 연동 작업은 작성자가 작업함)
+* (그 외 통계 시스템과 연동하기 위한 Statistics subsystem도 작성자가 작업함)
+### Summary (features)
+* 게임 서버는 lllgame이라는 컨텐츠(원래는 별도 라이브러리)를 돌려 유저가 플레이할 월드를 서비스하는 서버
+* 앞서 월드 서버에서 설명한 파티션들을 실행하는 주체가 되며 파티션에서 발생하는 모든 일을 처리
+* 지역적으로 서로 인접한 파티션은 겹쳐지며 겹친 부분은 경계선 영역이 되고 이 영역은 파티션간 게임 오브젝트의 원본과 복제 개념으로 동기화 수행
+  + 즉, 경계선 영역을 포함하고 있는 파티션들에서 게임 오브젝트들은 각각 원본과 복제본으로 나타나게 되며 파티션 간에 밀접한 통신으로 동기화 수행
+  + 현재 게임 서버 내부의 파티션 간에 동기화가 되고 있는 상태이며, 그것도 최대 2개, 1:1로만 가능한 상태
+    + inter-server를 통한 파티션들 사이의 동기화는 구현해야 하는 상황
+      + 이 작업이 되어야 게임 서버의 scale out(보다는 분산 처리가 더 정확한 표현)이 가능
+### Statistics subsystem
+* 게임 서버 상태와 월드 및 게임 오브젝트 관련 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분이 통계 서브시스템
+* 통계 서브시스템은 게임 서버에서 발생하는 다양한 지표를 모아서 통계 시스템의 통계 db에 적재하는 작업을 수행
+* 통계 지표 종류
+  + CPU & Memory
+    + 게임 서버 프로세스의 CPU와 메모리 사용량
+    + 메모리는 virtual(가상 메모리 상에서의 사용량)과 physical(물리 메모리(RAM) 상에서의 사용량)로 구성
+  + Game object count
+    + 파티션(viewer에서는 shard로 표시) 단위 게임 오브젝트 개수
+  + Game object count by type
+    + 파티션 단위 게임 오브젝트들의 타입별 개수
+  + Game object location
+    + 게임 서버에 있는 모든 게임 오브젝트의 위치 및 타입
+    + world contents visualize(map viewer)에서 사용
+  + FPS
+    + 파티션 단위 초당 파티션 tick 호출 횟수
+  + User count
+    + 게임 서버에 인증된 유저의 수
+  + Connection count
+    + 게임 서버에 연결된 클라이언트 수
+  + Game server status
+    + 게임 서버의 status
+  + Send/Recv packet size
+    + 게임 서버에 연결된 모든 클라이언트와의 초당 송수신 패킷 크기
+  + Game play task count
+    + 게임 서버의 scheduler가 파티션 단위 초당 처리하는 task 개수
+* 지표 처리 방식
+  + metrics table
+    + table
+      + 같은 성격의 지표를 모아놓은 테이블
+      + rdb의 테이블과 대응되는 요소
+    + tag
+      + 지표의 부가 정보를 담고 있는 필드
+    + field
+      + 실제 측정하고자 하는 필드
+  + 기본 처리 방식
+    + 지표는 1개 레코드(n tags + m fields) 단위로 수집
+    + 외부로부터 큐에 담겨 전달된 지표는 통계 테이블에 time index 단위로 batching되어 저장
+      + 테이블에 설정된 연산 종류에 따라 적절한 연산을 취하여 batching
+      + 예를 들어 초당 송신 패킷 크기를 측정할 경우 연산 종류는 sum이며 2024-07-17 10:05:00 ~ 10:05:01 time index(epoch로 표현됨)에 발생하는 모든 지표는 이 time index안에 합하여 저장됨
+        + time index 1721179700, send packet size(sum) : 1024
+        + time index 1721179701, send packet size(sum) : 64
+        + ...
+  + 연산 종류
+    + raw
+      + 어떠한 연산도 적용하지 않고 날 것 그대로 time index와 함께 저장
+    + sum
+      + 설정된 주기 (e.g. 1초) 별로 발생한 모든 지표를 time index 단위로 batching한 후 각각 합하여 출력
+      + batching한 결과, 아무 데이터가 없으면 0을 출력하도록 설정 가능 (항상 양의 실수가 입력된다는 전제, default는 값 자체가 없음)
+    + update
+      + 설정된 주기 별로 발생한 모든 지표를 time index 단위로 batching한 후 각각 마지막으로 전달된 지표를 출력
+      + batching한 결과, 아무 데이터가 없으면 0을 출력하도록 설정 가능 (항상 양의 실수가 입력된다는 전제, defualt는 값 자체가 없음)
+    + accumulative sum
+      + 이전 time index에 batching하여 연산(합)한 결과를 다음 time index에 이어서 연산
+      + batching한 결과, 아무 데이터가 없으면 이전 time index 값을 출력
+    + accumulative update
+      + 이전 time index에 batching하여 연산(갱신)한 결과를 다음 time index에 이어서 연산
+      + batching한 결과, 아무 데이터가 없으면 이전 time index 값을 출력
+    + max
+      + 설정된 주기 별로 발생한 모든 지표를 time index 단위로 batching하여 그 중 최댓값 출력
+      + batching한 결과, 아무 데이터가 없으면 0을 출력하도록 설정 가능 (항상 양의 실수가 입력된다는 전제, default는 값 자체가 없음)
+    + 평균 연산 등 그 외 복잡한 연산도 추가하려고 했으나 통계 db에서 쉽게 계산할 수 있도록 쿼리가 지원되어서 추가하지 않음
+    + 통계 서브시스템에서는 최대한 지표를 압축(batching)하는데 집중
+  * scope cycle
+    + 주로 특정 함수 등의 수행 시간과 호출 횟수를 측정하기 위한 통계 서브시스템 인터페이스
+      + sum 연산을 적용한 counter와 duration 필드로 수집
+      + 초당 함수 호출 횟수와 초당 함수 처리 시간을 계산
+    + scope cycle 전용 클래스가 있으며 생성자에서 생성 시저믕ㄹ 기록하고 소멸자에서 생성 시점으로부터 걸린 시간을 계산하여 지표 수집기에 전달
+      + counter는 소멸자에서 지표 수집기에 1 전달 (1 증가)
+      + 측정할 함수에서는 scope cycle 클래스를 RAII 패턴으로 사용하며 측정할 block에 매크로로 클래스를 선언하여 측정
+* 실제 지표 측정 현황
+  * ![KakaoTalk_20240727_211103085](https://github.com/user-attachments/assets/ca4b0963-5f7f-4da2-8c48-1c14da26572a)
+  * ![KakaoTalk_20240727_211103085_01](https://github.com/user-attachments/assets/dfed031c-faf3-4a96-9b3e-bf0874688078)
 # Development Environment
 # Statistics System
 # Log System
