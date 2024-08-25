@@ -1,9 +1,9 @@
 # 0. Contents Table
 * [1. Server Development](#1-Server-Development)
-  + [1. System Architecture](#11-System-Architecture)
-  + [2. Auth](#12-Auth)
-  + [3. Lobby](#13-Lobby)
-  + [4. Lobby](#14-Game)
+  + [1.1 System Architecture](#11-System-Architecture)
+  + [1.2 Auth](#12-Auth)
+  + [1.3 Lobby](#13-Lobby)
+  + [1.4 Lobby](#14-Game)
 * [2. Infrastructure](#2-Infrastructure)
   + [2.1 Statistics System](#21-Statistics-System)
   + [2.2 Log System](#22-Log-System)
