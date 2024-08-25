@@ -1,23 +1,23 @@
-# Server Development
-## System Architecture
+# 1. Server Development
+## 1) System Architecture
 * 경력 기술서 내용의 이해를 돕기 위한 간단한 시스템 구성도
 
 ![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
 
-## Auth
+## 2) Auth
 * (인증 서버는 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
-### 작업 내용
+### (1) 작업 내용
 * 사용자가 외부에서 사용하는 플랫폼 계정을 게임 내 계정(account id)과 바인딩하여 외부 플랫폼 계정으로 게임을 플레이할 수 있게 지원
   + 연동한 외부 플랫폼은 사내 계정 관리 시스템(nano)과 스팀이 있음
 * 인증 서버로부터 사용자가 인증된 클라이언트에게 인증 서버 외 다른 서버나 외부 시스템에서 쉽게 인증(권한 부여)할 수 있도록 내부 토큰 시스템 지원
   + 클라이언트는 지급 받은 내부 토큰을 다른 서버(로비)에게 제출하여 간단한 인증 수행
 * 내부(자체) 계정 시스템 지원
 * 처음에 Golang + Redis로 만들었으나 (auth1) 자체 서버 프레임워크(C/C++) 기반으로 다시 만듦 (auth2)
-### Trouble shooting
+### (2) Trouble shooting
 
-## Lobby
+## 3) Lobby
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
-### 작업 내용
+### (1) 작업 내용
 #### Login
 * 로비 서버가 자체 세션 서버(C/C++)와 연동하여 유저 세션 관리하던 부분을 Redis++을 사용하여 메모리 데이터베이스(Redis)와 연동하도록 수정
   + Redis++을 wrapping한 별도 라이브러리(dll, memory database component)를 구현 후 로비 서버에서 로드하여 사용
@@ -31,7 +31,7 @@
 * 서버들 사이의 연결 복잡도를 줄이고 통신 방법을 표준화하기 위하여 메시지 큐(Kafka) 도입
   + 근실시간 동기화 수준 정도면 충족되는 서버들 사이의 연결에 한함
   + Redis++와 마찬가지로 librdkafka 라이브러리를 wrapping하여 별도 라이브러리(dll, message queue client)를 구현 후 로비 서버에서 로드하여 사용
-### Trouble shooting
+### (2) Trouble shooting
 * Component dll 로드 시 ABI 문제
 * Redis++의 Sync -> Async 전환
 * (TODO) Redis 클러스터 모드에 따른 대응
