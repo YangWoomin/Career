@@ -283,8 +283,7 @@
       + counter는 소멸자에서 지표 수집기에 1 전달 (1 증가)
       + 측정할 함수에서는 scope cycle 클래스를 RAII 패턴으로 사용하며 측정할 block에 매크로로 클래스를 선언하여 측정
 * 실제 지표 측정 현황
-  + ![game_server_statistics_1](https://github.com/user-attachments/assets/3353822f-5a63-499c-8d12-cbf04df42b25)
-  + ![game_server_statistics_2](https://github.com/user-attachments/assets/0ec9f7ca-08a7-41c0-8c1e-c399e79d827e)
+
 # Statistics System
 ## Summary (features)
 * 게임 서버 자체 상태와 월드 및 게임 오브젝트 관련 상태를 모니터링하기 위해 통계 지표를 처리하는 시스템
@@ -292,7 +291,7 @@
 * NoSQL 계열이며 데이터를 시간에 따라 효율적으로 저장/조회할 수 있는 시계열 데이터베이스
 * 스트림(브랜치) 또는 production 환경마다 전용 bucket(rdb의 database와 대응되는 개념)으로 데이터를 나누어 관리
 * InfluxQL이라는 자체 쿼리 언어로 효율적이고 다양한 방식으로 지표 조회가 가능
-  + ![influx_ql_example](https://github.com/user-attachments/assets/0c7049d2-8b18-4735-ac7a-4e910816055b)
+  +  
 * 아직 database clustering 수준까지 진행하지는 못함
 ### Viewer (Grafana)
 * Prometheus, InfluxDB, OpenTSDB 등의 시계열 데이터베이스로부터 지표를 수집하여 다양한 방식의 출력 방식(그래프 등)으로 지표를 시각화
@@ -390,7 +389,7 @@
 * e-mail, slack, teams 등 다양한 방식으로 알람 전송 가능
 ### Metrics viewer (Grafana)
 * 시계열 데이터베이스로부터 다양한 방식의 출력 방식(그래프 등)으로 지표를 시각화
-* ![monitoring](https://github.com/user-attachments/assets/edc57fa5-ee77-484a-8808-e9090d75416a)
+* 
 # Development Environment
 ## VCS (Version control system)
 * Perforce 사용 (빌드관리팀이 퍼포스 서버를 직접 운영)
