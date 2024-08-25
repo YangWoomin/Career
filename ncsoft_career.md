@@ -1,16 +1,16 @@
 # 0. Contents Table
-* [1. Server Development](#1[.]-Server-Development)
-  + [1. System Architecture](#System-Architecture)
-  + [2. Auth](#Auth)
-* [2. Infrastructure](#Infrastructure)
+* [1. Server Development](#1-Server-Development)
+  + [1. System Architecture](#11-System-Architecture)
+  + [2. Auth](#12-Auth)
+* [2. Infrastructure](#2-Infrastructure)
 
 # 1. Server Development
-## 1) System Architecture
+## 1.1 System Architecture
 * 경력 기술서 내용의 이해를 돕기 위한 간단한 시스템 구성도
 
 ![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
 
-## 2) Auth
+## 1.2 Auth
 * (인증 서버는 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
 ### 작업 내용
 * 사용자가 외부에서 사용하는 플랫폼 계정을 게임 내 계정(account id)과 바인딩하여 외부 플랫폼 계정으로 게임을 플레이할 수 있게 지원
