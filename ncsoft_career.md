@@ -32,9 +32,9 @@
   + 근실시간 동기화 수준 정도면 충족되는 서버들 사이의 연결에 한함
   + Redis++와 마찬가지로 librdkafka 라이브러리를 wrapping하여 별도 라이브러리(dll, message queue client)를 구현 후 로비 서버에서 로드하여 사용
 ### Trouble shooting
-#### Component dll 로드 시 ABI 문제
-#### Redis++의 Sync -> Async 전환
-#### (TODO) Redis 클러스터 모드에 따른 대응
+* Component dll 로드 시 ABI 문제
+* Redis++의 Sync -> Async 전환
+* (TODO) Redis 클러스터 모드에 따른 대응
 
 ## Game
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
@@ -45,25 +45,26 @@
 * 게임 서버 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템(Statistics System)이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분으로 통계 서브시스템을 구현하여 통계 시스템 연동을 지원
   + 통계 지표로 CPU와 Memory(Virtual/Physical), Game Object Count, FPS, User Count, Game Server Status 등이 있음
 ### Trouble shooting
-#### 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
-#### 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
+* 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
+* 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
 
 # Statistics System
 * (통계 시스템 관련 모든 작업은 작성자가 전담함)
 ## 사용 목적
 * 게임 서버 상태를 모니터링하기 위한 지표 수집 및 저장 관리
-## Statistics db (InfluxDB)
+## 구성 요소
+### Statistics db (InfluxDB)
 * 스트림(브랜치) 또는 production 환경마다 전용 bucket(rdb의 database와 대응되는 개념)으로 데이터를 나누어 관리
 * InfluxQL 자체 쿼리 언어를 사용하여 게임 관련 지표 조회
-## Viewer (Grafana)
+### Viewer (Grafana)
 * 개발자들이 게임 서버 상태를 쉽게 모니터링하기 위해 웹 서비스 형태로 서비스 제공
 * InfluxQL 언어를 사용하여 지표를 시각화 (그래프)
-## World contents visualize
-### 개요
+### World contents visualize
+#### 개요
 * 게임 서버의 게임 오브젝트들을 지도(맵) 상에서의 분포를 쉽게 파악하기 위해 자체 개발한 툴
 * 통계 db로부터 게임 오브젝트 위치 데이터(지표)를 조회하여 동영상처럼 시간대 별로 맵 뷰어에 출력
 * 누구나 쉽게 접근하기 위해 웹으로 서비스 제공
-### Visualizer
+#### Visualizer
 * frontend framework인 Vue.js 사용
 * 웹 브라우저에서 맵 뷰어로 OpenLayers 사용
 * UI 디자인은 Vuetify framework 사용
@@ -72,14 +73,15 @@
 * 실제 시현 영상
   + https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98
 ## Trouble shooting
-### InfluxDB의 OOM에 의한 강제 재시작 현상
-### World contents visualizer - snapshot 데이터 vs diff 데이터
+* InfluxDB의 OOM에 의한 강제 재시작 현상
+* World contents visualizer - snapshot 데이터 vs diff 데이터
 
 # Log System
 * (로그 시스템 관련 모든 작업은 작성자가 전담함)
 ## 사용 목적
 * 게임 서버에서 발생한 로그를 통합 저장하고 관리
 * 개발자 또는 컨텐츠 기획자 등이 서버에서 발생한 로그를 분석하기 위한 통계 및 시각화 등의 기능 제공
+## 구성 요소
 ### Log forwarder (Fluentd)
 * 게임 서버에서 남긴 로그 파일의 내용을 감시하면서 새로운 로그(행)가 추가되면 이를 추출하여 로그 수집기로 전송
 * 로그 파일 이름으로 실행된 서버의 스트림(브랜치), 맵 이름, 버전, 실행 호스트 등을 추출
@@ -101,12 +103,13 @@
 * 개인 서버가 아닌 (배포된) 공용 서버의 로그에 다른 개발자들이 쉽게 접근할 수 있도록 웹 서비스 제공
 * 로그 저장소에 저장된 로그들을 다양한 방식으로 조회 및 통계 작업이 가능하도록 지원
 ## Trouble shooting
-### 노드당 최대 샤드 개수(max_shards_per_node) 이슈
+* 노드당 최대 샤드 개수(max_shards_per_node) 이슈
 
 # Monitoring System
 * (모니터링 시스템 관련 모든 작업은 작성자가 전담함)
 ## 사용 목적
 * 실에서 운영하는 장비들과 서비스(소프트웨어)들을 모니터링
+## 구성 요소
 ### Metrics exporter
 #### Node exporter (Windows/Linux)
 * 호스트 종료 및 리소스(CPU, Memory, Disk) 과용 탐지
@@ -122,7 +125,7 @@
 * 장비의 리소스 과용 시 teams 채널에 메일로 알람 전송
 ### Metrics viewer (Grafana)
 * Prometheus로부터 다양한 지표를 그래프 등으로 시각화하여 출력
-### Trouble shooting
+## Trouble shooting
 
 # Development Environment
 ## VCS (Version control system)
