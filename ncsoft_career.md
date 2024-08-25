@@ -1,54 +1,54 @@
-## Server Development
-### System Architecture
+# Server Development
+## System Architecture
 * 경력 기술서 내용의 이해를 돕기 위한 간단한 시스템 구성도
 
 ![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
 
 ------------------
 
-### Auth
+## Auth
 * (인증 서버는 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
-#### 작업 내용
+### 작업 내용
 * 사용자가 외부에서 사용하는 플랫폼 계정을 게임 내 계정(account id)과 바인딩하여 외부 플랫폼 계정으로 게임을 플레이할 수 있게 지원
   + 연동한 외부 플랫폼은 사내 계정 관리 시스템(nano)과 스팀이 있음
 * 인증 서버로부터 사용자가 인증된 클라이언트에게 인증 서버 외 다른 서버나 외부 시스템에서 쉽게 인증(권한 부여)할 수 있도록 내부 토큰 시스템 지원
   + 클라이언트는 지급 받은 내부 토큰을 다른 서버(로비)에게 제출하여 간단한 인증 수행
 * 내부(자체) 계정 시스템 지원
 * 처음에 Golang + Redis로 만들었으나 (auth1) 자체 서버 프레임워크(C/C++) 기반으로 다시 만듦 (auth2)
-#### Trouble shooting
+### Trouble shooting
 
 ------------------
 
-### Lobby
+## Lobby
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
-#### 작업 내용
-##### Login
+### 작업 내용
+#### Login
 * 로비 서버가 자체 세션 서버(C/C++)와 연동하여 유저 세션 관리하던 부분을 Redis++을 사용하여 메모리 데이터베이스(Redis)와 연동하도록 수정
   + Redis++을 wrapping한 별도 라이브러리(dll, memory database component)를 구현 후 로비 서버에서 로드하여 사용
 * 위 작업으로 인한 유저 로그인 처리 로직 대부분을 수정
-##### Nickname & Character
+#### Nickname & Character
 * 인게임에서 사용할 닉네임과 캐릭터 관련 준비 작업(In-game Preparation)하는 부분이 원래 로비 서버가 별도 서버들과 연동하여 수행했던 부분들을 모두 라이브러리화하여 연동하도록 수정
   + 로비에서 닉네임 생성/수정 또는 캐릭터 생성/삭제 등의 작업이 가능함
   + 계정 서버와 캐릭터 서버가 별도로 존재했었음 (당시 서버 구조가 MSA를 추구)
   + 별도 서버들을 모두 라이브러리(dll)로 변환하여 로비 서버에서 로드하고 사용하도록 수정
-##### Inter-server Communication 
+#### Inter-server Communication 
 * 서버들 사이의 연결 복잡도를 줄이고 통신 방법을 표준화하기 위하여 메시지 큐(Kafka) 도입
   + 근실시간 동기화 수준 정도면 충족되는 서버들 사이의 연결에 한함
   + Redis++와 마찬가지로 librdkafka 라이브러리를 wrapping하여 별도 라이브러리(dll, message queue client)를 구현 후 로비 서버에서 로드하여 사용
-#### Trouble shooting
+### Trouble shooting
 * Component dll 로드 시 ABI 문제
 * Redis++의 Sync -> Async 전환
 * (TODO) Redis 클러스터 모드에 따른 대응
 
-### Game
+## Game
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
 * (Statistics subsystem은 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
-#### 작업 내용
+### 작업 내용
 * 로비 서버와 마찬가지로 자체 세션 서버를 사용한 유저 세션 접근 부분을 memory database component를 로드하여 사용하도록 수정
 * 로비 서버와 마찬가지로 게임 서버 서로간의 연결을 제외한 나머지 서버들과의 근실시간 통신을 위해 message queue client를 로드하여 사용하도록 수정
 * 게임 서버 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템(Statistics System)이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분으로 통계 서브시스템을 구현하여 통계 시스템 연동을 지원
   + 통계 지표로 CPU와 Memory(Virtual/Physical), Game Object Count, FPS, User Count, Game Server Status 등이 있음
-#### Trouble shooting
+### Trouble shooting
 * 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
 * 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
 
