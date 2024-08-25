@@ -7,12 +7,7 @@
 * 클라이언트가 게임 서버 내에 있는 유저의 자원을 사용하기 앞서 자원의 소유자를 식별하기 위한 계정 식별자(account id)를 제공
 
 <details>
-<summary>접기/펼치기</summary>
-
-<!-- summary 아래 한칸 공백 두어야함 -->
-## 접은 제목
-접은 내용
-</details>
+<summary>Details</summary>
 
 ### Authentication
 #### External IdP
@@ -65,6 +60,8 @@
   + HMAC에 sha256 사용
     + 암호화 키와 HMAC 키는 별개이며 모두 소스코드에 박혀져 있음
       + 해당 소스 코드는 접근 제한이 걸려 있음
+</details>
+
 ## Lobby
 * (원래 로비 서버의 담당자가 따로 있었으나 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자로 담당자가 변경된 후 이미 있는 기능을 보완하거나 추가로 작업한 내용들을 정리)
 ### Summary (features)
