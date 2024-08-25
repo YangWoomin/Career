@@ -9,9 +9,9 @@
 <details>
 <summary>Details</summary>
 
-### Authentication
-#### External IdP
-* (inhouse)런처나 클라이언트가 각 플랫폼 별 로그인 방식에 따라 로그인 후 OAuth 2.0 토큰 획득
+> ### Authentication
+> #### External IdP
+> * (inhouse)런처나 클라이언트가 각 플랫폼 별 로그인 방식에 따라 로그인 후 OAuth 2.0 토큰 획득
   + 런처가 토큰을 획득한 경우 클라이언트를 실행할 때 토큰을 클라이언트 매개변수로 전달하거나, 토큰 파일에 저장해 놓으면 클라이언트에서 로드
   + (런처나 클라이언트 쪽 작업은 각각 별도 작업자가 작업함)
 * 클라이언트가 인증 서버에 연결 후 외부 플랫폼 토큰을 토큰 종류(Idp Kind)와 함께 전달
