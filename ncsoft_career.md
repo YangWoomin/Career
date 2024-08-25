@@ -7,7 +7,7 @@
 * 클라이언트가 게임 서버 내에 있는 유저의 자원을 사용하기 앞서 자원의 소유자를 식별하기 위한 계정 식별자(account id)를 제공
 
 <details>
-<summary>### Details</summary>
+### <summary>Details</summary>
 
 > ### Authentication
 > #### External IdP
