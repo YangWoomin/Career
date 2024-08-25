@@ -1,7 +1,8 @@
 # Server Development
 ## System Architecture
 * 경력 기술서 내용의 이해를 돕기 위한 간단한 시스템 구성도
-* ![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
+
+![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
 ## Auth
 * 인증 서버는 초기 설계부터 구현까지 작성자가 모두 작업
 ### 작업 내용
