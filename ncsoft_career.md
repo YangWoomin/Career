@@ -1,5 +1,5 @@
 # 0. Contents Table
-* [1. Server Development](#1.-Server-Development)
+* [1. Server Development](#1\.-Server-Development)
   + [1. System Architecture](#System-Architecture)
   + [2. Auth](#Auth)
 * [2. Infrastructure](#Infrastructure)
