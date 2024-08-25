@@ -5,6 +5,7 @@
 ### Summary
 * 인증 서버는 유저가 클라이언트로 게임 플레이를 하기 전에 유저가 누구인지 식별
 * 클라이언트가 로비 서버 및 게임 서버 내에 있는 유저의 자원을 사용하기 앞서 자원의 소유자를 식별하기 위한 수단으로 계정 식별자(account id)를 포함한 내부 토큰 제공
+* ![auth drawio](https://github.com/user-attachments/assets/c546662e-4fea-4492-97cb-4a381d5b52f4)
 
 <details>
 <summary>Details</summary>
