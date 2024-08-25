@@ -1,10 +1,13 @@
 # Server Development
-## Overview
+## System Architecture
+* 경력 기술서 내용의 이해를 돕기 위한 간단한 시스템 구성도
 ![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
 ## Auth
-### Summary
-* 인증 서버는 유저가 클라이언트로 게임 플레이를 하기 전에 유저가 누구인지 식별
-* 클라이언트가 로비 서버 및 게임 서버 내에 있는 유저의 자원을 사용하기 앞서 자원의 소유자를 식별하기 위한 수단으로 계정 식별자(account id)를 포함한 내부 토큰(LLL Token) 제공
+* 인증 서버는 초기 설계부터 구현까지 작성자가 모두 작업
+### 작업 내용
+* 사용자가 외부에서 사용하는 플랫폼 계정을 게임 내 계정(account id)과 바인딩하여 외부 플랫폼 계정으로 게임을 플레이할 수 있게 지원
+  + 연동한 외부 플랫폼은 사내 계정 시스템(nano)과 스팀이 있음
+* 사용자가 인증된 클라이언트에게 인증 서버 외 다른 서버에서 쉽게 인증할 수 있도록 내부 토큰을 생성하여 지급
 
 <details>
 <summary>Details</summary>
