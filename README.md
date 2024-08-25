@@ -14,6 +14,9 @@
 -----------------------------------------------------------------------------------
 
 ### 기타 개인 작업
+#### Blog
+* https://izmirprogramming.tistory.com/
+* 주로 알고리즘 공부한 내용을 나중에 다시보기 위한 용도로 정리
 #### Introduction to Algorithms 
 * https://github.com/YangWoomin/Introduction-to-algorithms
 * 책을 다 읽지 못했고 일부 학습한 내용들을 직접 구현
