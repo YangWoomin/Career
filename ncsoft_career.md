@@ -1,19 +1,19 @@
-# 1. Server Development
-## 1) System Architecture
+## 1. Server Development
+### 1) System Architecture
 * 경력 기술서 내용의 이해를 돕기 위한 간단한 시스템 구성도
 
 ![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
 
-## 2) Auth
+### 2) Auth
 * (인증 서버는 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
-### 작업 내용
+#### 작업 내용
 * 사용자가 외부에서 사용하는 플랫폼 계정을 게임 내 계정(account id)과 바인딩하여 외부 플랫폼 계정으로 게임을 플레이할 수 있게 지원
   + 연동한 외부 플랫폼은 사내 계정 관리 시스템(nano)과 스팀이 있음
 * 인증 서버로부터 사용자가 인증된 클라이언트에게 인증 서버 외 다른 서버나 외부 시스템에서 쉽게 인증(권한 부여)할 수 있도록 내부 토큰 시스템 지원
   + 클라이언트는 지급 받은 내부 토큰을 다른 서버(로비)에게 제출하여 간단한 인증 수행
 * 내부(자체) 계정 시스템 지원
 * 처음에 Golang + Redis로 만들었으나 (auth1) 자체 서버 프레임워크(C/C++) 기반으로 다시 만듦 (auth2)
-### Trouble shooting
+#### Trouble shooting
 
 ## 3) Lobby
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
