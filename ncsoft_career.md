@@ -2,7 +2,12 @@
 * [1. Server Development](#1-Server-Development)
   + [1. System Architecture](#11-System-Architecture)
   + [2. Auth](#12-Auth)
+  + [3. Lobby](#13-Lobby)
+  + [4. Lobby](#14-Game)
 * [2. Infrastructure](#2-Infrastructure)
+  + [2.1 Statistics System](#21-Statistics-System)
+  + [2.2 Log System](#22-Log-System)
+  + [2.3 Monitoring System](#23-Monitoring-System]
 
 # 1. Server Development
 ## 1.1 System Architecture
@@ -21,7 +26,7 @@
 * 처음에 Golang + Redis로 만들었으나 (auth1) 자체 서버 프레임워크(C/C++) 기반으로 다시 만듦 (auth2)
 ### Trouble shooting
 
-## 3) Lobby
+## 1.3 Lobby
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
 ### 작업 내용
 #### Login
@@ -42,7 +47,7 @@
 * Redis++의 Sync -> Async 전환
 * (TODO) Redis 클러스터 모드에 따른 대응
 
-## 4) Game
+## 1.4 Game
 * (서버들의 출시를 위한 scale out이 가능한 구조로의 개선이 지상과제가 되면서 작성자가 아래 정리한 작업 내용을 작업함)
 * (Statistics subsystem은 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
 ### 작업 내용
@@ -55,7 +60,7 @@
 * 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
 
 # 2. Infrastructure
-## 1. Statistics System
+## 2.1 Statistics System
 * (통계 시스템 관련 모든 작업은 작성자가 전담함)
 ### 1) 사용 목적
 * 게임 서버 상태를 모니터링하기 위한 지표 수집 및 저장 관리
@@ -83,7 +88,7 @@
 * InfluxDB의 OOM에 의한 강제 재시작 현상
 * World contents visualizer - snapshot 데이터 vs diff 데이터
 
-## 2. Log System
+## 2.2 Log System
 * (로그 시스템 관련 모든 작업은 작성자가 전담함)
 ### 1) 사용 목적
 * 게임 서버에서 발생한 로그를 통합 저장하고 관리
@@ -112,7 +117,7 @@
 ### 3) Trouble shooting
 * 노드당 최대 샤드 개수(max_shards_per_node) 이슈
 
-## 3. Monitoring System
+## 2.3 Monitoring System
 * (모니터링 시스템 관련 모든 작업은 작성자가 전담함)
 ### 1) 사용 목적
 * 실에서 운영하는 장비들과 서비스(소프트웨어)들을 모니터링
