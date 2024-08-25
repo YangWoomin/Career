@@ -7,7 +7,7 @@
 * [2. Infrastructure](#2-Infrastructure)
   + [2.1 Statistics System](#21-Statistics-System)
   + [2.2 Log System](#22-Log-System)
-  + [2.3 Monitoring System](#23-Monitoring-System]
+  + [2.3 Monitoring System](#23-Monitoring-System)
 
 # 1. Server Development
 ## 1.1 System Architecture
