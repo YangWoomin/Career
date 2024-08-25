@@ -5,6 +5,15 @@
 ### Summary
 * 인증 서버는 유저가 클라이언트로 게임 플레이를 하기 전에 누구인지 식별 수행
 * 클라이언트가 게임 서버 내에 있는 유저의 자원을 사용하기 앞서 자원의 소유자를 식별하기 위한 계정 식별자(account id)를 제공
+
+<details>
+<summary>접기/펼치기</summary>
+
+<!-- summary 아래 한칸 공백 두어야함 -->
+## 접은 제목
+접은 내용
+</details>
+
 ### Authentication
 #### External IdP
 * (inhouse)런처나 클라이언트가 각 플랫폼 별 로그인 방식에 따라 로그인 후 OAuth 2.0 토큰 획득
