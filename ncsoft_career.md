@@ -49,20 +49,20 @@
 > * token이라는 별도 라이브러리(dll) 형태로 토큰 생성(암호화) 및 해석(복호화) 기능을 제공하며 인증 서버와 로비 서버에서 로드하여 사용
 > * 토큰 자체는 JWT(Json Web Token) 형태이며 암호화 알고리즘은 HS256을 사용
 > * JWT 생성 및 암호화 (HS256)
->  + JWT header와 body 생성
->  + token payload : Base64(header) + Base64(body)
->  + token signature : Bse64(hmac_sha256(token payload))
->  + plain text token : token payload + token signature
->  + encrypted token : aes_256_ecb(plain text token)
->  + (as is) readable token : HexToString(encrypted token)
->    + (to do) Base64 encrypted token : Base64(encrypted token)
+>   + JWT header와 body 생성
+>   + token payload : Base64(header) + Base64(body)
+>   + token signature : Bse64(hmac_sha256(token payload))
+>   + plain text token : token payload + token signature
+>   + encrypted token : aes_256_ecb(plain text token)
+>   + (as is) readable token : HexToString(encrypted token)
+>     + (to do) Base64 encrypted token : Base64(encrypted token)
 > * 토큰 암호화/복호화를 위해 openssl 3 라이브러리 사용
->  + 암호화 알고리즘으로 aes 256 ecb 사용
->    + cbc(cipher block chaining)를 사용하지 않고 ecb(electronic code book)를 사용한 이유는 cbc 특성상 이전에 암호화된 블럭을 IV로 사용하기 때문에 토큰간 의존성(순서)이 생김
->    + 토큰간에 의존성이 생기면 안되기 때문에 ecb 사용
->  + HMAC에 sha256 사용
->    + 암호화 키와 HMAC 키는 별개이며 모두 소스코드에 박혀져 있음
->      + 해당 소스 코드는 접근 제한이 걸려 있음
+>   + 암호화 알고리즘으로 aes 256 ecb 사용
+>     + cbc(cipher block chaining)를 사용하지 않고 ecb(electronic code book)를 사용한 이유는 cbc 특성상 이전에 암호화된 블럭을 IV로 사용하기 때문에 토큰간 의존성(순서)이 생김
+>     + 토큰간에 의존성이 생기면 안되기 때문에 ecb 사용
+>   + HMAC에 sha256 사용
+>     + 암호화 키와 HMAC 키는 별개이며 모두 소스코드에 박혀져 있음
+>       + 해당 소스 코드는 접근 제한이 걸려 있음
 
 </details>
 
