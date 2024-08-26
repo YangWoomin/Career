@@ -9,7 +9,7 @@
 
 ** 평가 기준 : Greatly Exceed(GE) - Exceed(E) - Achieve(A) - Need Improvement(N) - Unsatisfactory(U)
 
-\
+\  
 
 
 ## 기타 개인 작업
