@@ -1,7 +1,5 @@
 
------------------------------------------------------------------------------------
-
-### 경력 기술서 및 포트폴리오
+## 경력 기술서 및 포트폴리오
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가(학점) |
 |----------|----------|----------|----------|----------|----------|
@@ -11,25 +9,23 @@
 
 ** 평가 기준 : Greatly Exceed(GE) - Exceed(E) - Achieve(A) - Need Improvement(N) - Unsatisfactory(U)
 
------------------------------------------------------------------------------------
-
-### 기타 개인 작업
-#### Blog
+## 기타 개인 작업
+### Blog
 * https://izmirprogramming.tistory.com/
 * 주로 알고리즘 공부한 내용을 나중에 다시보기 위한 용도로 정리
-#### Introduction to Algorithms 
+### Introduction to Algorithms 
 * https://github.com/YangWoomin/Introduction-to-algorithms
 * 책은 다 읽지 못했고 일부 학습한 내용들을 직접 구현
-#### Algorithms 
+### Algorithms 
 * https://github.com/YangWoomin/Algorithms
 * "뇌를 자극하는 알고리즘" 책에 있는 내용들을 직접 구현
-#### LeetCode
+### LeetCode
 * https://github.com/YangWoomin/leetcode
 * LeetCode 문제 사이트에서 풀었던 기억에 남는 몇몇 문제 풀이들을 정리
-#### DataStructure
+### DataStructure
 * https://github.com/YangWoomin/DataStructure
 * 학부생 때 "C 언어로 쉽게 풀어쓴 자료구조" 책을 읽고 직접 구현
-#### HackerRank
+### HackerRank
 * https://github.com/YangWoomin/HackerRank
 * 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
 
@@ -94,7 +90,7 @@
 
 </details>
 
-#### 알기 쉬운 정보보호개론
+### 알기 쉬운 정보보호개론
 ![알기쉬운정보보보호개론](https://github.com/user-attachments/assets/07d14971-f2d4-49dc-b9b5-6d64a475c09f)
 
 빠르게 정보보호개념을 습득하기 위해 읽어본 책
