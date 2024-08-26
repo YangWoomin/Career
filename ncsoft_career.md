@@ -114,8 +114,8 @@
 <details>
 <summary>Trouble shooting 사례 보기</summary>
 
-#### 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
-#### 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
+> #### 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
+> #### 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
 
 </details>
 
@@ -148,8 +148,8 @@
 <details>
 <summary>Trouble shooting 사례 보기</summary>
 
-* InfluxDB의 OOM에 의한 강제 재시작 현상
-* World contents visualizer - snapshot 데이터 vs diff 데이터
+> #### InfluxDB의 OOM에 의한 강제 재시작 현상
+> #### World contents visualizer - snapshot 데이터 vs diff 데이터
 
 </details>
 
@@ -183,9 +183,9 @@
 <details>
 <summary>Trouble shooting 사례 보기</summary>
 
-* 노드당 최대 샤드 개수(max_shards_per_node) 이슈
-* Fluent-bit -> Fluentd migration 이슈
-* Fluentd 로그 flooding 이슈
+> #### 노드당 최대 샤드 개수(max_shards_per_node) 이슈
+> #### Fluent-bit -> Fluentd migration 이슈
+> #### Fluentd 로그 flooding 이슈
 
 </details>
 
