@@ -42,10 +42,10 @@
 * 운영체제 개념을 다시 한번 정리하기 위해 (거의) 읽어본 책
 
 <details>
-<summary>오공완 (오늘 공부 완료)</summary>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
 
-![KakaoTalk_20240826_004124601_01](https://github.com/user-attachments/assets/13d1846d-121f-4a2e-91e3-54243f65e5a8)
-![KakaoTalk_20240826_004124601](https://github.com/user-attachments/assets/a5a9bc98-da73-4602-959c-9fa331df0eae)
+![operating_system_concepts_1](https://github.com/user-attachments/assets/6f2cea98-c381-4bec-9a91-5305d1943c5e)
+
 
 </details>
 
