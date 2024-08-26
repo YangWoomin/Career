@@ -1,4 +1,4 @@
-![열혈_tcp_ip_소켓_프로그래밍_12](https://github.com/user-attachments/assets/4ceeb7e5-fdd0-428f-af42-7fc302956ea8)![개발자를_위한_레디스_8](https://github.com/user-attachments/assets/57a5318a-e3b7-42e5-a3f4-a6dd77ce9d68)
+
 ## 경력 기술서 및 포트폴리오
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가(학점) |
