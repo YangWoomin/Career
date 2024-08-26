@@ -98,6 +98,7 @@
 > * ABI 문제를 피하기 위한 방법으로 컴파일러와 컴파일러 버전, 옵션 등을 맞춰서 빌드하는 방법이 있지만 다양한 외부 라이브러리를 사용할 경우 이 방법은 매우 어려운 방법이 됨
 > * 따라서 ABI에 대한 표준을 정의한 C 타입을 사용하도록 component 라이브러리들을 수정
 > #### Redis++의 Sync -> Async 전환
+> * 
 > #### 개발 환경에서의 멀티 & 자동 로그인 지원을 위한 중복 로그인 처리
 
 </details>
@@ -110,6 +111,11 @@
 * 로비 서버와 마찬가지로 게임 서버 서로간의 연결을 제외한 나머지 서버들과의 연결 복잡도를 낮추기 위해 message queue client component를 로드하여 사용하도록 수정
 * 게임 서버 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템(Statistics System)이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분으로 통계 서브시스템을 구현하여 통계 시스템 연동을 지원
   + 통계 지표로 CPU와 Memory(Virtual/Physical), Game Object Count, FPS, User Count, Game Server Status 등이 있음
+
+![game_server_statistics_3](https://github.com/user-attachments/assets/6e6ef7c2-2ccc-46d9-9a32-a0a12c0e3a57)
+![game_server_statistics_4](https://github.com/user-attachments/assets/7d59fabb-a1e1-4d83-bc54-ba0af37b0798)
+
+
 ### Trouble shooting
 <details>
 <summary>Trouble shooting 사례 보기</summary>
