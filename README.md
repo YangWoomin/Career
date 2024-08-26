@@ -37,7 +37,7 @@
 
 ### 읽은 또는 읽고 있는 서적들
 #### Operating System Concepts 10th edition
-![operating_system_concepts_10th](https://github.com/user-attachments/assets/8be13faa-ee98-4676-a09e-915fcfee80eb)
+![operating_system_concepts_10th](https://github.com/user-attachments/assets/5fee17b5-5887-44f4-a652-ff2071e2341a)
 
 * 운영체제 개념을 다시 한번 정리하기 위해 (거의) 읽어본 책
 
@@ -45,7 +45,7 @@
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
 
 ![operating_system_concepts_1](https://github.com/user-attachments/assets/6f2cea98-c381-4bec-9a91-5305d1943c5e)
-
+![operating_system_concepts_2](https://github.com/user-attachments/assets/a4e13c43-fa24-453b-b293-9d55bf895650)
 
 </details>
 
