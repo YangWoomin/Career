@@ -111,8 +111,13 @@
 * 게임 서버 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템(Statistics System)이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분으로 통계 서브시스템을 구현하여 통계 시스템 연동을 지원
   + 통계 지표로 CPU와 Memory(Virtual/Physical), Game Object Count, FPS, User Count, Game Server Status 등이 있음
 ### Trouble shooting
-* 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
-* 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
+<details>
+<summary>Trouble shooting 사례 보기</summary>
+
+#### 자체 서버 프레임워크의 유저 세션과 memory database 유저 세션간 충돌
+#### 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
+
+</details>
 
 # 2. Infrastructure
 ## 2.1 Statistics System
@@ -140,8 +145,13 @@
 * 실제 시현 영상
   + https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98
 ### 3) Trouble shooting
+<details>
+<summary>Trouble shooting 사례 보기</summary>
+
 * InfluxDB의 OOM에 의한 강제 재시작 현상
 * World contents visualizer - snapshot 데이터 vs diff 데이터
+
+</details>
 
 ## 2.2 Log System
 * (로그 시스템 관련 모든 작업은 작성자가 전담함)
@@ -170,9 +180,14 @@
 * 개인 서버가 아닌 (배포된) 공용 서버의 로그에 다른 개발자들이 쉽게 접근할 수 있도록 웹 서비스 제공
 * 로그 저장소에 저장된 로그들을 다양한 방식으로 조회 및 통계 작업이 가능하도록 지원
 ### 3) Trouble shooting
+<details>
+<summary>Trouble shooting 사례 보기</summary>
+
 * 노드당 최대 샤드 개수(max_shards_per_node) 이슈
 * Fluent-bit -> Fluentd migration 이슈
 * Fluentd 로그 flooding 이슈
+
+</details>
 
 ## 2.3 Monitoring System
 * (모니터링 시스템 관련 모든 작업은 작성자가 전담함)
