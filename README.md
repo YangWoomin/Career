@@ -109,6 +109,40 @@
 ![operating_system_concepts_67](https://github.com/user-attachments/assets/5c2ce1ab-6d59-4cd2-87c7-b901d055a65e)
 ![operating_system_concepts_68](https://github.com/user-attachments/assets/a50b484e-1704-4a8d-9a64-00ddc6e738f9)
 ![operating_system_concepts_69](https://github.com/user-attachments/assets/b0599d55-f375-4aee-af75-bed4f62db991)
+![operating_system_concepts_70](https://github.com/user-attachments/assets/9cf50c51-a2e5-468a-b6f2-b5c08469440a)
+![operating_system_concepts_71](https://github.com/user-attachments/assets/253489e8-3261-4195-b5b5-a6244f23d836)
+![operating_system_concepts_72](https://github.com/user-attachments/assets/f42646ce-39a2-4522-91af-67afd8f5ca50)
+![operating_system_concepts_73](https://github.com/user-attachments/assets/c4596d34-04e6-462a-873f-d1aef878a6fe)
+![operating_system_concepts_74](https://github.com/user-attachments/assets/e6711eb3-d88c-4517-a7ab-d53204bd88a2)
+![operating_system_concepts_75](https://github.com/user-attachments/assets/7265f42c-8a8b-4c7f-ad8d-ee691d234c7a)
+![operating_system_concepts_76](https://github.com/user-attachments/assets/5e963166-2dda-4592-9713-04a6e568eef1)
+![operating_system_concepts_77](https://github.com/user-attachments/assets/d9ba5f3a-7e71-4a65-aae1-6a3dc90ead8b)
+![operating_system_concepts_78](https://github.com/user-attachments/assets/e60f053d-c10a-409e-881c-199c8b360dc7)
+![operating_system_concepts_79](https://github.com/user-attachments/assets/1257ebe8-7b4a-49ce-802c-d8d0c093e6e0)
+![operating_system_concepts_80](https://github.com/user-attachments/assets/c2076b5f-a9c9-4bee-af8d-ee443cb62399)
+![operating_system_concepts_81](https://github.com/user-attachments/assets/61e78199-0001-4fc8-81a7-52969a5ca6e8)
+![operating_system_concepts_82](https://github.com/user-attachments/assets/0c406497-ed7f-486a-8bc3-cac703913073)
+![operating_system_concepts_83](https://github.com/user-attachments/assets/692e9dd6-1c91-4619-bf72-3a618a7873a5)
+![operating_system_concepts_84](https://github.com/user-attachments/assets/1a9385c4-b09b-48ac-8042-3972b093369a)
+![operating_system_concepts_85](https://github.com/user-attachments/assets/f5a9b824-4e2d-4811-b607-917b5583e8ad)
+![operating_system_concepts_86](https://github.com/user-attachments/assets/71dcd0d0-cbcb-4843-8fbb-ba53eaabcdbb)
+![operating_system_concepts_87](https://github.com/user-attachments/assets/b3440822-3843-47d4-a476-3c4144ca7b71)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </details>
@@ -116,7 +150,7 @@
 ### 알기 쉬운 정보보호개론
 ![알기쉬운정보보보호개론](https://github.com/user-attachments/assets/07d14971-f2d4-49dc-b9b5-6d64a475c09f)
 
-빠르게 정보보호개념을 습득하기 위해 읽어본 책
+빠르게 정보 보호 개념을 습득하기 위해 읽어본 책
 
 <details>
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
@@ -142,5 +176,17 @@
 ![알기쉬운_정보보호개론_19](https://github.com/user-attachments/assets/563d878d-20c3-4e9a-8cb3-77a2e6c8ffc5)
 ![알기쉬운_정보보호개론_20](https://github.com/user-attachments/assets/87b46029-9830-4e3e-988f-289af76db398)
 ![알기쉬운_정보보호개론_21](https://github.com/user-attachments/assets/10e953db-7c51-4513-a18b-1f7e56bfdcae)
+
+</details>
+
+### Vue.js 프로젝트 투입 일주일 전
+![vuejs프로젝트투입일주일전](https://github.com/user-attachments/assets/1fdec2c9-3abb-4400-87d2-6d7183f366f4)
+
+빠르게 Vue.js 프레임워크 학습을 위해 읽어본 책
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+
 
 </details>
