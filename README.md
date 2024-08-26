@@ -39,7 +39,7 @@
 #### Operating System Concepts 10th edition
 ![operating_system_concepts_10th](https://github.com/user-attachments/assets/5fee17b5-5887-44f4-a652-ff2071e2341a)
 
-* 운영체제 개념을 다시 한번 정리하기 위해 (거의) 읽어본 책
+운영체제 개념을 다시 한번 정리하기 위해 (거의) 읽어본 책
 
 <details>
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
