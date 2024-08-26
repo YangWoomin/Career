@@ -1,4 +1,4 @@
-
+![개발자를_위한_레디스_8](https://github.com/user-attachments/assets/57a5318a-e3b7-42e5-a3f4-a6dd77ce9d68)
 ## 경력 기술서 및 포트폴리오
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가(학점) |
@@ -217,6 +217,29 @@
 <details>
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
 
+![vuejs_프로젝트_투입_일주일전_1](https://github.com/user-attachments/assets/cd21c9b2-90cb-4bdf-9168-43049def9049)
+![vuejs_프로젝트_투입_일주일전_2](https://github.com/user-attachments/assets/5aebad63-f37c-4558-97a8-0dd72817d470)
+![vuejs_프로젝트_투입_일주일전_3](https://github.com/user-attachments/assets/0d2dcb79-b23c-46a4-9aa2-9f43cada12f3)
 
+</details>
+
+### 개발자를 위한 레디스
+![개발자를위한레디스](https://github.com/user-attachments/assets/fbcbc922-6818-4b6a-a394-d247d3a9fec7)
+
+Redis 학습을 위해 읽어본 책
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+![개발자를_위한_레디스_1](https://github.com/user-attachments/assets/fb1cece7-f82a-4438-b084-9330d71cb4ba)
+![개발자를_위한_레디스_2](https://github.com/user-attachments/assets/bd89dfca-0726-42f2-8f2f-373615cddd1c)
+![개발자를_위한_레디스_3](https://github.com/user-attachments/assets/6818c1b0-791a-4dd8-955b-e1f9b3798972)
+![개발자를_위한_레디스_4](https://github.com/user-attachments/assets/0f933f27-2163-40cf-9d6a-e06173595be4)
+![개발자를_위한_레디스_5](https://github.com/user-attachments/assets/c9233630-266e-4192-a66b-9d9bd2331b40)
+![개발자를_위한_레디스_6](https://github.com/user-attachments/assets/7a1fb019-0630-458b-8a01-98542064f057)
+![개발자를_위한_레디스_7](https://github.com/user-attachments/assets/4a848bb8-9b0a-4819-8d9a-40cf9f768340)
+![개발자를_위한_레디스_8](https://github.com/user-attachments/assets/1e24af48-de33-4fc8-b55c-556dc0e48400)
+![개발자를_위한_레디스_9](https://github.com/user-attachments/assets/744ced45-c24a-45f3-b24a-64ad916d3bbe)
+![개발자를_위한_레디스_10](https://github.com/user-attachments/assets/dd417088-d3b9-4404-ac8a-cbe19213aad2)
 
 </details>
