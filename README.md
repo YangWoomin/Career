@@ -45,6 +45,9 @@
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
 
 ![operating_system_concepts_1](https://github.com/user-attachments/assets/a93954e7-aca0-481d-9c1d-f1e0b44eeca1)
+![operating_system_concepts_2](https://github.com/user-attachments/assets/6b062f12-1c2e-4578-a51e-48c17361532e)
+![operating_system_concepts_3](https://github.com/user-attachments/assets/d442c924-8521-4466-a3dc-b2f9bb145073)
+
 
 </details>
 
