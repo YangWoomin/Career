@@ -32,8 +32,11 @@
 #### HackerRank
 * https://github.com/YangWoomin/HackerRank
 * 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
-#### 읽은 또는 읽고 있는 서적들
-##### Operating System Concepts 10th edition
+
+-----------------------------------------------------------------------------------
+
+### 읽은 또는 읽고 있는 서적들
+#### Operating System Concepts 10th edition
 ![operating_system_concepts_10th](https://github.com/user-attachments/assets/8be13faa-ee98-4676-a09e-915fcfee80eb)
 
 * 운영체제 개념을 다시 한번 정리하기 위해 (거의) 읽어본 책
