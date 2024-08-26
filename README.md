@@ -19,7 +19,7 @@
 * 주로 알고리즘 공부한 내용을 나중에 다시보기 위한 용도로 정리
 #### Introduction to Algorithms 
 * https://github.com/YangWoomin/Introduction-to-algorithms
-* 책을 다 읽지 못했고 일부 학습한 내용들을 직접 구현
+* 책은 다 읽지 못했고 일부 학습한 내용들을 직접 구현
 #### Algorithms 
 * https://github.com/YangWoomin/Algorithms
 * "뇌를 자극하는 알고리즘" 책에 있는 내용들을 직접 구현
@@ -32,3 +32,17 @@
 #### HackerRank
 * https://github.com/YangWoomin/HackerRank
 * 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
+#### 읽은 또는 읽고 있는 서적들
+##### Operating System Concepts 10th edition
+![operating_system_concepts_10th](https://github.com/user-attachments/assets/8be13faa-ee98-4676-a09e-915fcfee80eb)
+
+* 운영체제 개념을 다시 한번 정리하기 위해 (거의) 읽어본 책
+
+<details>
+<summary>오공완 (오늘 공부 완료)</summary>
+
+![KakaoTalk_20240826_004124601_01](https://github.com/user-attachments/assets/13d1846d-121f-4a2e-91e3-54243f65e5a8)
+![KakaoTalk_20240826_004124601](https://github.com/user-attachments/assets/a5a9bc98-da73-4602-959c-9fa331df0eae)
+
+</details>
+
