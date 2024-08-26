@@ -64,6 +64,16 @@
 ![operating_system_concepts_18](https://github.com/user-attachments/assets/1b09552a-443a-400e-aef5-f99d6b3692ee)
 ![operating_system_concepts_19](https://github.com/user-attachments/assets/2f6e3881-23e4-4f68-9b48-1bb6aa0034de)
 ![operating_system_concepts_20](https://github.com/user-attachments/assets/fd3b35a3-f395-4bc4-9b3d-712cdcb71922)
+![operating_system_concepts_21](https://github.com/user-attachments/assets/aac8186a-90c1-42d4-9e25-e95c104fc0f1)
+![operating_system_concepts_22](https://github.com/user-attachments/assets/0f09d3f8-de87-475d-8516-a51ce526fbb0)
+![operating_system_concepts_23](https://github.com/user-attachments/assets/19e37531-f8fd-4682-b3d2-286bb030a30f)
+![operating_system_concepts_24](https://github.com/user-attachments/assets/146cc887-524f-446f-8889-5d5c10414d0e)
+![operating_system_concepts_25](https://github.com/user-attachments/assets/1d41105a-5453-44d3-94a4-3dc51819d566)
+![operating_system_concepts_26](https://github.com/user-attachments/assets/7eea78af-eca2-4cc9-9a3a-d39e763f8fc7)
+![operating_system_concepts_27](https://github.com/user-attachments/assets/1ca20cfb-01ab-410b-af6a-9025dc2527d4)
+![operating_system_concepts_28](https://github.com/user-attachments/assets/fc5855a5-f522-4bb6-b605-e724c2fa4f70)
+![operating_system_concepts_29](https://github.com/user-attachments/assets/03477b28-2093-4f26-afde-d4f7952966da)
+![operating_system_concepts_30](https://github.com/user-attachments/assets/b91e3b11-f413-4560-af8f-92fbca478b4e)
 
 
 </details>
