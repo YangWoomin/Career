@@ -74,7 +74,34 @@
 ![operating_system_concepts_28](https://github.com/user-attachments/assets/fc5855a5-f522-4bb6-b605-e724c2fa4f70)
 ![operating_system_concepts_29](https://github.com/user-attachments/assets/03477b28-2093-4f26-afde-d4f7952966da)
 ![operating_system_concepts_30](https://github.com/user-attachments/assets/b91e3b11-f413-4560-af8f-92fbca478b4e)
+![operating_system_concepts_31](https://github.com/user-attachments/assets/581627ab-89a3-4458-a038-3909bbffdeb9)
+![operating_system_concepts_32](https://github.com/user-attachments/assets/c9943cf4-6a7a-40da-99f4-f1f9009cedd6)
+![operating_system_concepts_33](https://github.com/user-attachments/assets/81849593-95b2-4aa4-8468-e5cd5a7a2642)
+![operating_system_concepts_34](https://github.com/user-attachments/assets/034c7dcd-777b-4e0f-8217-ed4c244e2136)
+![operating_system_concepts_35](https://github.com/user-attachments/assets/5859faf8-3cd3-47fc-a281-13a42c591e11)
+![operating_system_concepts_36](https://github.com/user-attachments/assets/781f526d-5c0a-48cf-922b-96fa91fab103)
+![operating_system_concepts_37](https://github.com/user-attachments/assets/a81b56a2-c771-4df9-a6e2-cf9386f39ae8)
+![operating_system_concepts_38](https://github.com/user-attachments/assets/bc7240d1-09f5-44d5-85db-8f526f4c78cc)
+![operating_system_concepts_39](https://github.com/user-attachments/assets/1f14da6f-19f2-4133-8e52-38ce51145a11)
+![operating_system_concepts_40](https://github.com/user-attachments/assets/d2f3bc9f-e4cf-4cc2-9691-ed1be9a6aa92)
+![operating_system_concepts_41](https://github.com/user-attachments/assets/c302ad75-f5d7-48dd-8077-5e6c377369dc)
+![operating_system_concepts_42](https://github.com/user-attachments/assets/a37de3b4-ef10-4666-bbc3-05d7109cb202)
+![operating_system_concepts_43](https://github.com/user-attachments/assets/418c190f-433f-44f3-87c9-1eb26d8d52d3)
+![operating_system_concepts_44](https://github.com/user-attachments/assets/01de0b0d-b96c-4b1a-a5f3-ee5056761fe5)
+![operating_system_concepts_45](https://github.com/user-attachments/assets/5e7e40f9-027a-4db3-9236-ccea7e1a53e9)
+![operating_system_concepts_46](https://github.com/user-attachments/assets/b808b8a2-9c8b-42ae-b29b-f0e8667fe4f2)
 
 
 </details>
 
+#### 알기 쉬운 정보보호개론
+![알기쉬운정보보보호개론](https://github.com/user-attachments/assets/07d14971-f2d4-49dc-b9b5-6d64a475c09f)
+
+빠르게 정보보호개념을 습득하기 위해 읽어본 책
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+
+
+</details>
