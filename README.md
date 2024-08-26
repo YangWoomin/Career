@@ -52,6 +52,10 @@
 ![operating_system_concepts_6](https://github.com/user-attachments/assets/e41c1363-c1e2-4fe3-80dc-f76ca3dbda0a)
 ![operating_system_concepts_7](https://github.com/user-attachments/assets/de263597-4c58-4be0-afc9-e343a89d5954)
 ![operating_system_concepts_8](https://github.com/user-attachments/assets/f3e7a651-fcd8-416c-9237-ea8918f32abd)
+![operating_system_concepts_9](https://github.com/user-attachments/assets/75935bea-797c-4adc-bfb6-7b7e171528cd)
+![operating_system_concepts_10](https://github.com/user-attachments/assets/02bf74b8-8359-4625-b2b0-eda5bf6a8042)
+![operating_system_concepts_11](https://github.com/user-attachments/assets/1ecca5fc-a2e7-460c-b9cf-064b6d7cfcbd)
+![operating_system_concepts_12](https://github.com/user-attachments/assets/97d767f0-a153-4d45-9756-c461797798f9)
 
 
 </details>
