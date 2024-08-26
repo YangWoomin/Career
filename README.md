@@ -1,4 +1,4 @@
-![개발자를_위한_레디스_8](https://github.com/user-attachments/assets/57a5318a-e3b7-42e5-a3f4-a6dd77ce9d68)
+![열혈_tcp_ip_소켓_프로그래밍_12](https://github.com/user-attachments/assets/4ceeb7e5-fdd0-428f-af42-7fc302956ea8)![개발자를_위한_레디스_8](https://github.com/user-attachments/assets/57a5318a-e3b7-42e5-a3f4-a6dd77ce9d68)
 ## 경력 기술서 및 포트폴리오
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가(학점) |
@@ -160,20 +160,10 @@
 ![operating_system_concepts_118](https://github.com/user-attachments/assets/c19b7e1f-7b33-49e1-8354-050dd5a5fa9d)
 ![operating_system_concepts_119](https://github.com/user-attachments/assets/0cd4cfdc-d844-459c-8d79-0b9258d80e89)
 ![operating_system_concepts_120](https://github.com/user-attachments/assets/ede0aecc-22e3-43d1-9053-795ca053e9d4)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![operating_system_concepts_121](https://github.com/user-attachments/assets/6a7b8fe2-55e9-4fc0-99a6-9dbdc33ea351)
+![operating_system_concepts_122](https://github.com/user-attachments/assets/236b0403-85e6-4c63-ab0d-efe98e1cd444)
+![operating_system_concepts_123](https://github.com/user-attachments/assets/bbc85fde-568b-48e4-8344-627406203f32)
+![operating_system_concepts_124](https://github.com/user-attachments/assets/c012692c-deb9-4754-984b-6c4afb096b8b)
 
 </details>
 
@@ -212,7 +202,7 @@
 ### Vue.js 프로젝트 투입 일주일 전
 ![vuejs프로젝트투입일주일전](https://github.com/user-attachments/assets/1fdec2c9-3abb-4400-87d2-6d7183f366f4)
 
-빠르게 Vue.js 프레임워크 학습을 위해 읽어본 책
+빠르게 Vue.js 프레임워크 학습을 위해 읽어본 책 (필요한 부분 위주로 읽음)
 
 <details>
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
@@ -226,7 +216,7 @@
 ### 개발자를 위한 레디스
 ![개발자를위한레디스](https://github.com/user-attachments/assets/fbcbc922-6818-4b6a-a394-d247d3a9fec7)
 
-Redis 학습을 위해 읽어본 책
+Redis 학습을 위해 읽어본 책 (필요한 부분 위주로 읽음)
 
 <details>
 <summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
@@ -243,3 +233,83 @@ Redis 학습을 위해 읽어본 책
 ![개발자를_위한_레디스_10](https://github.com/user-attachments/assets/dd417088-d3b9-4404-ac8a-cbe19213aad2)
 
 </details>
+
+### 카프카 핵심 가이드
+![카프카핵심가이드](https://github.com/user-attachments/assets/f99d8ca3-1bb3-40be-8f50-82cdf04a8df5)
+
+Kafka 학습을 위해 읽어본 책 (필요한 부분 위주로 읽음)
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+![카프카_핵심_가이드_1](https://github.com/user-attachments/assets/db4d110e-3e9a-4512-8fd7-1a5345f169e6)
+![카프카_핵심_가이드_2](https://github.com/user-attachments/assets/d165d09d-464c-4889-9f94-d53b6e2682b4)
+![카프카_핵심_가이드_3](https://github.com/user-attachments/assets/745a3732-ab76-404f-b56d-b44eaec582ef)
+![카프카_핵심_가이드_4](https://github.com/user-attachments/assets/4abbdf46-6cf7-4651-b29f-b3d79e0f997f)
+![카프카_핵심_가이드_5](https://github.com/user-attachments/assets/0068ad6c-a4d8-4f15-80e7-c7dc52bb5e6d)
+![카프카_핵심_가이드_6](https://github.com/user-attachments/assets/0f177688-784f-4ad2-958d-033f46799c56)
+![카프카_핵심_가이드_7](https://github.com/user-attachments/assets/e58d230c-3290-4dfe-808c-22c0d4a9fdf0)
+![카프카_핵심_가이드_8](https://github.com/user-attachments/assets/96dba009-ae26-40eb-a4c1-4b8d52298ee0)
+![카프카_핵심_가이드_9](https://github.com/user-attachments/assets/4c20e545-86fd-404f-8ed4-d798debc180f)
+
+</details>
+
+### C# 완벽 가이드
+![c#완벽가이드](https://github.com/user-attachments/assets/014aac1f-243f-439b-b993-4d448c77f1cf)
+
+C# 학습을 위해 읽고 있는 책
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+![c#_완벽_가이드_1](https://github.com/user-attachments/assets/d8d63786-87ed-418a-be63-b9b1ad63e740)
+![c#_완벽_가이드_2](https://github.com/user-attachments/assets/1e6e61f5-1d52-469b-a0d4-44f1441a6735)
+
+</details>
+
+### 게임 서버 프로그래밍 교과서
+![게임서버프로그래밍교과서](https://github.com/user-attachments/assets/ef8b5c8d-899f-43a7-95c1-eed19ad44994)
+
+프라우드넷 서버는 어떤 방식으로 게임 서버를 구현했는지 궁금해서 읽고 있는 책
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+![게임_서버_프로그래밍_교과서_1](https://github.com/user-attachments/assets/1315e633-840c-4385-aebb-ebba26acc36e)
+![게임_서버_프로그래밍_교과서_2](https://github.com/user-attachments/assets/22e5b832-e79a-4bdf-84a6-8862ccd0bd5f)
+![게임_서버_프로그래밍_교과서_3](https://github.com/user-attachments/assets/d7700d95-882e-4ebe-af12-aabd17fbd97e)
+![게임_서버_프로그래밍_교과서_4](https://github.com/user-attachments/assets/2db8ec9f-6047-4f20-ac8b-1c59f7fffb24)
+![게임_서버_프로그래밍_교과서_5](https://github.com/user-attachments/assets/8beadfd8-f572-4bc5-95ea-a62a691fc201)
+![게임_서버_프로그래밍_교과서_6](https://github.com/user-attachments/assets/be761b1b-7fa4-4c7a-ab45-30c1c7e10d06)
+![게임_서버_프로그래밍_교과서_7](https://github.com/user-attachments/assets/95fd12ad-281b-4738-8980-2cf8916d93f3)
+![게임_서버_프로그래밍_교과서_8](https://github.com/user-attachments/assets/bbee111f-5827-4e40-b9e8-7b742d83384e)
+
+</details>
+
+### 열혈 TCP/IP 소켓 프로그래밍
+![열혈tcpip소켓프로그래밍](https://github.com/user-attachments/assets/8eec6f0b-dff2-4ae5-a51b-8c5ffbd15564)
+
+ZilliaxServer 작업하기 전에 C/C++ 소켓 프로그래밍 복기를 위해 읽은 책
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+![열혈_tcp_ip_소켓_프로그래밍_1](https://github.com/user-attachments/assets/a2867fb4-32f4-48bf-92a4-dd63ade75426)
+![열혈_tcp_ip_소켓_프로그래밍_2](https://github.com/user-attachments/assets/91b32101-38b3-4d1d-b741-cda38d1e26b6)
+![열혈_tcp_ip_소켓_프로그래밍_3](https://github.com/user-attachments/assets/ff613e28-9f36-4c69-b925-b34304c44e32)
+![열혈_tcp_ip_소켓_프로그래밍_4](https://github.com/user-attachments/assets/b7eacc5a-11d4-4f83-9c58-ebf58a73e96f)
+![열혈_tcp_ip_소켓_프로그래밍_5](https://github.com/user-attachments/assets/c4d4986d-c5bb-424c-8f7f-f18f1f1e963b)
+![열혈_tcp_ip_소켓_프로그래밍_6](https://github.com/user-attachments/assets/f767ba60-9e03-408c-a2da-8e8defc08107)
+![열혈_tcp_ip_소켓_프로그래밍_7](https://github.com/user-attachments/assets/c0c573d1-5496-41db-b8f7-1ca5b92eeb43)
+![열혈_tcp_ip_소켓_프로그래밍_8](https://github.com/user-attachments/assets/bfc35cef-8637-41da-8611-58e0bcf73dea)
+![열혈_tcp_ip_소켓_프로그래밍_9](https://github.com/user-attachments/assets/f4ccf546-283b-4458-b86b-2a13d0eab1b0)
+![열혈_tcp_ip_소켓_프로그래밍_10](https://github.com/user-attachments/assets/94f40b5e-b712-46ce-b390-3e31864c12e4)
+![열혈_tcp_ip_소켓_프로그래밍_11](https://github.com/user-attachments/assets/ee621889-3100-42f5-b275-b87968e9dfcf)
+![열혈_tcp_ip_소켓_프로그래밍_12](https://github.com/user-attachments/assets/34b3e298-b590-4bdc-adab-8eda75ff3aec)
+![열혈_tcp_ip_소켓_프로그래밍_13](https://github.com/user-attachments/assets/c03a768d-5810-4dd5-872e-032440da6711)
+![열혈_tcp_ip_소켓_프로그래밍_14](https://github.com/user-attachments/assets/9191967d-6098-4023-8a69-d25522753df6)
+![열혈_tcp_ip_소켓_프로그래밍_15](https://github.com/user-attachments/assets/93d57c14-8661-4795-8d1f-962975fa6ca8)
+![열혈_tcp_ip_소켓_프로그래밍_16](https://github.com/user-attachments/assets/3a73b29a-20e6-4818-9674-cb01e64c2523)
+
+</details>
+
