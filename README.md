@@ -9,10 +9,7 @@
 
 ** 평가 기준 : Greatly Exceed(GE) - Exceed(E) - Achieve(A) - Need Improvement(N) - Unsatisfactory(U)
 
-
 <br/>
-
-
 
 ## 기타 개인 작업
 ### Blog
@@ -34,7 +31,7 @@
 * https://github.com/YangWoomin/HackerRank
 * 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
 
-
+<br/>
 
 ## 읽은 또는 읽고 있는 서적들
 ### Operating System Concepts 10th edition
