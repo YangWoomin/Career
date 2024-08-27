@@ -215,7 +215,7 @@
 * 맵 뷰어에서 게임 오브젝트 개수를 그리드맵(grid map) 형식으로 나누어 분포도를 지역적으로 한눈에 알 수 있도록 기능 제공
 * 실제 시현 영상
 
-&emsp;&emsp;&emsp;![KakaoTalk_20240827_225506280-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c8a84261-14f8-4986-85c6-926a974f577b)
+&emsp;&emsp;![KakaoTalk_20240827_225506280-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c8a84261-14f8-4986-85c6-926a974f577b)
 
 ### Trouble shooting
 <details>
