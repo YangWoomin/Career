@@ -287,7 +287,7 @@
 * Prometheus로부터 다양한 지표를 그래프 등으로 시각화하여 출력
 * 아래 사진은 여러 호스트에 설치된 Node Exporter의 지표를 모아서 출력하여 호스트 모니터링을 위한 페이지 (빌드 장비 모니터링)
 
-![host_monitoring](https://github.com/user-attachments/assets/bca9e331-bc2b-4868-88b0-b00ded345c93)
+&emsp;&emsp;![host_monitoring](https://github.com/user-attachments/assets/bca9e331-bc2b-4868-88b0-b00ded345c93)
 
 ### Trouble shooting
 
