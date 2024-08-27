@@ -141,8 +141,7 @@
 * 게임 서버 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템(Statistics System)이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분으로 통계 서브시스템을 구현하여 통계 시스템 연동을 지원
   + 통계 지표로 CPU와 Memory(Virtual/Physical), Game Object Count, FPS, User Count, Game Server Status 등이 있음
 
-![game_server_statistics_3](https://github.com/user-attachments/assets/8cd55432-20e3-4289-af6b-c9b11f7b92e4)
-
+![game_server_statistics_3_1](https://github.com/user-attachments/assets/9f82ed7c-a66c-4b4b-9cfb-4f42efb15e74)
 
 ### Trouble shooting
 <details>
