@@ -172,16 +172,17 @@
 >   + 서버 프레임워크에서 사용하는 세션 개념은 더이상 사용하지 않고 연결(connection)과 동일한 개념으로 취급하기로 결정
 >   + 따라서 스케줄러에서 세션 정리하는 부분과 플레이어 데이터를 정리하기 위해 모아놓는 곳(GC)의 연결(의존성)을 끊고 Redis 세션과 묶기로 결정
 >   + 하지만 당시 우선순위가 더 높은 작업들이 밀려 있었고 플레이어 데이터를 재사용하는 부분은 당장 필요로 하지 않은 터라 일감만 만들고 차후 진행하기로 일정 조율됨
-> #### 통계 서브시스템에서 다중 writer 지원을 위한 시스템 구조 개선
+> #### 
+> * 
 
 </details>
 
 # 2. Infrastructure
 ## 2.1 Statistics System
 * (통계 시스템 관련 모든 작업은 작성자가 전담함)
-### 1) 사용 목적
+### 사용 목적
 * 게임 서버 상태를 모니터링하기 위한 지표 수집 및 저장 관리
-### 2) 구성 요소
+### 구성 요소
 #### Statistics db (InfluxDB)
 * 스트림(브랜치) 또는 production 환경마다 전용 bucket(rdb의 database와 대응되는 개념)으로 데이터를 나누어 관리
 * InfluxQL 자체 쿼리 언어를 사용하여 게임 관련 지표 조회
@@ -201,7 +202,7 @@
 * 맵 뷰어에서 게임 오브젝트 개수를 그리드맵(grid map) 형식으로 나누어 분포도를 지역적으로 한눈에 알 수 있도록 기능 제공
 * 실제 시현 영상
   + https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98
-### 3) Trouble shooting
+### Trouble shooting
 <details>
 <summary>Trouble shooting 사례 보기</summary>
 
@@ -212,10 +213,10 @@
 
 ## 2.2 Log System
 * (로그 시스템 관련 모든 작업은 작성자가 전담함)
-### 1) 사용 목적
+### 사용 목적
 * 게임 서버에서 발생한 로그를 통합 저장하고 관리
 * 개발자 또는 컨텐츠 기획자 등이 서버에서 발생한 로그를 분석하기 위한 통계 및 시각화 등의 기능 제공
-### 2) 구성 요소
+### 구성 요소
 #### Log forwarder (Fluentd)
 * 게임 서버에서 남긴 로그 파일의 내용을 감시하면서 새로운 로그(행)가 추가되면 이를 추출하여 로그 수집기로 전송
 * 로그 파일 이름으로 실행된 서버의 스트림(브랜치), 맵 이름, 버전, 실행 호스트 등을 추출
@@ -236,21 +237,21 @@
 #### Log viewer (Kibana)
 * 개인 서버가 아닌 (배포된) 공용 서버의 로그에 다른 개발자들이 쉽게 접근할 수 있도록 웹 서비스 제공
 * 로그 저장소에 저장된 로그들을 다양한 방식으로 조회 및 통계 작업이 가능하도록 지원
-### 3) Trouble shooting
+### Trouble shooting
 <details>
 <summary>Trouble shooting 사례 보기</summary>
 
-> #### 노드당 최대 샤드 개수(max_shards_per_node) 이슈
+> #### Elasticsearch 노드당 최대 샤드 개수(max_shards_per_node) 이슈
 > #### Fluent-bit -> Fluentd migration 이슈
-> #### Fluentd 로그 flooding 이슈
+> #### Fluentd 자체 로그 flooding 이슈
 
 </details>
 
 ## 2.3 Monitoring System
 * (모니터링 시스템 관련 모든 작업은 작성자가 전담함)
-### 1) 사용 목적
+### 사용 목적
 * 실에서 운영하는 장비들과 서비스(소프트웨어)들을 모니터링
-### 2) 구성 요소
+### 구성 요소
 #### Metrics exporter
 ##### Node exporter (Windows/Linux)
 * 호스트 종료 및 리소스(CPU, Memory, Disk) 과용 탐지
@@ -270,13 +271,30 @@
 
 ![host_monitoring](https://github.com/user-attachments/assets/bca9e331-bc2b-4868-88b0-b00ded345c93)
 
-### 3) Trouble shooting
+### Trouble shooting
 
-# 2.3 Development Environment
-## VCS (Version control system)
+<details>
+<summary>Trouble shooting 사례 보기</summary>
+
+> #### 장비 다운이나 리소스 사용량 감시
+> * prometheus가 주기적으로 node epoxrter에 접근하여 지표를 수집해가는 구조
+> * node exporter가 설치된 장비가 다운될 경우 해당 node exporter에 접근할 수 없게 되고 이 때부터 타이머를 가동
+> * 설정된 시간이 지나도록 node exporter에 접근할 수 없게 되면 alert manager를 통해 팀즈로 알람 전송
+> * 이를 통해 운영 중인 장비들이 정상 동작하는지 일일이 감시할 필요 없이 알람을 통해 문제가 발생하는 장비들만 모니터링
+>   + 또는 Grafana 페이지에서 통합적으로 모니터링 가능
+> * 또한 장비의 디스크 사용량도 설정된 사용량(%) 이상에 도달하면 알람을 전송
+> * 특히 빌드 장비에서 CI/CD를 위해 주기적인 파일 sync가 필요하며 이로 인해 디스크 사용량이 과용되는 현상을 방지
+>   + 클라이언트 리소스 파일 증가와 UE5의 installed 엔진 때문에 이 기능을 유용하게 사용
+> * 그 외 로그(EFK) 서버 장비에서 메모리 사용량이 과용됨에 따라 JVM 사용량 증가나 유틸리티 프로그램들의 문제를 예측할 수 있음
+> * 또한 게임 서버 퍼포먼스 테스트 시 실행한 장비의 CPU 및 메모리 사용량 또한 측정하여 결과 지표로 사용
+</details>
+
+# 3. DevOps
+## 3.1 CI
+### VCS (Version control system)
 * Perforce 사용 (빌드관리팀이 퍼포스 서버를 직접 운영)
-* 사용자(개발자나 기획자 등)는 P4V를 사용하여 sync/submit 등의 작업 수행
-## Build & Run
+* 사용자(개발자나 기획자 등)는 P4V를 사용하여 소스코드 파일이나 데이터 파일, 리소스 파일(아트) 등을 내려 받고 (sync) 추가 및 수정하여 업로드(submit) 수행
+### Build & Run
 * 크로스 플랫폼(Windows/Linux) 지원을 위해 CMake/Make 사용
 * CMake를 사용하여 프로젝트 별로 Visual studio 프로젝트 파일 및 make 파일 생성
   + 윈도우 환경에서 Visual studio를 사용하여 작업 (주로 디버깅 용도로 사용)
@@ -288,21 +306,13 @@
 * 실행
   + 서버 소스코드를 내려받아서 빌드를 돌리지 않아도 기본적으로 서버 CI에 의해 자동 서밋되는 서버 바이너리들로 서버 실행이 가능
   + 서버 실행에만 필요한 설치 프로그램으로 vc_redist.x64(2022), mysql-odbc-connector(v8.0.28)가 있음
-## Database
-* (아래와 같은 평소 db 관련 작업은 보통 작성자가 아닌 DBA 작업자가 수행하며 작성자는 MySQL 설치, 초기 세팅, 모니터링, 운영 등의 작업에 관여함)
-* 별도 로컬 데이터베이스 운영을 지원하지 않고 공용 데이터베이스만 운영
-* DBA가 db 작업이 있을 때만 로컬 db에 직접 세팅해서 테스트 해보고 소스파일 서밋할 때 공용 db에도 같이 적용
-  + 상당히 비효율적이고 db 연관 작업을 진행하기가 쉽지 않음 (항상 DBA를 끼고 작업해야 하기 때문)
-  + 하지만 기획자나 개발자들의 작업이 주로 db보다는 (정적인) 데이터 파일 위주의 작업이 많은 관계로 이 방식으로 운영이 가능 
-* 스트림마다 소스파일 및 바이너리를 merge할 때마다 공용으로 운영하는 해당 스트림의 db에도 맞춰서 업데이트 수행
-* DBA가 주로 db migration tool을 가지고 스크립트 실행
-  + db migration tool은 python으로 작성됨
-## CI
-* Teamcity에서 job(build configuration)으로 서버 모듈 별로 CI를 돌림
+### TeamCity
+* Teamcity에서 job(build configuration)으로 서버 별로 빌드 CI를 돌림
   + Teamcity에 VCS로 P4를 지정하고 P4에서 각 서버별 소스 파일들 변경이 생기는지 감시하다가 변경이 발생하면 Teamcity가 트리거링 되어 CI 빌드 수행
-# CD
-## Inhouse Launcher
-## K8s
-## NCKUBE
-# GStar
-## Ansible
+  + CI로 빌드한 결과물들을 artifacts에 저장하고 다시 VCS에 submit하여 사용자들이 일일이 서버/클라 빌드를 자리에서 하지 않더라도 최신 버전을 실행할 수 있도록 지원
+## 3.2 CD
+### Containerize (Docker)
+### K8s
+### NCKUBE
+## 3.3 GStar
+### Ansible
