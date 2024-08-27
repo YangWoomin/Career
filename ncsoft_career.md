@@ -8,6 +8,10 @@
   + [2.1 Statistics System](#21-Statistics-System)
   + [2.2 Log System](#22-Log-System)
   + [2.3 Monitoring System](#23-Monitoring-System)
+* [3. DevOps](#3-DevOps)
+  + [3.1 CI](#31-CI)
+  + [3.2 CD](#32-CD)
+  + [3.3 GStar](#33-GStar)
 
 # 1. Server Development
 ## 1.1 Server Architecture
@@ -222,6 +226,7 @@
 <summary>Trouble shooting 사례 보기</summary>
 
 > #### InfluxDB의 OOM에 의한 강제 재시작 현상
+> * 
 > #### World contents visualizer - snapshot 데이터 vs diff 데이터
 
 </details>
@@ -257,8 +262,6 @@
 <summary>Trouble shooting 사례 보기</summary>
 
 > #### Elasticsearch 노드당 최대 샤드 개수(max_shards_per_node) 이슈
-> #### Fluent-bit -> Fluentd migration 이슈
-> #### Fluentd 자체 로그 flooding 이슈
 
 </details>
 
@@ -327,7 +330,7 @@
   + CI로 빌드한 결과물들을 artifacts에 저장하고 다시 VCS에 submit하여 사용자들이 일일이 서버/클라 빌드를 자리에서 하지 않더라도 최신 버전을 실행할 수 있도록 지원
 ## 3.2 CD
 ### Containerize (Docker)
-### K8s
+### K8s (On-Premise)
 ### NCKUBE
 ## 3.3 GStar
 ### Ansible
