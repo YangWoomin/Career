@@ -141,7 +141,7 @@
 * 게임 서버 상태를 모니터링하기 위해 통계 지표를 처리하는 통계 시스템(Statistics System)이 있으며 게임 서버에서 통계 시스템과 연동하기 위한 부분으로 통계 서브시스템을 구현하여 통계 시스템 연동을 지원
   + 통계 지표로 CPU와 Memory(Virtual/Physical), Game Object Count, FPS, User Count, Game Server Status 등이 있음
 
-&emsp;![game_server_statistics_3_1](https://github.com/user-attachments/assets/9f82ed7c-a66c-4b4b-9cfb-4f42efb15e74)
+&emsp;&emsp;&emsp;![game_server_statistics_3_1](https://github.com/user-attachments/assets/9f82ed7c-a66c-4b4b-9cfb-4f42efb15e74)
 
 ### Trouble shooting
 <details>
@@ -214,7 +214,7 @@
 * 스트리밍 형식으로 데이터를 조회하여 동영상처럼 재생하며 출력
 * 맵 뷰어에서 게임 오브젝트 개수를 그리드맵(grid map) 형식으로 나누어 분포도를 지역적으로 한눈에 알 수 있도록 기능 제공
 * 실제 시현 영상
-&emsp;![KakaoTalk_20240827_225506280-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c8a84261-14f8-4986-85c6-926a974f577b)
+&emsp;&emsp;&emsp;![KakaoTalk_20240827_225506280-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c8a84261-14f8-4986-85c6-926a974f577b)
 
 ### Trouble shooting
 <details>
