@@ -226,7 +226,8 @@
 <summary>Trouble shooting 사례 보기</summary>
 
 > #### InfluxDB의 OOM에 의한 강제 재시작 현상
-> * 
+> * 초창기 InfluxDB를 도입했을 경우 bucket에 대한 retention 기간을 제한없이 사용
+> * InfluxDB는 내부적으로 과거의 데이터를 효율적인 알고리즘을 사용하여 
 > #### World contents visualizer - snapshot 데이터 vs diff 데이터
 
 </details>
