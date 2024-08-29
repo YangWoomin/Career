@@ -427,6 +427,11 @@
 * 여러 스트림(브랜치) 간에 병합 작업은 빌드 관리팀이 전담
 ## 3.2 CD
 ### Containerize (Docker)
+#### TeamCity Agent
+#### Server
+##### Windows (Windows Server 2019)
+##### Linux (Ubuntu)
+#### 
 ### K8s (On-Premise)
 ### NCKUBE
 ## 3.3 GStar
