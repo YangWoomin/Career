@@ -221,7 +221,7 @@
 
 &emsp;&emsp;![KakaoTalk_20240827_225506280-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c8a84261-14f8-4986-85c6-926a974f577b)
 
-&emsp;&emsp;(영상 : https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98)
+&emsp;&emsp;(원본 영상 : https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98)
 
 ### Trouble shooting
 <details>
@@ -314,9 +314,27 @@
 <summary>Trouble shooting 사례 보기</summary>
 
 > #### Elasticsearch 노드당 최대 샤드 개수(max_shards_per_node) 이슈
-> * (인덱스와 샤드와의 관계 간단한 설명)
-> * (인덱스가 많아지고 로그 적재에 문제가 발생)
->   + (Elasticsearch 로그에서 max_shards_per_node 관련 에러가 로그가 찍히고 있었음)
+> * 기본적으로 Elasticsearch에서 로그는 인덱스라는 논리적인 그룹으로 묶어서 관리
+>   + 로그를 삭제하거나 백업(snapshot)하는 자동화 관리 면에서의 단위가 주로 인덱스 단위로 수행
+> * 인덱스는 실제로 물리적으로 저장될 때 샤드 단위로 여러 노드에 분산되어 저장됨
+>   + 노드는 Elasticsearch Cluster를 이루는 노드를 의미
+> * 이 때 노드당 최대 샤드 개수를 기본값 1000개로 제한하고 있음
+> * 따라서 로그 인덱스 개수가 늘어나면 샤드 개수도 늘어나고 제한값에 가까워지게 됨
+>   + 간단하게 로그 그룹인 인덱스 개수 자체를 줄여서 회피할 수 있음
+>   + 하지만 로그 조회나 백업, 삭제 등을 원활하게 수행하기 위해 로그 그룹화는 필수이며, 그룹화를 적당히 세분화하면 로그 유지 기간이 늘어나면서 인덱스도 자연스럽게 늘어나게 됨
+>   + LLL은 스트림(브랜치), 호스트네임(사용자), 로그 발생 날짜(년월일) 단위로 인덱스를 생성
+> * LLL은 curator라는 툴로 Elasticsearch의 로그를 최근 1년만 보관하고 그 이전 로그는 삭제하도록 자동화 되어 있었음
+> * 스트림을 3~4개 운영할 때까지는 문제없이 잘 사용했으나 사장님 보고 등의 이슈로 스트림이 더 늘어나자 max_shards_per_node 제한이 발생
+>   + 로그를 적재할 때 인덱스 규칙에 따라 인덱스가 없으면 자동으로 생성됨
+>   + 이 때 노드에 저장된 인덱스 개수가 max_shards_per_node 설정을 초과할 경우 에러를 출력하고 적재되지 않음
+>   + 그리고 Elasticsearch를 클러스터 모드로 사용하지 않고 싱글 노드로 사용하는 상태라서 노드 추가 방법으로 scale out이 불가능한 상태였음
+> * 당장 Elasticsearch를 클러스터모드로 전환하기가 어려운 상황이라서 max_shards_per_node 설정값을 증가시켜 문제를 해결
+> * 이 해결책은 결국 한계가 있어서 Elasticsearch를 클러스터 모드로 운영하여 확장성있는 해결책으로 전환이 필요하여 전환 시도
+> * 처음에는 Elasticsearch를 도커 컨테이너로 여러대 실행하여 클러스터 구성을 시도
+> * K8s 환경에서 Elasticsearch를 쉽게 클러스터 모드로 운영할 수 있는, K8s operator 패턴을 적용한 Elastic Cloud를 r&d하여 도입 시도
+> * 하지만 K8s 및 Elastic Cloud(또는 클러스터 모드) 도입을 위해 학습하는 부분과 여러 허들을 넘어야 하는 비용 대비 당장에 max_shards_per_node 설정값을 변경하는 것으로 충분히 대응 가능하여 Elasticsearch 클라우드 전환 보류
+>   + 이 부분도 더 진행하지 못해서 아쉬움
+> #### Elasticsearch 로그 삭제 및 백업 파이프라인 구축
 > * (월별 인덱스 생성 개수를 파악하고 생성되는 인덱스 개수 제한을 상향)
 > * (인덱스 상향 후 6개월 정도 운용하다보니 로그 조회 시 매우 느려지는 현상을 발견)
 > * (당시 Elasticsearch 로그에서도 JVM 메모리 사용량에 대한 경고 로그가 출력되는 상황)
@@ -392,6 +410,8 @@
 * Teamcity에서 job(build configuration)으로 서버 별로 빌드 CI를 돌림
   + Teamcity에 VCS로 P4를 지정하고 P4에서 각 서버별 소스 파일들 변경이 생기는지 감시하다가 변경이 발생하면 Teamcity가 트리거링 되어 CI 빌드 수행
   + CI로 빌드한 결과물들을 artifacts에 저장하고 다시 VCS에 submit하여 사용자들이 일일이 서버/클라 빌드를 자리에서 하지 않더라도 최신 버전을 실행할 수 있도록 지원
+### Merge
+* 여러 스트림(브랜치) 간에 병합 작업은 빌드 관리팀이 전담
 ## 3.2 CD
 ### Containerize (Docker)
 ### K8s (On-Premise)
