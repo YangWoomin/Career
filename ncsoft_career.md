@@ -220,6 +220,7 @@
 * 실제 시현 영상
 
 &emsp;&emsp;![KakaoTalk_20240827_225506280-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c8a84261-14f8-4986-85c6-926a974f577b)
+
 &emsp;&emsp;(영상 : https://github.com/user-attachments/assets/7e5cd55c-d74c-4e28-be63-90c6272efe98)
 
 ### Trouble shooting
