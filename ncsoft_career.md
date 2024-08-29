@@ -1,6 +1,6 @@
 # 0. Contents Table
 * [1. Server Development](#1-Server-Development)
-  + [1.1 System Architecture](#11-System-Architecture)
+  + [1.1 Server Architecture](#11-Server-Architecture)
   + [1.2 Auth](#12-Auth)
   + [1.3 Lobby](#13-Lobby)
   + [1.4 Game](#14-Game)
