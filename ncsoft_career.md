@@ -504,17 +504,17 @@
 <details>
 <summary>Calico 네트워크 플러그인 도입 배경</summary>
 
-* K8s 클러스터 구축 시 네트워크 플러그인 도입은 필수 (CNI, Container Network Interface를 지원하는 네트워크 플러그인)
-* CNI 플러그인의 모델은 크게 VXLAN 같은, 실제 물리적인 L3 레이어 위에 가상의 L2 레이어를 만들어서 제공하는 encapsulated 모델과 그렇지 않은 unencapsulated 모델이 있음
-  + encapsulated 모델은 쉽게 말해 도커 엔진이 어느 한 노드에서 실행된 컨테이너들의 통신을 위해 별도 네트워크(bridge)를 제공해주는데 이 네트워크 모델을 여러 노드에서도 공유할 수 있게 확장한 개념이라고 보면 됨
-    + 각 노드에 k8s worker(kubelet)들이 네트워크 플러그인을 사용하여 이 모델을 형성해서 컨테이너에게 제공
-  + unencapsulated 모델은 
-  + 출처 : https://ranchermanager.docs.rancher.com/faq/container-network-interface-providers
-  + encapsulated 모델 예시
-    + ![encapsulated-network-0c75db46568d5b2636dad4a8c28d3cc4](https://github.com/user-attachments/assets/4e8b43c9-7f04-466b-ab9d-a70694034058)
-  + unencapsulated 모델 예시
-    + ![unencapsulated-network-b87922f280aa17322e6485b81855dd4a](https://github.com/user-attachments/assets/4d97915a-1d85-42f7-81a0-3ba8449eb8a6)
-* LLL 서버간 통신이 반드시 같은 L2 레이어에서 동작해야 함을 보장해줄 필요가 없으므로 unencapsulated 모델을 사용
+> * K8s 클러스터 구축 시 네트워크 플러그인 도입은 필수 (CNI, Container Network Interface를 지원하는 네트워크 플러그인)
+> * CNI 플러그인이 제공하는 모델은 크게 VXLAN 같은, 실제 물리적인 L3 레이어 위에 가상의 L2 레이어를 만들어서 제공하는 encapsulated 모델(Overlay Network)과 그렇지 않은 unencapsulated 모델이 있음
+>   + encapsulated 모델은 쉽게 말해, 도커 엔진이 어느 한 노드에서 실행된 컨테이너들의 통신을 위해 별도 네트워크(bridge)를 제공해주는데 이 네트워크를 여러 노드에서도 공유할 수 있게 (터널링을 사용해서) 확장한 개념이라고 보면 됨
+>   + unencapsulated 모델은 각 노드에 설치된 CNI 플러그인들이 각 노드의 OS 레벨에 있는 라우터에게 각각 자신들이 사용하는 IP 대역을 BGP 프로토콜로 알려줘서 컨테이너간 통신이 가능하게 함
+>   + 출처 : https://ranchermanager.docs.rancher.com/faq/container-network-interface-providers
+>   + encapsulated 모델 예시
+>     + ![encapsulated-network-0c75db46568d5b2636dad4a8c28d3cc4](https://github.com/user-attachments/assets/4e8b43c9-7f04-466b-ab9d-a70694034058)
+>   + unencapsulated 모델 예시
+>     + ![unencapsulated-network-b87922f280aa17322e6485b81855dd4a](https://github.com/user-attachments/assets/4d97915a-1d85-42f7-81a0-3ba8449eb8a6)
+> * Calico CNI 플러그인은 encapsulated/unencapsulated 모델 모두를 지원 (기본은 unencapsulated)
+> * LLL 서버간 통신이 반드시 같은 L2 레이어에서 동작해야 함을 보장해줄 필요가 없으므로 unencapsulated 모델을 사용
 
 </details>
 
