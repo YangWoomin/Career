@@ -515,7 +515,9 @@
   + unencapsulated 모델 예시
     + ![unencapsulated-network-b87922f280aa17322e6485b81855dd4a](https://github.com/user-attachments/assets/4d97915a-1d85-42f7-81a0-3ba8449eb8a6)
 * LLL 서버간 통신이 반드시 같은 L2 레이어에서 동작해야 함을 보장해줄 필요가 없으므로 unencapsulated 모델을 사용
-* 
+
+</details>
+
 ### NCKUBE (K8s on Cloud)
 ### Ansible (GStar)
 ### Trouble shooting
