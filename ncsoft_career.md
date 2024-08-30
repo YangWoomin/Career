@@ -471,6 +471,7 @@
 ![portainer_logo](https://github.com/user-attachments/assets/a934d645-ef6c-4910-a3fb-5a6d042bf979)
 * Container Orchestration tool (of tool)
 * Docker Standalone, Docker Swarm, K8s 등을 연동하여 컨테이너 배포
+  + LLL에서는 Docker Standalone, K8s만 사용
 * 쿠킹 버전의 공용 서버 배포를 위해 Portainer를 사용
 * 쿠킹 공용 서버 외 다른 인프라 구성 요소들도 Portainer로 배포하고 제어
   + 통계 시스템, 로그 시스템, 모니터링 시스템 등
