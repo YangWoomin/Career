@@ -466,8 +466,18 @@
 * Container Orchestration tool (of tool)
 * Docker Standalone, Docker Swarm, K8s 등을 연동하여 컨테이너 배포
   + 내부적으로 Docker Standalone, K8s 연동하여 사용함
+* 쿠킹 버전의 공용 서버 배포를 위해 Portainer를 사용
+* 쿠킹 공용 서버 외 다른 인프라 구성 요소들도 Portainer로 배포하고 제어
+  + 통계 시스템, 로그 시스템, 모니터링 시스템 등
 ### Docker Standalone API
+* 호스트에 도커 엔진을 설치하면 기본적으로 외부에 TCP로 접근할 수 있는 API를 오픈할 수 있음
+* 이 도커 API를 통해서 컨테이너를 배포하거나 실행 중인 컨테이너 리스트 등의 조작이 가능
+* Portainer에서 도커 API 접근 정보를 입력하여 Docker Standalone으로 등록하여 도커 이미지 배포 및 컨테이너 실행
 ### K8s (On-Premise)
+* 사내 K8s 클라우드 플랫폼인 NCKUBE 2.0이 나오기 전에 실 내에서 자체적으로 구축한 K8s On-Premise 클러스터
+  + NCKUBE 1.0까지는 윈도우 노드와 리눅스 노드의 혼합 클러스터 서비스가 제공되지 않았었음
+  + [1.1 Server Architecture](#11-Server-Architecture) 에서 게임 서버는 리눅스 환경에서의 빌드 및 실행을 위한 포팅 작업이 완료되지 않아서 윈도우 환경에서만 실행 가능하여 혼합 클러스터가 필요조건이었음
+  + 
 ### NCKUBE (K8s on Cloud)
 ### Ansible (GStar)
 ### Trouble shooting
