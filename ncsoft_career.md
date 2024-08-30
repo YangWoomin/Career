@@ -478,7 +478,7 @@
 ### Docker Standalone API
 * 호스트에 도커 엔진을 설치하면 기본적으로 외부에 TCP로 접근할 수 있는 API를 오픈할 수 있음
 * 이 도커 API를 통해서 컨테이너를 배포하거나 실행 중인 컨테이너 리스트 등의 조작이 가능
-* Portainer에서 도커 API 접근 정보를 입력하여 Docker Standalone으로 등록하여 도커 이미지 배포 및 컨테이너 실행
+* Portainer에서 도커 API 접근 정보를 입력하여 Docker Standalone으로 등록해서 도커 이미지 배포 및 컨테이너 실행
 ### K8s (On-Premise)
 * 사내 K8s 클라우드 플랫폼인 NCKUBE 2.0이 나오기 전에 실 내 자체적으로 구축한 K8s On-Premise 클러스터
 * NCKUBE 1.0까지는 윈도우 노드와 리눅스 노드의 혼합 클러스터 서비스가 제공되지 않았었음
