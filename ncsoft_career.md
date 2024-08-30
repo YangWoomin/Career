@@ -482,7 +482,8 @@
 ### K8s (On-Premise)
 * 사내 K8s 클라우드 플랫폼인 NCKUBE 2.0이 나오기 전에 실 내 자체적으로 구축한 K8s On-Premise 클러스터
   + NCKUBE 1.0까지는 윈도우 노드와 리눅스 노드의 혼합 클러스터 서비스가 제공되지 않았었음
-  + <details>
+  +
+<details>
 <summary>게임 서버의 컨테이너 실행 내막</summary>
 
 >   * [1.1 Server Architecture](#11-Server-Architecture) 에서 게임 서버는 리눅스 환경에서의 빌드 및 실행을 위한 포팅 작업이 완료되지 않아서 윈도우 환경에서만 실행 가능하여 혼합 클러스터가 필요했음
