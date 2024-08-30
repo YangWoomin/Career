@@ -457,15 +457,24 @@
 > * 이 때 환경 세팅을 위한 요소들을 기록하지 않거나 스크립트화하지 않으면 누락되기 일쑤
 > * 이 환경을 도커 이미지로 스크립트화해서 누락되는 요소 없이 관리
 > * 언제나 일관된 CI/CD 환경을 제공하며 손쉽게 추가/제거가 가능하여 유연한 확장성 제공
-> #### 윈도우 서버 컨테이너의 Hyper-v Isolation vs Process Isolation
-> 
 
 </details>
 
 ## 3.2 CD
 ### Portainer
-### Docker API
+![portainer_logo](https://github.com/user-attachments/assets/a934d645-ef6c-4910-a3fb-5a6d042bf979)
+* Container Orchestration tool (of tool)
+* Docker Standalone, Docker Swarm, K8s 등을 연동하여 컨테이너 배포
+  + 내부적으로 Docker Standalone, K8s 연동하여 사용함
+### Docker Standalone API
 ### K8s (On-Premise)
-### NCKUBE
+### NCKUBE (K8s on Cloud)
 ### Ansible (GStar)
+### Trouble shooting
+<details>
+<summary>Trouble shooting 사례 보기</summary>
 
+> #### 윈도우 서버 컨테이너의 Hyper-v Isolation vs Process Isolation
+> 
+
+</details>
