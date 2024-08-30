@@ -499,7 +499,7 @@
   + Container Runtime으로 containerd, Docker, CRI-O 등이 있음
 * K8s 혼합 클러스터 구축을 위해 K8s 네트워크 플러그인으로 Calico를 사용
 
-![calico](https://github.com/user-attachments/assets/9dcfb022-3b4f-40dd-811a-5acf33b7c354)
+&emsp;&emsp;![calico](https://github.com/user-attachments/assets/9dcfb022-3b4f-40dd-811a-5acf33b7c354)
 
 <details>
 <summary>Calico 네트워크 플러그인 도입 배경</summary>
