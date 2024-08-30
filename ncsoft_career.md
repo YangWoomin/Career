@@ -446,6 +446,13 @@
 * 서버 실행 환경으로 크로스 플랫폼 지원을 위해 리눅스 컨테이너로 실행할 수 있는 도커 이미지 생성
 * ubuntu:20.04 이미지를 베이스 이미지로 사용
 * unix-odbc 및 uuid 등을 추가로 설치하고 서버 바이너리 파일들과 데이터 파일 등을 주입
+### Docker Image Registry
+#### Private Registry
+* 내부에서 편하기 사용하기 위해 도입한 docker private registry
+* 서버, visualizer 등 각종 도커 이미지를 보관
+#### Harbor
+* NCSOFT 사내에서 공식으로 제공해주는 컨테이너 이미지 저장소
+* NCCLOUD, NCKUBE 등의 환경에 배포할 경우 이 저장소를 사용해야 함
 ### Trouble shooting
 <details>
 <summary>Trouble shooting 사례 보기</summary>
