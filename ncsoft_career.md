@@ -11,7 +11,6 @@
 * [3. DevOps](#3-DevOps)
   + [3.1 CI](#31-CI)
   + [3.2 CD](#32-CD)
-  + [3.3 GStar](#33-GStar)
 
 # 1. Server Development
 ## 1.1 Server Architecture
@@ -196,8 +195,8 @@
 </details>
 
 # 2. Infrastructure
+* (인프라 관련 모든 작업은 작성자가 전담함)
 ## 2.1 Statistics System
-* (통계 시스템 관련 모든 작업은 작성자가 전담함)
 ### 사용 목적
 * 게임 서버 상태를 모니터링하기 위한 지표 수집 및 저장 관리
 ### 구성 요소
@@ -285,7 +284,6 @@
 </details>
 
 ## 2.2 Log System
-* (로그 시스템 관련 모든 작업은 작성자가 전담함)
 ### 사용 목적
 * 게임 서버에서 발생한 로그를 통합 저장하고 관리
 * 개발자 또는 컨텐츠 기획자 등이 서버에서 발생한 로그를 분석하기 위한 통계 및 시각화 등의 기능 제공
@@ -362,7 +360,6 @@
 </details>
 
 ## 2.3 Monitoring System
-* (모니터링 시스템 관련 모든 작업은 작성자가 전담함)
 ### 사용 목적
 * 실에서 운영하는 장비들과 서비스(소프트웨어)들을 모니터링
 ### 구성 요소
@@ -405,6 +402,8 @@
 </details>
 
 # 3. DevOps
+* (CI에서 서버 빌드 및 병합 관련 작업은 서버팀 일부 인원, 빌드관리팀 그리고 작성자가 함께 담당함)
+* (그 외 나머지 부분들인 containerization, CD는 작성자가 전담함)
 ## 3.1 CI
 ### VCS (Version control system)
 * Perforce 사용 (빌드관리팀이 퍼포스 서버를 직접 운영)
@@ -429,7 +428,7 @@
 * 여러 스트림(브랜치) 간에 병합, 쿠킹 그리고 릴리즈 작업은 빌드 관리팀이 전담
 * 스트림은 크게 클라/서버/기획 프로그램 개발 및 데이터 세팅 환경을 위한 develop 스트림과 기획/아트 리소스 개발을 위한 internal 스트림으로 구분
 * 위 스트림에 대해 매일 빌드관리팀에서 병합 작업을 수행하며 병합된 스트림에 대해 (언리얼 엔진의) 쿠킹을 수행 후 테스트 진행
-* 쿠킹 버전에 대한 테스트가 완료되면 릴리즈 버전을 생성 후 배포
+* 쿠킹 테스트가 완료되면 릴리즈 버전(쿠킹 버전)을 생성 후 배포
 ### Containerization
 #### TeamCity Agent
 * 팀시티에서 실질적으로 job을 수행하는 에이전트를 도커 컨테이너로 실행
@@ -441,7 +440,10 @@
   + 그 외 에이전트에서 도커 관련 작업 필요 시 사용
 #### Server
 ##### Windows (Windows Server 2019)
-##### Linux (Ubuntu)
+* 서버 실행 환경으로 크로스 플랫폼 지원을 위해 윈도우 컨테이너로 실행할 수 있는 도커 이미지 생성
+* mcr.microsoft.com/windows/servercore:1809 (서버 코어) 이미지를 베이스 이미지로 사용
+* vc_redist.x64 및 mysql odbc driver 등을 추가로 설치하고 서버 바이너리 파일들과 데이터 파일등을 주입
+##### Linux (Ubuntu 20.04)
 ### Trouble shooting
 <details>
 <summary>Trouble shooting 사례 보기</summary>
@@ -462,5 +464,5 @@
 ### Docker API
 ### K8s (On-Premise)
 ### NCKUBE
-## 3.3 GStar
-### Ansible
+### Ansible (GStar)
+
