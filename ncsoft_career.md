@@ -484,8 +484,14 @@
       + 2023 GStar 출시 준비중에 리눅스 환경에서의 빌드와 실행 지원은 중단되었고 (지스타 준비에 올인하기 위해) 이쯤 전 TD가 퇴사하면서 리눅스 환경은 지원하지 않도록 (암묵적으로) 결정
 * K8s 혼합 클러스터 구축을 위해 K8s 네트워크 플러그인으로 Calico를 사용
   + ![calico](https://github.com/user-attachments/assets/9dcfb022-3b4f-40dd-811a-5acf33b7c354)
-  + K8s 클러스터 구축 시 네트워크 플러그인 도입은 필수 (CNI, Container Network Interface)
-  + L2 레이어
+  + K8s 클러스터 구축 시 네트워크 플러그인 도입은 필수 (CNI, Container Network Interface를 지원하는 네트워크 플러그인)
+  + CNI 플러그인의 모델은 크게 VXLAN 같은, 실제 물리적인 L3 레이어 위에 가상의 L2 레이어를 만들어서 제공하는 encapsulated 모델과 그렇지 않은 unencapsulated 모델이 있음
+    + encapsulated 모델은 쉽게 말해 도커 엔진이 어느 한 노드에서 실행된 컨테이너들의 통신을 위해 별도 네트워크(bridge)를 제공해주는데 이 네트워크 모델을 여러 노드에서도 공유할 수 있게 확장한 개념이라고 보면 됨
+      + 각 노드에 k8s worker(kubelet)들이 네트워크 플러그인을 사용하여 이 모델을 형성해서 컨테이너에게 제공
+    + 출처 : https://ranchermanager.docs.rancher.com/faq/container-network-interface-providers
+    + ![encapsulated-network-0c75db46568d5b2636dad4a8c28d3cc4](https://github.com/user-attachments/assets/4e8b43c9-7f04-466b-ab9d-a70694034058)
+  + LLL 서버간 통신이 반드시 같은 L2 레이어에서 동작해야 함을 보장해줄 필요가 없으므로 encapsulated 모델을 사용할 필요는 없음
+  + 
 ### NCKUBE (K8s on Cloud)
 ### Ansible (GStar)
 ### Trouble shooting
