@@ -438,12 +438,11 @@
   + 서버 도커 이미지 빌드 시 사용
   + visualizer 도커 이미지 빌드 시 사용
   + 그 외 에이전트에서 도커 관련 작업 필요 시 사용
-#### Server
-##### Windows (Windows Server 2019)
+#### Server - Windows (Windows Server 2019)
 * 서버 실행 환경으로 크로스 플랫폼 지원을 위해 윈도우 컨테이너로 실행할 수 있는 도커 이미지 생성
 * mcr.microsoft.com/windows/servercore:1809 (서버 코어) 이미지를 베이스 이미지로 사용
 * vc_redist.x64 및 mysql odbc driver 등을 추가로 설치하고 서버 바이너리 파일들과 데이터 파일 등을 주입
-##### Linux (Ubuntu 20.04)
+#### Server -Linux (Ubuntu 20.04)
 * 서버 실행 환경으로 크로스 플랫폼 지원을 위해 리눅스 컨테이너로 실행할 수 있는 도커 이미지 생성
 * ubuntu:20.04 이미지를 베이스 이미지로 사용
 * unix-odbc 및 uuid 등을 추가로 설치하고 서버 바이너리 파일들과 데이터 파일 등을 주입
