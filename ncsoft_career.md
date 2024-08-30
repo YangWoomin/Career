@@ -481,33 +481,41 @@
 * Portainer에서 도커 API 접근 정보를 입력하여 Docker Standalone으로 등록하여 도커 이미지 배포 및 컨테이너 실행
 ### K8s (On-Premise)
 * 사내 K8s 클라우드 플랫폼인 NCKUBE 2.0이 나오기 전에 실 내 자체적으로 구축한 K8s On-Premise 클러스터
-  + NCKUBE 1.0까지는 윈도우 노드와 리눅스 노드의 혼합 클러스터 서비스가 제공되지 않았었음
-  + <details>
-  + <summary>게임 서버의 컨테이너 실행 내막</summary>
+* NCKUBE 1.0까지는 윈도우 노드와 리눅스 노드의 혼합 클러스터 서비스가 제공되지 않았었음
+<details>
+<summary>K8s 혼합 클러스터가 필요한 이유</summary>
 
->   * [1.1 Server Architecture](#11-Server-Architecture) 에서 게임 서버는 리눅스 환경에서의 빌드 및 실행을 위한 포팅 작업이 완료되지 않아서 윈도우 환경에서만 실행 가능하여 혼합 클러스터가 필요했음
->     + 서버 프레임워크와 그 외 다른 서버들은 비교적 규모가 작아서 서버 구현 초기부터 리눅스 환경에서의 빌드와 실행이 가능했음
->     + 하지만 게임 서버의 컨텐츠 관련 코드들이 너무 방대해서 리눅스 환경에서 빌드 및 실행이 가능하도록 포팅하는 작업이 쉽게 진행되지 않았음
->     + 결국 게임 서버는 윈도우 환경에서만 빌드하고 실행하는 것으로 결정함
->       + 전 TD가 크로스 플랫폼을 추진하였지만 현 TD는 별로 좋아하지 않았음
->       + 현 TD는 컨텐츠 관련 작업이 더 중요하다고 판단했고 리눅스 환경에서의 프로그래밍 또한 (게임 업계 서버에서) 일반적이지 않아서 허들(비용)이라고 판단
->       + 2023 GStar 출시 준비중에 리눅스 환경에서의 빌드와 실행 지원은 중단되었고 (지스타 준비에 올인하기 위해) 이쯤 전 TD가 퇴사하면서 리눅스 환경은 지원하지 않도록 (암묵적으로) 결정
+> * [1.1 Server Architecture](#11-Server-Architecture) 에서 게임 서버는 리눅스 환경에서의 빌드 및 실행을 위한 포팅 작업이 완료되지 않아서 윈도우 환경에서만 실행 가능하여 혼합 클러스터가 필요했음
+> * 서버 프레임워크와 그 외 다른 서버들은 비교적 규모가 작아서 서버 구현 초기부터 리눅스 환경에서의 빌드와 실행이 가능했음
+> * 하지만 게임 서버의 컨텐츠 관련 코드들이 너무 방대해서 리눅스 환경에서 빌드 및 실행이 가능하도록 포팅하는 작업이 쉽게 진행되지 않았음
+> * 결국 게임 서버는 윈도우 환경에서만 빌드하고 실행하는 것으로 결정함
+> * 전 TD가 크로스 플랫폼을 추진하였지만 현 TD는 별로 좋아하지 않았음
+>   + 현 TD는 컨텐츠 관련 작업이 더 중요하다고 판단했고 리눅스 환경에서의 프로그래밍 또한 (게임 업계 서버에서) 일반적이지 않아서 허들(비용)이라고 판단 (추측)
+> * 2023 GStar 출시 준비중에 리눅스 환경에서의 빌드와 실행 지원은 중단되었고 (지스타 준비에 올인하기 위해) 이쯤 전 TD가 퇴사하면서 리눅스 환경은 지원하지 않도록 (암묵적으로) 결정
 
 </details>
 
+* K8s 혼합 클러스터 구축을 위해 Docker Engine을 Container Runtime으로 사용
+  + Container Runtime으로 containerd, Docker, CRI-O 등이 있음
 * K8s 혼합 클러스터 구축을 위해 K8s 네트워크 플러그인으로 Calico를 사용
-  + ![calico](https://github.com/user-attachments/assets/9dcfb022-3b4f-40dd-811a-5acf33b7c354)
-  + K8s 클러스터 구축 시 네트워크 플러그인 도입은 필수 (CNI, Container Network Interface를 지원하는 네트워크 플러그인)
-  + CNI 플러그인의 모델은 크게 VXLAN 같은, 실제 물리적인 L3 레이어 위에 가상의 L2 레이어를 만들어서 제공하는 encapsulated 모델과 그렇지 않은 unencapsulated 모델이 있음
-    + encapsulated 모델은 쉽게 말해 도커 엔진이 어느 한 노드에서 실행된 컨테이너들의 통신을 위해 별도 네트워크(bridge)를 제공해주는데 이 네트워크 모델을 여러 노드에서도 공유할 수 있게 확장한 개념이라고 보면 됨
-      + 각 노드에 k8s worker(kubelet)들이 네트워크 플러그인을 사용하여 이 모델을 형성해서 컨테이너에게 제공
-    + 출처 : https://ranchermanager.docs.rancher.com/faq/container-network-interface-providers
-    + encapsulated 모델 예시
-      + ![encapsulated-network-0c75db46568d5b2636dad4a8c28d3cc4](https://github.com/user-attachments/assets/4e8b43c9-7f04-466b-ab9d-a70694034058)
-    + unencapsulated 모델 예시
-      + ![unencapsulated-network-b87922f280aa17322e6485b81855dd4a](https://github.com/user-attachments/assets/4d97915a-1d85-42f7-81a0-3ba8449eb8a6)
-  + LLL 서버간 통신이 반드시 같은 L2 레이어에서 동작해야 함을 보장해줄 필요가 없으므로 encapsulated 모델을 사용할 필요는 없음
-  + 
+
+![calico](https://github.com/user-attachments/assets/9dcfb022-3b4f-40dd-811a-5acf33b7c354)
+
+<details>
+<summary>Calico 네트워크 플러그인 도입 배경</summary>
+
+* K8s 클러스터 구축 시 네트워크 플러그인 도입은 필수 (CNI, Container Network Interface를 지원하는 네트워크 플러그인)
+* CNI 플러그인의 모델은 크게 VXLAN 같은, 실제 물리적인 L3 레이어 위에 가상의 L2 레이어를 만들어서 제공하는 encapsulated 모델과 그렇지 않은 unencapsulated 모델이 있음
+  + encapsulated 모델은 쉽게 말해 도커 엔진이 어느 한 노드에서 실행된 컨테이너들의 통신을 위해 별도 네트워크(bridge)를 제공해주는데 이 네트워크 모델을 여러 노드에서도 공유할 수 있게 확장한 개념이라고 보면 됨
+    + 각 노드에 k8s worker(kubelet)들이 네트워크 플러그인을 사용하여 이 모델을 형성해서 컨테이너에게 제공
+  + unencapsulated 모델은 
+  + 출처 : https://ranchermanager.docs.rancher.com/faq/container-network-interface-providers
+  + encapsulated 모델 예시
+    + ![encapsulated-network-0c75db46568d5b2636dad4a8c28d3cc4](https://github.com/user-attachments/assets/4e8b43c9-7f04-466b-ab9d-a70694034058)
+  + unencapsulated 모델 예시
+    + ![unencapsulated-network-b87922f280aa17322e6485b81855dd4a](https://github.com/user-attachments/assets/4d97915a-1d85-42f7-81a0-3ba8449eb8a6)
+* LLL 서버간 통신이 반드시 같은 L2 레이어에서 동작해야 함을 보장해줄 필요가 없으므로 unencapsulated 모델을 사용
+* 
 ### NCKUBE (K8s on Cloud)
 ### Ansible (GStar)
 ### Trouble shooting
