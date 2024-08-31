@@ -66,8 +66,8 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가 |
 |----------|----------|----------|----------|----------|----------|
-| 2019.01 ~ 현재 | NCSOFT | 5 | [ncsoft_career.md](ncsoft_career.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) | A -> A -> A -> E -> E |
-| 2017.01 ~ 2018.12 | JOYCITY | 2 | [joycity_career.md](joycity_career.md) | - | GE -> GE |
+| 2019.01 ~ 현재 | NCSOFT | 5 | [career_y_ncsoft.md](career_y_ncsoft.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) | A -> A -> A -> E -> E |
+| 2017.01 ~ 2018.12 | JOYCITY | 2 | [career_z_joycity.md](.md) | - | GE -> GE |
 | ~ 2016.12 | 학생 | - | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | - |
 
 ** 평가 기준 : Greatly Exceed(GE) - Exceed(E) - Achieve(A) - Need Improvement(N) - Unsatisfactory(U)
