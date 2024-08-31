@@ -17,7 +17,7 @@
 * 경력 기술서 내용의 이해를 돕기 위한 간단한 서버 구성도
 * 참고로 이 경력 기술서에서 등장하는 "월드" 또는 "월드(서버)"의 뜻은 아래에 있는 월드 서버를 의미하지 않고 게임 서버에 의해 구현된 월드 그 자체를 의미함
 
-![server2](https://github.com/user-attachments/assets/9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576)
+![352700542-9d7fd7c4-c20b-4a51-9c4c-1d51fc2b3576](https://github.com/user-attachments/assets/a50f706b-730c-4345-bf7d-40e036f4f95d)
 
 ## 1.2 Auth
 * (인증 서버는 초기 설계부터 구현 및 운영까지 작성자가 모두 작업함)
