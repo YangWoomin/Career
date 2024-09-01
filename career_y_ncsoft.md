@@ -1,4 +1,4 @@
-![ansible](https://github.com/user-attachments/assets/53990112-c91b-41e3-8696-42c726fb6db8)# 0. Contents Table
+# 0. Contents Table
 * [1. Server Development](#1-Server-Development)
   + [1.1 Server Architecture](#11-Server-Architecture)
   + [1.2 Auth](#12-Auth)
