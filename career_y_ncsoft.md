@@ -562,10 +562,15 @@
 > * 윈도우 환경에서 컨테이너로 서버를 실행할 때 초창기에는 개인 PC가 Windows 10이기 때문에 Docker Desktop을 설치하여 Hyper-v Isolation을 사용함
 > * Docker Standalone 배포 당시 충분한 r&d가 없었기 때문에 윈도우에 이 두가지 모드가 존재하는지 몰랐음
 > * K8s On-Premise 도입시 윈도우 노드는 Process Isolation 모드만이 컨테이너(파드)를 실행할 수 있음을 알게 되었고 K8s 클러스터 뿐만 아니라 Docker Standalone 실행 시에도 Process Isolation 모드를 사용하도록 변경
-<details>
-<summary>간단한 Hyper-v Isolation vs Process Isolation</summary>
+> * LLL 서버가 특정 OS 버전에 종속되어 있지 않고 Hyper-v Isolation 모드의 장점인 커널 분리로 인한 보안성을 필요로 하지 않아서 쉽게 Process Isolation 모드로의 전환이 가능했음
+> * Hyper-v Isolation
+> * ![container-arch-hyperv](https://github.com/user-attachments/assets/575e64fe-0715-4d48-bec6-34d86bc6da23)
+> * Process Isolation
+> * ![container-arch-process](https://github.com/user-attachments/assets/31b360b2-add4-4fb8-8066-b7164ae4804c)
+> * 위 그림에서 알 수 있다시피 Process Isolation 모드는 각 컨테이너마다 전용 OS가 없고 호스트 OS를 공유하기 때문에 훨씬 좋은 퍼포먼스를 낼 수 있음
+>   + 서버 이미지 빌드 시간도 팀시티 Job 실행 시간과 서버 실행 시 데이터 파일 로드하는 부분이 거의 1/2 ~ 1/3 가량 줄음
+>   + 서버가 클라이언트와 메시지 송수신 시의 퍼포먼스는 측정하지 못함 (네트워크 레이턴시 측정을 위한 툴이나 프로그래밍적인 대응이 없었음)
 
-sdfsdf
-</details>
+
 
 </details>
