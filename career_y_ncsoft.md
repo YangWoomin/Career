@@ -280,6 +280,8 @@
 >   + task를 주기적으로 계속 반복하여 모든 diff 데이터를 snapshot 데이터로 변환
 >   + 서버가 재시작 된다면 작업하던 snapshot 데이터는 날려서 초기화
 >   + visualizer는 통계 시스템에서 적재한 snapshot 데이터를 조회하기 때문에 diff -> snapshot 데이터 변환 작업 필요 없이 자유롭게 지표 조회가 가능
+> * 결과적으로 visualizer에서 모든 프레임을 서버 시작 시점부터 계산할 필요 없이 필요한 구간만 쿼리한 데이터를 거의 그대로 사용하도록 개선
+>   + 전날 실행해둔 서버에 대해 현황 파악 시 프레임 계산에 적어도 2시간 걸리던 작업이 길게는 1분 미만으로 단축 (조회 구간 길이에 따라 다르지만 보통 5~10분 구간을 조회)
 
 </details>
 
@@ -557,6 +559,13 @@
 <summary>Trouble shooting 사례 보기</summary>
 
 > #### 윈도우 서버 컨테이너의 Hyper-v Isolation vs Process Isolation
-> 
+> * 윈도우 환경에서 컨테이너로 서버를 실행할 때 초창기에는 개인 PC가 Windows 10이기 때문에 Docker Desktop을 설치하여 Hyper-v Isolation을 사용함
+> * Docker Standalone 배포 당시 충분한 r&d가 없었기 때문에 윈도우에 이 두가지 모드가 존재하는지 몰랐음
+> * K8s On-Premise 도입시 윈도우 노드는 Process Isolation 모드만이 컨테이너(파드)를 실행할 수 있음을 알게 되었고 K8s 클러스터 뿐만 아니라 Docker Standalone 실행 시에도 Process Isolation 모드를 사용하도록 변경
+<details>
+<summary>간단한 Hyper-v Isolation vs Process Isolation</summary>
+
+sdfsdf
+</details>
 
 </details>
