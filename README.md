@@ -96,7 +96,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 <br/>
 
-## 읽은 또는 읽고 있는 서적들
+## 최근 읽은 또는 읽고 있는 서적들
 ### Operating System Concepts 10th edition
 ![operating_system_concepts_10th](https://github.com/user-attachments/assets/5fee17b5-5887-44f4-a652-ff2071e2341a)
 
@@ -231,6 +231,11 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 ![operating_system_concepts_124](https://github.com/user-attachments/assets/c012692c-deb9-4754-984b-6c4afb096b8b)
 
 </details>
+
+<br/>
+
+### 시작하세요! 도커/쿠버네티스
+![시작하세요_도커_쿠버네티스](https://github.com/user-attachments/assets/32b31e79-e859-4d8b-b84c-ddd3ee734f55)
 
 <br/>
 
