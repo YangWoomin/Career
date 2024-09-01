@@ -546,7 +546,7 @@
   + inhouse 런처는 별도 담당자(인증 서버에서 계정 관리 툴 담당자)가 개발 및 관리
 
 ### Ansible (GStar)
-![ansible](https://github.com/user-attachments/assets/93710dbf-e4e0-4235-9754-9fa3ba05d572)
+![ansible](https://github.com/user-attachments/assets/76ba41e5-4e10-4ad3-9859-fb59436b7770)
 
 * GStar 현장에서 게임 시현을 위해 인프라/서버/클라이언트 장비 제어를 위해 사용한 CD 툴
 * 도입 취지는 OS가 설치된 장비들과 network(private), 릴리즈된 LLL 압축 파일이 준비된 환경에서 LLL 플레이 환경을 제공하기 위해 실수할 여지 없게 세팅하기 위함
