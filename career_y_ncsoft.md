@@ -568,6 +568,7 @@
 > * ![container-arch-hyperv](https://github.com/user-attachments/assets/575e64fe-0715-4d48-bec6-34d86bc6da23)
 > * Process Isolation
 > * ![container-arch-process](https://github.com/user-attachments/assets/31b360b2-add4-4fb8-8066-b7164ae4804c)
+> * 출처 : https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container
 > * 위 그림에서 알 수 있다시피 Process Isolation 모드는 각 컨테이너마다 전용 OS가 없고 호스트 OS를 공유하기 때문에 훨씬 좋은 퍼포먼스를 낼 수 있음
 >   + 서버 이미지 빌드 시간인 팀시티 Job 실행 시간과 서버 실행 시 처음에 데이터 파일 로드하는 부분의 소요 시간이 거의 1/2 ~ 1/3 가량 줄음
 >   + 서버가 클라이언트와 메시지 송수신 시의 퍼포먼스는 측정하지 못함 (네트워크 레이턴시 측정을 위한 툴이나 프로그래밍적인 대응이 없었음)
