@@ -548,7 +548,7 @@
 ### Ansible (GStar)
 * GStar 현장에서 게임 시현을 위해 인프라/서버/클라이언트 장비 제어를 위해 사용한 CD 툴
 * 도입 취지는 OS가 설치된 장비들과 network(private), 릴리즈된 LLL 압축 파일이 준비된 환경에서 LLL 플레이 환경을 제공하기 위해 실수할 여지 없게 세팅하기 위함
-* Database(MySQL), Infrastructure(InfluxDB, Prometheus, Grafana, Nginx), Server, Client 등의 모든 설치 및 세팅을 Ansible로 수행
+* Database(MySQL), Infrastructure(InfluxDB, Prometheus, Grafana, Nginx), Server, Client 등의 모든 설치 및 매 시현 세션을 위한 세팅 등을 Ansible로 수행
 * Ansible + AWX 조합으로 관리자가 웹 페이지에서 주로 클릭만으로 운영할 수 있도록 지원
 ### Trouble shooting
 <details>
