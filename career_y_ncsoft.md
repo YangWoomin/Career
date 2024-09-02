@@ -560,9 +560,9 @@
 <summary>Trouble shooting 사례 보기</summary>
 
 > #### 윈도우 서버 컨테이너의 Hyper-v Isolation vs Process Isolation
-> * 윈도우 환경에서 컨테이너로 서버를 실행할 때 초창기에는 개인 PC가 Windows 10이기 때문에 Docker Desktop을 설치하여 Hyper-v Isolation 모드를 기본으로 사용함
+> * 윈도우 환경에서 컨테이너로 서버를 실행할 때 초창기에는 개인 PC가 Windows 10이기 때문에 Docker Desktop을 설치하여 (Hypervisor type 2에 가까운) Hyper-v Isolation 모드를 기본으로 사용함
 > * Docker Standalone 배포 당시 충분한 r&d가 없었기 때문에 윈도우에 이 두가지 모드가 존재하는지 몰랐음
-> * K8s On-Premise 도입시 K8s의 윈도우 노드는 Process Isolation 모드만이 컨테이너(파드)를 실행할 수 있음을 알게 되었고 K8s 클러스터 뿐만 아니라 Docker Standalone 실행 시에도 Process Isolation 모드를 사용하도록 변경
+> * K8s On-Premise 도입시 K8s의 윈도우 노드는 Process Isolation 모드만이 컨테이너(파드)를 실행할 수 있음을 알게 되었고 K8s 클러스터 뿐만 아니라 Docker Standalone 실행 시에도 Process Isolation (traditional process isolation same as linux container) 모드를 사용하도록 변경
 > * LLL 서버가 특정 OS 버전에 종속되어 있지 않고 Hyper-v Isolation 모드의 장점인 커널 분리로 인한 보안성을 필요로 하지 않아서 쉽게 Process Isolation 모드로의 전환이 가능했음
 > * Hyper-v Isolation
 > * ![container-arch-hyperv](https://github.com/user-attachments/assets/575e64fe-0715-4d48-bec6-34d86bc6da23)
