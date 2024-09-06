@@ -75,24 +75,35 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 <br/>
 
 ## 기타 개인 작업
+
+### 코딩 테스트 준비
+* https://github.com/YangWoomin/CodingTestPrep
+* [프로그래머스 제공 100 문제로 완벽 대비 코딩 테스트 합격자 되기 C++편](#프로그래머스-제공-100-문제로-완벽-대비-코딩-테스트-합격자-되기-C++편) 문제 풀이
+
 ### Blog
 * https://izmirprogramming.tistory.com/
 * 주로 알고리즘 공부한 내용을 나중에 다시보기 위한 용도로 정리
-### Introduction to Algorithms 
-* https://github.com/YangWoomin/Introduction-to-algorithms
-* 책은 다 읽지 못했고 일부 학습한 내용들을 직접 구현
-### Algorithms 
-* https://github.com/YangWoomin/Algorithms
-* "뇌를 자극하는 알고리즘" 책에 있는 내용들을 직접 구현
-### LeetCode
-* https://github.com/YangWoomin/leetcode
-* LeetCode 문제 사이트에서 풀었던 기억에 남는 몇몇 문제 풀이들을 정리
-### DataStructure
-* https://github.com/YangWoomin/DataStructure
-* 학부생 때 "C 언어로 쉽게 풀어쓴 자료구조" 책을 읽고 직접 구현
-### HackerRank
-* https://github.com/YangWoomin/HackerRank
-* 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
+
+<details>
+<summary> Lagacy (클릭하여 펼치기) </summary>
+  
+> ### Introduction to Algorithms 
+> * https://github.com/YangWoomin/Introduction-to-algorithms
+> * 책은 다 읽지 못했고 일부 학습한 내용들을 직접 구현
+> ### Algorithms 
+> * https://github.com/YangWoomin/Algorithms
+> * "뇌를 자극하는 알고리즘" 책에 있는 내용들을 직접 구현
+> ### LeetCode
+> * https://github.com/YangWoomin/leetcode
+> * LeetCode 문제 사이트에서 풀었던 기억에 남는 몇몇 문제 풀이들을 정리
+> ### DataStructure
+> * https://github.com/YangWoomin/DataStructure
+> * 학부생 때 "C 언어로 쉽게 풀어쓴 자료구조" 책을 읽고 직접 구현
+> ### HackerRank
+> * https://github.com/YangWoomin/HackerRank
+> * 학부생 때 HackerRank 문제 사이트에서 풀었던 C++ 카테고리에 속하는 문제 풀이들을 정리
+
+</details>
 
 <br/>
 
@@ -407,4 +418,9 @@ ZilliaxServer 작업하기 전에 C/C++ 소켓 프로그래밍 복기를 위해 
 </details>
 
 <br/>
+
+### 프로그래머스 제공 100 문제로 완벽 대비 코딩 테스트 합격자 되기 C++편
+![코딩테스트합격자되기C++](https://github.com/user-attachments/assets/3e4aa18e-6c9f-4d0f-b09d-c715609ad0dc)
+
+코딩 테스트 준비를 위해 읽고 있는 책
 
