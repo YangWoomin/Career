@@ -85,7 +85,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 * 주로 알고리즘 공부한 내용을 나중에 다시보기 위한 용도로 정리
 
 <details>
-<summary> Lagacy (클릭하여 펼치기) </summary>
+<summary> Legacy (클릭하여 펼치기) </summary>
   
 > ### Introduction to Algorithms 
 > * https://github.com/YangWoomin/Introduction-to-algorithms
