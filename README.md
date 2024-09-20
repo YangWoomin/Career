@@ -27,8 +27,11 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 ## 보유 기술
 
+* Multithread Programming, Network Programming, Database Programming, Distributed Programming
 * C/C++, C#, Make/CMake, Vue.js, Golang, Python, Batch Script, Shell Script
-* MySQL, MSSQL, Redis, Kafka, TeamCity, Perforce
+* libcurl, openssl3, redisplusplus, librdkafka, odbc
+* MySQL, MSSQL, Redis, Kafka
+* TeamCity, Perforce
 * InfluxDB, Prometheus, Grafana, Elasticsearch, Fluentd, Kibana
 * Docker, K8s, Ansible
 * OAuth 2.0
@@ -41,7 +44,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 * LLL 서버 개발 및 인프라 운영, CI/CD
 * 인증/로비 서버 개발
 * 서버 기반 시스템 개발
-* 외부 라이브러리(redis, kafka) 연동
+* 데이터베이스 및 메시지큐 (redis, kafka) 연동
 * 인프라 (통계/로그/모니터링 시스템)
 * CI/CD
 
