@@ -25,6 +25,8 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 제가 지금까지 해 온 것들과 앞으로의 성장 가능성을 확인하실 수 있으실 것입니다.
 
+
+
 ## 보유 기술
 
 * Multithread Programming, Network Programming, Database Programming, Distributed Programming
