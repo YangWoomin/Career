@@ -29,6 +29,7 @@
   + 클라이언트는 지급 받은 내부 토큰을 다른 서버(로비)에게 제출하여 간단한 인증 수행
 * 내부(자체) 계정 시스템 구현
 * 처음에 Golang + Redis로 만들었으나 (auth1) 자체 서버 프레임워크(C/C++) 기반으로 다시 만듦 (auth2)
+* UE5 엔진 코드 수정하여 클라이언트 스팀 인증 적용
 ### Trouble shooting
 <details>
 <summary>Trouble shooting 사례 보기</summary>
@@ -69,6 +70,18 @@
 > * LLL 시스템은 토큰과 세션 모두를 채용
 >   + 보통 토큰과 세션은 대조되는 개념으로 취급됨
 >   + 사용자 인증 관련한 부분은 토큰을 사용하고 내부 시스템에서 좀 더 복잡한 유저의 상태 관리는 세션을 사용
+> #### UE5 스팀 인증 적용
+> * 클라이언트의 스팀 연동은 Steamworks sdk를 사용하여 가능
+> * UE5는 기본적으로 엔진에서 OnlineSubsystem 모듈을 제공하며 이 모듈 안에 xBox, Playstation, Steam 등 여러 플랫폼과 연동할 수 있도록 기능이 구현되어 있음
+>   + OnlineSubsystem 모듈 안에서 스팀 연동을 Steamworks sdk를 사용하여 구현 (한번 감쌌음)
+> * 서버가 스팀 인증을 사용할 수 있는 방법은 "P2P or Game Servers" 모드로 세션 티켓(session ticket)을 사용하는 방법과 "Backend Server" 모드로 Steamworks Web API를 사용하여 세션 티켓을 사용하는 방법이 있음
+> * UE5 OnlineSubsystem 모듈은 "P2P or Game Servers" 모드의 세션 티켓을 사용하도록 구현되어 있었고 "Backend Server" 모드로 사용하는 부분은 구현되지 않았음
+> * LLL 인증 서버는 "Backend Server" 모드로 동작하고 있었고 UE5 OnlineSubsystem 모듈의 수정이 필요한 상황
+>   + nano 인증도 나노 서버로의 Web API를 호출하여 인증하고 있었음
+>   + 아무래도 Steamworks sdk를 인증 서버에 붙이는 것보다 Steamworks Web API를 호출하는 방법으로 기존 방식과 통일하는 것이 구조적으로 깔끔했음
+>   + 그리고 Steamworks sdk(C/C++)를 사용하는 것보다 Steamworks Web API를 사용하는 것이 언어 종속적인 부분에서 벗어날 수 있고 Web API로 강력한 결합보다 느슨한 결합이 유연성에 더 좋다고 판단
+> * 엔진팀에 이러한 작업을 해줄 수 있는 인원이 없었고 작성자가 직접 OnlineSubsystemSteam 코드를 수정하여 클라이언트에서 Web API용 티켓을 발급받을 수 있도록 작업
+> * 이로써 LLL 인증 시스템에 Steamworks Web API를 사용한 스팀 인증이 가능해짐
 
 </details>
 
