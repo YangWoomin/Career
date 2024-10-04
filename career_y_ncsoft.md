@@ -81,7 +81,7 @@
 >   + 아무래도 Steamworks sdk를 인증 서버에 붙이는 것보다 Steamworks Web API를 호출하는 방법으로 기존 방식과 통일하는 것이 구조적으로 깔끔했음
 >   + 그리고 Steamworks sdk(C/C++)를 사용하는 것보다 Steamworks Web API를 사용하는 것이 언어 종속적인 부분에서 벗어날 수 있고 Web API로 강력한 결합보다 느슨한 결합이 유연성에 더 좋다고 판단
 > * 엔진팀에 이러한 작업을 해줄 수 있는 인원이 없었고 작성자가 직접 OnlineSubsystemSteam 코드를 수정하여 클라이언트에서 Web API용 티켓을 발급받을 수 있도록 작업
-> * 이로써 LLL 인증 시스템에 Steamworks Web API를 사용한 스팀 인증이 가능해짐
+> * 이로써 LLL 인증 시스템에 Steamworks Web API를 사용한 스팀 인증이 가능해짐 
 
 </details>
 
