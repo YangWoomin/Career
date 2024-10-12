@@ -42,7 +42,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 ## 경력 간단 요약
 
-#### NCSOFT (2019\~, 5년\~)
+#### NCSOFT (2019.01\~2024.09, 5년\~)
 ##### 역할 - LLL 서버 개발 및 운영
 * 인증/로비 서버 개발
 * 서버 기반 시스템 개발
@@ -89,7 +89,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가 |
 |----------|----------|----------|----------|----------|----------|
-| 2019.01 ~ 현재 | NCSOFT | 5 | [career_y_ncsoft.md](career_y_ncsoft.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) | A -> A -> A -> E -> E |
+| 2019.01 ~ 2024.09 | NCSOFT | 5↑ | [career_y_ncsoft.md](career_y_ncsoft.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) | A -> A -> A -> E -> E |
 | 2017.01 ~ 2018.12 | JOYCITY | 2 | [career_z_joycity.md](career_z_joycity.md) | - | GE -> GE |
 | ~ 2016.12 | 학생 | - | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | - |
 
