@@ -45,7 +45,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 #### NCSOFT (2019.01\~2024.09, 5년\~)
 ##### 담당 업무 - LLL 서버 개발 및 운영
 * 인증/로비 서버 개발 및 외부 플랫폼 연동 (C/C++, MySQL, OAuth 2.0, Nano, Steam)
-* 서버 기반 시스템 개발 및 데이터베이스/메시지큐 연동 (C/C++, Multithread/Network Programming, Redis(redisplusplus), Kafka(librdkafka))
+* 서버 기반 시스템 개발 및 데이터베이스/메시지큐 연동 (C/C++, Multithread/Network/Distributed Programming, Redis(redisplusplus), Kafka(librdkafka))
 * 인프라 통계/로그/모니터링 시스템 (InfluxDB, Grafana, Prometheus, Elasticsearch, Fluentd, Kibana, Vue.js)
 * CI/CD (Make/CMake, TeamCity, Perforce, Docker, K8s, Ansible, Windows, Linux)
 
@@ -66,8 +66,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 #### JOYCITY (2017~2018, 2년)
 ##### 담당 업무 - 프리스타일 풋볼 서버 개발 및 한국/중국/스팀 서비스 운영
-* C/C++, MSSQL, AWS
-* 컨텐츠 개발 (C/C++, MSSQL)
+* 서버 컨텐츠 개발 (C/C++, Multithread/Network Programming, MSSQL)
 * 한국/중국/스팀 서비스 (AWS, Windows)
 * 라이브 이슈 대응
 * CS 대응 지원
