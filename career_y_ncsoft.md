@@ -239,10 +239,8 @@
 
 &emsp;&emsp;(원본 영상 : https://github.com/user-attachments/assets/865c9680-8d49-4554-b78a-fcc2ca028585)
 
-#### World Contents Visualize 제작 배경 및 구현 과정  
-<span style="color:red">(제가 문제를 어떻게 해결하는지의 과정이 담겨 있습니다)</span>
-
-<span style="background-color: #f6f8fa">회색형광펜</span>
+#### World Contents Visualize 제작 배경 및 구현 과정
+ℹ️ (제가 문제를 어떻게 해결하는지의 과정이 담겨 있습니다)
 
 <details>
 <summary>클릭하여 펼치기</summary>
