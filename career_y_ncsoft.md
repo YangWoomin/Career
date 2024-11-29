@@ -241,6 +241,7 @@
 
 #### World Contents Visualize 제작 배경 및 구현 과정  
 <span style="color:red">(제가 문제를 어떻게 해결하는지의 과정이 담겨 있습니다)</span>
+<span style="color:red"> 글씨색 변경 </span>
 
 <details>
 <summary>클릭하여 펼치기</summary>
