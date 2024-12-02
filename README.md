@@ -457,3 +457,20 @@ ZilliaxServer 작업하기 전에 C/C++ 소켓 프로그래밍 복기를 위해 
 
 코딩 테스트 준비를 위해 읽고 있는 책
 
+### Real MySQL 8.0
+![real_mysql](https://github.com/user-attachments/assets/31456195-89c9-4acd-ae00-28a3f5114e8b)
+
+MySQL 내부 원리를 구체적으로 파악하기 위해 읽고 있는 책 (필요한 부분 위주로 읽음, MySQL 엔진 내부 구조/InnoDB 엔진/트랜잭션/인덱스)
+
+<details>
+<summary> 오공완 (오늘 공부 완료) 인증샷 </summary>
+
+![real_mysql_1](https://github.com/user-attachments/assets/650fde1f-4778-4fdb-81a5-635d18e406f1)
+![real_mysql_2](https://github.com/user-attachments/assets/03083c8d-d7d2-47d4-8aac-5d4dd85e4381)
+![real_mysql_3](https://github.com/user-attachments/assets/f6647a4e-7fa8-4bd8-9d9a-da41d1ab28e1)
+
+</details>
+
+<br/>
+
+
