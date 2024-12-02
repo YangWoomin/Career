@@ -455,7 +455,7 @@ ZilliaxServer 작업하기 전에 C/C++ 소켓 프로그래밍 복기를 위해 
 ### 프로그래머스 제공 100 문제로 완벽 대비 코딩 테스트 합격자 되기 C++편
 ![코딩테스트합격자되기C++](https://github.com/user-attachments/assets/3e4aa18e-6c9f-4d0f-b09d-c715609ad0dc)
 
-코딩 테스트 준비를 위해 읽고 있는 책
+코딩 테스트 준비를 위해 읽어보고 문제들을 풀어본 책
 
 ### Real MySQL 8.0
 ![real_mysql](https://github.com/user-attachments/assets/31456195-89c9-4acd-ae00-28a3f5114e8b)
