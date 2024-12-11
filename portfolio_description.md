@@ -12,7 +12,7 @@
 
 <br/>
 
-![zilliax_server_overview](https://github.com/user-attachments/assets/802b2e3b-697b-44fa-8953-df2d8c85e904)
+![zilliax_server_overview](https://github.com/user-attachments/assets/82f810a2-0d80-4409-aa28-bb7defe8ab43)
 
 <br/>
 
