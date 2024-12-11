@@ -9,7 +9,12 @@
 * 음슴체로 적게 된 점 양해 부탁 드립니다.
 
 ## Overview
+
+<br/>
+
 ![zilliax_server_overview](https://github.com/user-attachments/assets/802b2e3b-697b-44fa-8953-df2d8c85e904)
+
+<br/>
 
 ## "network_test"
 * 클라이언트라고 지칭
