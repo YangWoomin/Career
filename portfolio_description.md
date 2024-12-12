@@ -22,8 +22,8 @@
 ### 구성 요소별 프로젝트 모듈 관계
 * Client : "network_test" (C/C++)
 * Producer Server : "mq_test_producer" (C/C++)
-* Cache(Redis) Server : "cache" 모듈에서 접근 (프로듀서 서버가 사용, C/C++)
-* Message Queue(Kafka) : "mq" 모듈에서 접근 (프로듀서 서버가 사용, C/C++)
+* Cache Server : Redis Cluster, "cache" 모듈에서 접근 (프로듀서 서버가 사용, C/C++)
+* Message Queue : Kafka Cluster, "mq" 모듈에서 접근 (프로듀서 서버가 사용, C/C++)
 * Client Message Counter : "mq_test_consumer" (Golang)
 * Message Aggregator : "mq_test_consumer" (Client Message Counter와 동일 프로젝트, Golang)
 
