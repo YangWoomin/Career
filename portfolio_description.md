@@ -19,7 +19,7 @@
 
 <br/>
 
-### 요소별 프로젝트 모듈 관계
+### 구성 요소별 프로젝트 모듈 관계
 * Client : "network_test"
 * Producer Server : "mq_test_producer"
 * Cache(Redis) Server : "cache" 모듈에서 접근 (프로듀서 서버가 사용)
