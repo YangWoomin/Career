@@ -15,7 +15,7 @@
 
 <br/>
 
-![zilliax_server_overview](https://github.com/user-attachments/assets/29739c2c-5878-4309-bba8-9210684b3e48)
+![zilliax_server_overview](https://github.com/user-attachments/assets/fefcc9de-039b-48bf-920d-352a9d648b3f)
 
 <br/>
 
