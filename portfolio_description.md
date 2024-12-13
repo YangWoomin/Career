@@ -30,8 +30,6 @@
 ### 클라이언트
 * 사용자 입력을 1줄씩 받아서 프로듀서 서버에게 전송 (1번 과정)
 * mtc(massive test client) 모드로 실행시 로컬의 샘플 파일(소설)을 읽어서 프로듀서 서버에게 전송
-  + 기본적으로 100개 연결(소켓)을 만들어서 샘플 파일 내용을 각각 전송 (유사 대규모 트래픽)
-  + 샘플 파일은 공백 등을 제거하여 (4422 행, 총 283052 바이트 크기) x 100 개 클라이언트
 
 ### 프로듀서 서버
 * 클라이언트로부터 데이터를 전송 받으면 캐시 서버에 클라이언트 식별자(host:port)별로 메시지를 순서대로 저장 (by 네트워크 스레드풀, 비동기, 2번 과정)
@@ -69,7 +67,68 @@
 * 소비한 메시지 오프셋 커밋을 수행 (11번 과정)
 
 ## 데이터 신뢰성 테스트
+
 ### 기본 테스트
+
+#### 환경
+<details>
+<summary>details</summary>
+
+* PC
+  + Windows 10 + WSL2 (Ubuntu 24.04)
+  + Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+  + 16GB RAM
+  + 512G SSD
+* 클라이언트
+  + 클라이언트(소켓) 수 : 10
+* 프로듀서 서버
+  + 1대
+  + acks=all
+  + enable.idempotence=true
+  + 그 외 나머지는 모두 기본값
+* 캐시 서버 (레디스 클러스터)
+  + 마스터 3대 + 복제 3대
+  + Redis Insight 사용
+  + 모든 설정 기본값
+* 메시지 큐 (카프카 클러스터)
+  + 크래프트 모드
+  + 컨트롤러 3대 + 브로커 3대
+  + Conduktor 사용
+  + client_message 토픽 - 파티션 10개, replication factor 3, min isr 1 (옵션들은 기본값)
+  + message_aggregation 토픽 - 파티션 10개, replication factor 3, min isr 1 (옵션들은 기본값)
+  + 그 외 나머지는 모두 기본값
+* 클라이언트 메시지 카운터 및 메시지 수집기
+  + auto.offset.reset=earliest
+  + enable.auto.commit=false
+  + isolation.level=read_committed
+  + enable.idempotence=true
+  + transactional.id=[임의 문자열]
+  + group.id=[임의의 문자열] (클라이언트 메시지 카운터와 메시지 수집기는 서로 다른 컨슈머 그룹)
+  + 클라이언트 메시지 카운터만 프로듀서에서 트랜잭션 사용
+    + 최대 100개 메시지씩 1개 트랜잭션으로 커밋하되 여유로운 상태(소비할 메시지가 없을 때)라면 바로바로 커밋
+  + 프로듀서 및 컨슈머는 각각 3개씩
+  + 그 외 나머지는 모두 기본값
+
+</details>
+
+#### 테스트 데이터
+* (4422 행, 총 283052 바이트 크기) x 10 (클라이언트 수)
+
+#### 테스트 결과
+* 클라이언트 메시지 송신 결과
+
+![image](https://github.com/user-attachments/assets/bf8ee1c2-91c0-4889-b2a5-ce521d7293c6)
+
+* 프로듀서 서버 메시지 수신 및 적재 결과
+
+
+
+* client_message 토픽
+
+* message_aggregation 토픽
+
+* 데이터 일관성 조회
+
 ### 메시지 유실 테스트 (준비중)
 #### 프로듀서 서버
 * 프로듀서 버퍼가 가득 차서 유실되는 경우
