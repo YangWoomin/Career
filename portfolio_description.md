@@ -117,7 +117,7 @@
 #### 테스트 결과
 * 클라이언트 메시지 송신 결과
 
-![image](https://github.com/user-attachments/assets/bf8ee1c2-91c0-4889-b2a5-ce521d7293c6)
+![image](https://github.com/user-attachments/assets/4732de75-2858-465a-868f-1ce796f598a6)
 
 * 프로듀서 서버 메시지 수신 및 적재 결과
 
