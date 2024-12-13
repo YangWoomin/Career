@@ -138,7 +138,7 @@
 * 트랜잭션 마커는 다수의 파티션에 대해 트랜잭션이 커밋되었거나 중단되었다는 것을 표시하기 위해 마커 메시지를 사용
 * 참고 : https://stackoverflow.com/questions/79001842/count-mismatch-in-akhq-ui-0-24-0
 
-#### 테스트 결과 - 데이터 일관성 조회 (레디스에 최종적으로 저장된 데이터를 조회)
+#### 테스트 결과 - 데이터 일관성 확인 (레디스에 최종적으로 저장된 데이터를 조회)
 
 ![image](https://github.com/user-attachments/assets/a828d276-c061-47de-bcec-91ad610cb574)
 
