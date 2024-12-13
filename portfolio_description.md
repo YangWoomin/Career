@@ -114,29 +114,39 @@
 #### 테스트 데이터
 * (4422 행, 총 283052 바이트 크기) x 10 (클라이언트 수)
 
-#### 테스트 결과
-* 클라이언트 메시지 송신 결과
+#### 테스트 결과 - 클라이언트 메시지 송신 결과
 
 ![image](https://github.com/user-attachments/assets/a5b51472-d057-4ab7-84ee-81bf8be3e687)
 
-* 프로듀서 서버 메시지 수신 및 적재 결과
+#### 테스트 결과 - 프로듀서 서버 메시지 수신 및 적재 결과
 
 ![image](https://github.com/user-attachments/assets/82265d6b-810e-43d6-afb5-789f9141be6e)
 
-"total processed message count : 44220" : 프로듀서 서버가 모든 클라이언트로부터 수신한 메시지 개수
+* "total processed message count : 44220" : 프로듀서 서버가 모든 클라이언트로부터 수신한 메시지 개수
+* "msg manager finalized, total sent msg count : 44220" : 프로듀서 서버가 메시지 큐로 전송한 메시지 개수
+  + ("total processed message count: 44220, size : 2830520" 이 부분이 클라이언트에서 보낸 300740 * 10과 맞지 않는 이유는 300740이 메시지 크기(4바이트)까지 포함하기 때문, (300740 - (4422 * 4)) * 10 = 2830520)
 
-"msg manager finalized, total sent msg count : 44220" : 프로듀서 서버가 메시지 큐로 전송한 메시지 개수
+#### 테스트 결과 - client_message 토픽
 
-("total processed message count: 44220, size : 2830520" 이 부분이 클라이언트에서 보낸 300740 * 10과 맞지 않는 이유는 300740이 메시지 크기(4바이트)까지 포함하기 때문, (300740 - (4422 * 4)) * 10 = 2830520)
+![image](https://github.com/user-attachments/assets/8b24c8c8-cbd5-4fd1-bdf4-bbbf9caa917b)
 
+#### 테스트 결과 - message_aggregation 토픽
 
+![image](https://github.com/user-attachments/assets/e862d117-f388-41f4-8489-0b31b0a507fa)
 
-* client_message 토픽
+* message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 44220보다 많은 44780인 이유는 트랜잭션으로 적재시 트랜잭션 마커(marker)도 포함되기 때문
+* 트랜잭션 마커는 다수의 파티션에 대해 트랜잭션이 커밋되었거나 중단되었다는 것을 표시하기 위해 마커 메시지를 사용
+* 참고 : https://stackoverflow.com/questions/79001842/count-mismatch-in-akhq-ui-0-24-0
 
+#### 테스트 결과 - 데이터 일관성 조회
 
-* message_aggregation 토픽
+![image](https://github.com/user-attachments/assets/a828d276-c061-47de-bcec-91ad610cb574)
 
-* 데이터 일관성 조회
+* 각 클라이언트별로 4422개의 메시지 개수 확인 가능
+
+![image](https://github.com/user-attachments/assets/f1f75c39-92a9-4f49-9fab-5c5b3e6f004d)
+
+* 메시지가 많아서 위에 짤렸지만 각 메시지 개수가 모두 10개로 올바른 결과 출력
 
 ### 메시지 유실 테스트 (준비중)
 #### 프로듀서 서버
