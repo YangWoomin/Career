@@ -117,13 +117,22 @@
 #### 테스트 결과
 * 클라이언트 메시지 송신 결과
 
-![image](https://github.com/user-attachments/assets/4732de75-2858-465a-868f-1ce796f598a6)
+![image](https://github.com/user-attachments/assets/a5b51472-d057-4ab7-84ee-81bf8be3e687)
 
 * 프로듀서 서버 메시지 수신 및 적재 결과
+
+![image](https://github.com/user-attachments/assets/82265d6b-810e-43d6-afb5-789f9141be6e)
+
+"total processed message count : 44220" : 프로듀서 서버가 모든 클라이언트로부터 수신한 메시지 개수
+
+"msg manager finalized, total sent msg count : 44220" : 프로듀서 서버가 메시지 큐로 전송한 메시지 개수
+
+("total processed message count: 44220, size : 2830520" 이 부분이 클라이언트에서 보낸 300740 * 10과 맞지 않는 이유는 300740이 메시지 크기(4바이트)까지 포함하기 때문, (300740 - (4422 * 4)) * 10 = 2830520)
 
 
 
 * client_message 토픽
+
 
 * message_aggregation 토픽
 
