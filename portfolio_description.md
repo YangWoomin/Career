@@ -161,7 +161,7 @@
 > 
 > ![before_test_in_redis](https://github.com/user-attachments/assets/3426eddd-d650-43aa-bd3d-a2d7892d3039)
 > 
-> 2. 프로듀서 서버가 테스트로 소비할 메시지를 추가 생성
+> 2. 프로듀서 서버가 소비할 테스트 메시지를 추가 생성
 > 
 > ![preparing_test_in_redis](https://github.com/user-attachments/assets/3c9bb67a-f8b3-4a74-ac79-28b37a927215)
 > 
