@@ -242,6 +242,48 @@
 </details>
 
 #### 프로듀서 버퍼가 가득 전송에 실패하는 경우
+
+<details>
+<summary>펼쳐보기</summary>
+
+> 1. 테스트 클라이언트 수를 제외한 나머지 환경은 기본 테스트와 동일 (테스트 클라이언트 10개 -> 30개)
+> 
+> PC 사양마다 프로듀서 버퍼가 가득 차게 되는 메시지 용량이 다를 수 있으니 개인 PC 환경에 따라 클라이언트 개수를 조절하여 버퍼가 가득 차는 클라이언트 수를 찾아야 함
+> 
+> 2. 프로듀서 서버에서 프로듀서 버퍼가 가득 차게 되어 발생하는 경고 확인
+>
+> ![queue_full_failure_result_in_producer_server](https://github.com/user-attachments/assets/def2a8d8-1568-404d-a9fb-67848420f630)
+> 
+> 메시지 프로듀싱하는 과정에서 -184 에러 발생
+>
+> ![queue_full_failure_result_2_in_producer_server](https://github.com/user-attachments/assets/df98b9bc-40da-4ad4-8abb-b3e47997aa10)
+> 
+> librdkafka에 정의된 -184 에러의 의미
+> 
+> 3. 프로듀서 서버에서 메시지 전송 결과
+> 
+> ![queue_full_failure_result_3_in_producer_server](https://github.com/user-attachments/assets/5e9b8b55-4b59-42a1-bc05-2d16ff433816)
+> 
+> 4422 * 30 = 132,660
+> 
+> 4. "client_message" 토픽의 메시지 적재 결과
+> 
+> ![queue_full_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/8fc48cb9-eefe-4392-a112-4463bff9cf2a)
+> 
+> 5. "message_aggregation" 토픽의 메시지 적재 결과
+> 
+> ![queue_full_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/fcd68013-56cc-4e18-adec-d9a576aa9214)
+> 
+> 6. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
+> 
+> ![queue_full_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/e9b60a02-b0dd-4120-b5e8-4cfeee80e503)
+> 
+> 7. 최종적으로 메시지별로 저장된 메시지 개수 확인
+> 
+> ![queue_full_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/af3b4857-e73e-4dfd-8267-60f61821431f)
+>
+</details>
+  
 ### 메시지 큐
 #### 일부 브로커 재시작 (장애 등의 사유로)
 #### 전체 브로커 재시작 (장애 등의 사유로)
