@@ -155,9 +155,9 @@
 <details>
 <summary>펼쳐보기</summary>
 
-1. 초기 데이터 2개만 처리 완료된 상황
-
-![before_test_in_mq](https://github.com/user-attachments/assets/cf9951d8-cf00-4c8d-b417-07de7c803667)
+> 1. 초기 데이터 2개만 처리 완료된 상황
+> 
+> ![before_test_in_mq](https://github.com/user-attachments/assets/cf9951d8-cf00-4c8d-b417-07de7c803667)
 
 ![before_test_in_redis](https://github.com/user-attachments/assets/3426eddd-d650-43aa-bd3d-a2d7892d3039)
 
