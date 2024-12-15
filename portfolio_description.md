@@ -250,7 +250,7 @@
 > 
 > PC 사양마다 프로듀서 버퍼가 가득 차게 되는 메시지 용량이 다를 수 있으니 개인 PC 환경에 따라 클라이언트 개수를 조절하여 버퍼가 가득 차는 클라이언트 수를 찾아야 함
 > 
-> 2. 프로듀서 서버에서 프로듀서 버퍼가 가득 차게 되어 발생하는 경고 확인
+> 2. 프로듀서 서버에서 프로듀서 버퍼가 가득 차게 되어 발생하는 경고 로그 확인
 >
 > ![queue_full_failure_result_in_producer_server](https://github.com/user-attachments/assets/def2a8d8-1568-404d-a9fb-67848420f630)
 > 
