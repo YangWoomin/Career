@@ -167,7 +167,7 @@
 > 
 > 세번째 메시지 "cccccc...cc" 부터 일곱번째 메시지 "ggggg...gg" 5개 추가
 > 
-> 3. 테스트를 위해 세번째 메시지를 저장에 실패 처리한것처럼 콜백에서 조작 후 프로듀서 서버의 재전송 결과
+> 3. 테스트를 위해 세번째 메시지를 저장에 실패 처리한 것처럼 콜백에서 조작 후 프로듀서 서버의 재전송 결과
 > 
 > ![not_persisted_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb9584b0-44e9-4bdc-929a-f47038d7435a)
 > 
