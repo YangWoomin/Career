@@ -215,7 +215,7 @@
 > 
 > ![missed_message_failure_result_in_redis](https://github.com/user-attachments/assets/ad21a801-c8ef-47ba-a921-ca7bc5fd5f83)
 > 
-> 레디스에 유실된 메시지의 sn을 기다리는 다른 sn들을 "stored_msg_sn_tmp_list" sorted set에 임시 보관
+> 레디스에서 유실된 메시지의 sn을 기다리는 다른 sn들을 "stored_msg_sn_tmp_list" sorted set에 임시 보관
 > 2분(설정된 시간) 동안 유실된 sn에 대한 결과를 받지 못하면 유실된 sn부터 재전송
 > 
 > ![missed_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb68f297-d4c1-40fe-bd57-fc5571206d8b)
