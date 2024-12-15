@@ -155,7 +155,7 @@
 <details>
 <summary>펼쳐보기</summary>
 
-> 1. 초기 데이터 2개만 처리 완료된 상황
+> 1. 초기 메시지 2개만 적재 완료된 상황
 > 
 > ![before_test_in_mq](https://github.com/user-attachments/assets/cf9951d8-cf00-4c8d-b417-07de7c803667)
 > 
