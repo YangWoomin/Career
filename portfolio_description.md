@@ -1,4 +1,4 @@
-![preparing_test_in_redis](https://github.com/user-attachments/assets/8706d6bf-f7dc-4765-80b0-ca6fd65e9a48)
+
 ## 소개
 * 이 문서는 저의 오픈 소스 포트폴리오인 [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer)에 대한 설명글입니다.
 * 모든 내용을 설명드리기 어려우니 **데이터 신뢰성(Data Reliability)** 위주의 내용을 정리하였습니다.
