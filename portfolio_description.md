@@ -205,6 +205,41 @@
 
 
 #### 메시지 큐로부터 메시지 저장에 대한 응답이 없어서 유실되는 경우
+
+<details>
+<summary>펼쳐보기</summary>
+
+> 1. 앞서 "메시지 큐로부터 메시지 저장에 실패한 경우" 테스트 케이스와 전반적인 흐름은 동일하나 메시지 적재 실패가 아닌 유실로 인해 적재 완료 콜백이 오지 않는 경우를 시뮬레이션
+>
+> 2. 테스트를 위해 세번째 메시지를 저장 도중 유실된 것처럼 콜백에서 조작 후 프로듀서 서버의 재전송 결과
+> 
+> ![missed_message_failure_result_in_redis](https://github.com/user-attachments/assets/ad21a801-c8ef-47ba-a921-ca7bc5fd5f83)
+> 
+> 레디스에 유실된 메시지의 sn을 기다리는 다른 sn들을 "stored_msg_sn_tmp_list" sorted set에 임시 보관
+> 2분(설정된 시간) 동안 유실된 sn에 대한 결과를 받지 못하면 유실된 sn부터 재전송
+> 
+> ![missed_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb68f297-d4c1-40fe-bd57-fc5571206d8b)
+> 
+> 프로듀서 서버가 유실된 sn부터 메시지들을 재전송
+>
+> 3. "client_message" 토픽의 메시지 적재 결과
+> 
+> ![missed_message_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/2fb16976-6bb7-4c10-85e1-4eda4f069245)
+>
+> 4. "message_aggregation" 토픽의 메시지 적재 결과
+> 
+> ![missed_message_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/3ad6c9d0-9d56-4903-ae32-13398d495c38)
+> 
+> 5. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
+> 
+> ![missed_message_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/79cb6c96-4ea5-4bcb-b69b-20fcf919173c)
+>
+> 6. 최종적으로 메시지별로 저장된 메시지 개수 확인
+> 
+> ![missed_message_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/30cc8abf-9bf8-4304-9b3e-40e02862cd07)
+> 
+</details>
+
 #### 프로듀서 버퍼가 가득 전송에 실패하는 경우
 ### 메시지 큐
 #### 일부 브로커 재시작 (장애 등의 사유로)
