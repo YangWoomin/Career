@@ -1,4 +1,4 @@
-
+![preparing_test_in_redis](https://github.com/user-attachments/assets/8706d6bf-f7dc-4765-80b0-ca6fd65e9a48)
 ## 소개
 * 이 문서는 저의 오픈 소스 포트폴리오인 [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer)에 대한 설명글입니다.
 * 모든 내용을 설명드리기 어려우니 **데이터 신뢰성(Data Reliability)** 위주의 내용을 정리하였습니다.
@@ -150,9 +150,62 @@
 
 ## 메시지 유실 테스트 (준비중)
 ### 프로듀서 서버
-#### 프로듀서 버퍼가 가득 전송에 실패하는 경우
 #### 메시지 큐로부터 메시지 저장에 실패한 경우
+
+<details>
+<summary>details</summary>
+
+1. 초기 데이터 2개만 처리 완료된 상황
+
+![before_test_in_mq](https://github.com/user-attachments/assets/cf9951d8-cf00-4c8d-b417-07de7c803667)
+
+![before_test_in_redis](https://github.com/user-attachments/assets/3426eddd-d650-43aa-bd3d-a2d7892d3039)
+
+2. 프로듀서 서버가 소비할 메시지를 미리 생성
+
+![preparing_test_in_redis](https://github.com/user-attachments/assets/3c9bb67a-f8b3-4a74-ac79-28b37a927215)
+
+세번째 메시지 "cccccc...cc" 부터 일곱번째 메시지 "ggggg...gg" 5개 추가
+
+3. 테스트를 위해 세번째 메시지를 저장에 실패 처리한것처럼 콜백에서 조작 후 프로듀서 서버의 재전송 결과
+
+![not_persisted_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb9584b0-44e9-4bdc-929a-f47038d7435a)
+
+세번째 메시지의 키를 "test_client"로 변경하고 이를 저장에 실패한 것처럼 유도
+
+프로듀서는 적재에 실패한 세번째 메시지부터 다시 재전송
+
+4. 클라이언트 메시지 카운터에서 "test_client" 메시지에 대한 처리
+
+![not_persisted_message_failure_result_in_client_message_counter](https://github.com/user-attachments/assets/a484f35f-bde7-4794-ab07-65dff917229f)
+
+"test_client" 키에 대한 이전 데이터가 없으므로 유효하지 않은 것으로 처리
+
+해당 클라이언트 키에 대해 세번째 메시지가 도착하지 않았으므로 네번째 메시지 이후부터 유효하지 않은 것으로 처리
+
+5. "client_message" 토픽의 메시지 적재 결과
+
+![not_persisted_message_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/5c444dd9-6801-43d8-b594-8853aa212e50)
+
+6. "message_aggregation" 토픽의 메시지 적재 결과
+
+![not_persisted_message_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/833e5f57-48a0-4557-ab6b-7c60426be1f7)
+
+"client_message" 토픽과 다르게 "message_aggregation" 토픽은 중복 없이 데이터 저장
+
+7. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
+
+![not_persisted_message_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/dfbea426-bca5-490f-9f90-26d250d21ce2)
+
+8. 최종적으로 메시지별로 저장된 메시지 개수 확인
+
+![not_persisted_message_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/dc436395-fba7-4f05-8123-3bdb6838c74d)
+
+</details>
+
+
 #### 메시지 큐로부터 메시지 저장에 대한 응답이 없어서 유실되는 경우
+#### 프로듀서 버퍼가 가득 전송에 실패하는 경우
 ### 메시지 큐
 #### 일부 브로커 재시작 (장애 등의 사유로)
 #### 전체 브로커 재시작 (장애 등의 사유로)
