@@ -153,7 +153,7 @@
 #### 메시지 큐로부터 메시지 저장에 실패한 경우
 
 <details>
-<summary>details</summary>
+<summary>펼쳐보기</summary>
 
 1. 초기 데이터 2개만 처리 완료된 상황
 
