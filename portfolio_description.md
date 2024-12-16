@@ -285,8 +285,94 @@
 </details>
   
 ### 메시지 큐 (준비중)
-#### 일부 브로커 재시작 (장애 등의 사유로)
-#### 전체 브로커 재시작 (장애 등의 사유로)
+#### 우아한 브로커 재시작
+
+<details>
+<summary>펼쳐보기</summary>
+
+> 1. 테스트 클라이언트 수를 제외한 나머지 환경은 기본 테스트와 동일 (테스트 클라이언트 10개 -> 50개)
+>
+> ![before_broker_failure_test_in_client_message_mq](https://github.com/user-attachments/assets/b85d1c31-ce9d-4d72-ab80-f7a26f197ff9)
+> 
+> 각 파티션의 리더/팔로워 레플리카 할당 상태 확인
+> 1번 브로커(broker-1)의 ID는 4번으로 파티션 0, 4, 8, 9의 리더 레플리카가 1번 브로커에 할당되어 있음
+> 
+> 2. 프로듀서 서버와 클라이언트 메시지 카운터, 메시지 수집기가 메시지 큐로부터 메시지 처리를 하는 동안 1번 브로커 종료
+> 
+> ![during_broker_failure_test_in_broker_for_preparing_shutting_down](https://github.com/user-attachments/assets/4bccac34-6b1a-49d4-b76e-3681c50a00f7)
+> 
+> "SIGTERM" 시그널을 받아서 "STARTED" -> "PENDING_CONTROLLED_SHUTDOWN" 상태로 전환
+> 
+> ![during_broker_failure_test_in_broker_for_resigning_group_coordinator](https://github.com/user-attachments/assets/5f2e08e0-ecda-43e7-ac74-0cfecc9b5972)
+>
+> 그룹 코디네이터 사임중..
+> 
+> ![during_broker_failure_test_in_broker_for_resigning_tx_coordinator](https://github.com/user-attachments/assets/6d1d2fe9-e837-48e0-a9fb-86dc1b749712)
+> 
+> 트랜잭션 코디네이터 사임중..
+>
+> ![during_broker_failure_test_in_broker_for_shutting_down](https://github.com/user-attachments/assets/96123e2f-7dbb-4df5-bb1b-a14faca05673)
+> 
+> "PENDING_CONTROLLED_SHUTDOWN" 상태에서 "SHUTTING_DOWN" 상태로 전환
+> 
+> 3. 파티션의 모든 리더 레플리카는 1번 브로커(ID:4)로부터 다른 브로커들로 할당됨
+> 
+> ![during_broker_failure_test_in_client_message_mq](https://github.com/user-attachments/assets/00129448-d9c2-4837-b656-4339e8594cc7)
+> 
+> 모든 파티션이 4번(1번 브로커)에만 할당되어 있지 않음
+> 이와중에 메시지 적재와 소비는 문제없이 진행됨
+> 프로듀서와 컨슈머들은 클러스터와 메타데이터 동기화를 필요할 때 하기 때문에 리더 브로커가 바뀌면(리더 선출) 해당 브로커로 연결하여 작업을 이어 나감
+> REPLICATION FACTOR(ISR)를 3으로 유지하고 있기 때문에 리더 브로커가 종료되더라도 다른 브로커가 리더 브로커의 역할을 매끄럽게 계속 이어나갈 수 있음
+> 
+> 4. 1분 후 1번 브로커 재시작
+> 
+> ![during_broker_failure_test_in_broker_for_starting](https://github.com/user-attachments/assets/8edb6a78-acfc-496a-a43f-2b15bb52141a)
+> 
+> "SHUTDOWN" 상태에서 "STARTING" 상태로 전환되면서 브로커 시작
+> 
+> ![during_broker_failure_test_in_broker_for_recovery](https://github.com/user-attachments/assets/4483719b-ae1c-4371-b98c-d24387d4323d)
+> 
+> 클러스터 메타데이터를 동기화하면서(catch up) "STARTING" 상태에서 "RECOVERY" 상태로 전환
+> 
+> ![during_broker_failure_test_in_broker_for_recovering](https://github.com/user-attachments/assets/ed3bf956-c5cb-491e-bdeb-4a64977f34c3)
+> 
+> 파티션,오프셋,트랜잭션 등의 데이터를 로드하는 중 (recovering)
+> 
+> ![during_broker_failure_test_in_broker_for_starting_group_and_tx_coordinator](https://github.com/user-attachments/assets/1c845f1f-0a53-4813-a5e9-f61838ac7aca)
+> 
+> 그룹 코디네이터, 트랜잭션 코디네이터 등을 시작
+> 
+> ![during_broker_failure_test_in_broker_for_fetching_data_from_other_brokers](https://github.com/user-attachments/assets/8c002ce6-b6ad-4e6f-89d6-385608a588e2)
+> 
+> 다른 브로커로부터 데이터 동기화를 위해 복제 시작
+> 
+> ![during_broker_failure_test_in_broker_for_broker_server_started](https://github.com/user-attachments/assets/deecb62a-faf8-4993-89c7-f511bdcca883)
+> 
+> 클러스터에 브로커 참여함으로써 최종적으로 "STARTING" 상태에서 "STARTED" 상태로 전환
+> 
+> ![during_broker_failure_test_in_broker_for_electing_group_coordinator](https://github.com/user-attachments/assets/7617adfb-64c8-47d7-89f8-34ff5aa325ff)
+> 
+> 원래 리더를 맡고 있던 파티션들에 대해서 리더로 다시 선출되어 그룹 코디네이터 역할을 수행
+> 
+> ![during_broker_failure_test_in_broker_for_electing_tx_coordinator](https://github.com/user-attachments/assets/a590ddd3-7493-46bf-9a2a-d7685a3dd8e7)
+> 
+> 트랜잭션 코디네이터도 마찬가지로 복귀
+> 
+> 5. "client_message" 토픽의 메시지 적재 및 파티션 리더 선출 결과
+> 
+> ![broker_failure_test_result_in_client_message_mq](https://github.com/user-attachments/assets/6dd7fd58-2e33-4202-a745-3c8a3199c6f4)
+>
+> 6. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
+> 
+> ![broker_failure_test_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/7e2a8d08-eaf4-4383-9e4c-c64fe7e1ffc2)
+>
+> 7. 최종적으로 메시지별로 저장된 메시지 개수 확인
+>
+> ![broker_failure_test_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/55834c28-3bdb-46ab-9fad-1d602751e7c0)
+> 
+</details>
+
+#### 전체 브로커 재시작
 ### 클라이언트 메시지 카운터 & 메시지 수집기 (준비중)
 #### 컨슈머 리밸런스 유도 (컨슈머 추가/재시작(장애) 등의 사유)
 
