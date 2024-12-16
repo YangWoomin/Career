@@ -355,7 +355,7 @@
 > 
 > ![during_broker_failure_test_in_broker_for_electing_group_coordinator](https://github.com/user-attachments/assets/7617adfb-64c8-47d7-89f8-34ff5aa325ff)
 > 
-> 원래 리더를 맡고 있던 파티션들에 대해서 리더로 다시 선출되어 그룹 코디네이터 역할을 수행
+> 그룹 코디네이터 복귀
 > 
 > ![during_broker_failure_test_in_broker_for_electing_tx_coordinator](https://github.com/user-attachments/assets/a590ddd3-7493-46bf-9a2a-d7685a3dd8e7)
 > 
