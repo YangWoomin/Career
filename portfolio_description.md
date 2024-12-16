@@ -121,8 +121,9 @@
 
 ![image](https://github.com/user-attachments/assets/82265d6b-810e-43d6-afb5-789f9141be6e)
 
-* "total processed message count : 44220" : 프로듀서 서버가 모든 클라이언트로부터 수신한 메시지 개수
-* "msg manager finalized, total sent msg count : 44220" : 프로듀서 서버가 메시지 큐로 전송한 메시지 개수
+"total processed message count : 44220" : 프로듀서 서버가 모든 클라이언트로부터 수신한 메시지 개수
+
+"msg manager finalized, total sent msg count : 44220" : 프로듀서 서버가 메시지 큐로 전송한 메시지 개수
   + ("total processed message count: 44220, size : 2830520" 이 부분이 클라이언트에서 보낸 300740 * 10과 맞지 않는 이유는 300740이 메시지 크기(4바이트)까지 포함하기 때문, (300740 - (4422 * 4)) * 10 = 2830520)
 
 #### 테스트 결과 - client_message 토픽
@@ -133,15 +134,15 @@
 
 ![image](https://github.com/user-attachments/assets/e862d117-f388-41f4-8489-0b31b0a507fa)
 
-* message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 44220보다 많은 44780인 이유는 트랜잭션으로 적재시 트랜잭션 마커(marker)도 포함되기 때문
-* 트랜잭션 마커는 다수의 파티션에 대해 트랜잭션이 커밋되었거나 중단되었다는 것을 표시하기 위해 마커 메시지를 사용
-* 참고 : https://stackoverflow.com/questions/79001842/count-mismatch-in-akhq-ui-0-24-0
+message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 44220보다 많은 44780인 이유는 트랜잭션으로 적재시 트랜잭션 마커(marker)도 포함되기 때문
+트랜잭션 마커는 다수의 파티션에 대해 트랜잭션이 커밋되었거나 중단되었다는 것을 표시하기 위해 마커 메시지를 사용
+참고 : https://stackoverflow.com/questions/79001842/count-mismatch-in-akhq-ui-0-24-0
 
 #### 테스트 결과 - 데이터 일관성 확인 (레디스에 최종적으로 저장된 데이터를 전용 툴(mq_test_verifier)로 조회)
 
 ![image](https://github.com/user-attachments/assets/a828d276-c061-47de-bcec-91ad610cb574)
 
-* 각 클라이언트별로 4422개의 메시지 개수 확인 가능
+각 클라이언트별로 4422개의 메시지 개수 확인 가능
 
 ![image](https://github.com/user-attachments/assets/f1f75c39-92a9-4f49-9fab-5c5b3e6f004d)
 
