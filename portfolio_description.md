@@ -124,7 +124,8 @@
 "total processed message count : 44220" : 프로듀서 서버가 모든 클라이언트로부터 수신한 메시지 개수
 <br/>
 "msg manager finalized, total sent msg count : 44220" : 프로듀서 서버가 메시지 큐로 전송한 메시지 개수
-  + ("total processed message count: 44220, size : 2830520" 이 부분이 클라이언트에서 보낸 300740 * 10과 맞지 않는 이유는 300740이 메시지 크기(4바이트)까지 포함하기 때문, (300740 - (4422 * 4)) * 10 = 2830520)
+<br/>
+"total processed message count: 44220, size : 2830520" 이 부분이 클라이언트에서 보낸 300740 * 10과 맞지 않는 이유는 300740이 메시지 크기(4바이트)까지 포함하기 때문, (300740 - (4422 * 4)) * 10 = 2830520
 
 #### 테스트 결과 - client_message 토픽
 
@@ -133,21 +134,24 @@
 #### 테스트 결과 - message_aggregation 토픽
 
 ![image](https://github.com/user-attachments/assets/e862d117-f388-41f4-8489-0b31b0a507fa)
-
+<br/>
 message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 44220보다 많은 44780인 이유는 트랜잭션으로 적재시 트랜잭션 마커(marker)도 포함되기 때문
+<br/>
 트랜잭션 마커는 다수의 파티션에 대해 트랜잭션이 커밋되었거나 중단되었다는 것을 표시하기 위해 마커 메시지를 사용
+<br/>
 참고 : https://stackoverflow.com/questions/79001842/count-mismatch-in-akhq-ui-0-24-0
 
 #### 테스트 결과 - 데이터 일관성 확인 (레디스에 최종적으로 저장된 데이터를 전용 툴(mq_test_verifier)로 조회)
 
 ![image](https://github.com/user-attachments/assets/a828d276-c061-47de-bcec-91ad610cb574)
-
+<br/>
 각 클라이언트별로 4422개의 메시지 개수 확인 가능
 
 ![image](https://github.com/user-attachments/assets/f1f75c39-92a9-4f49-9fab-5c5b3e6f004d)
-
-* 메시지가 많아서 위에 짤렸지만 각 메시지 개수가 모두 10개로 올바른 결과 출력
-* 원본에 있는 모든 레코드(행)는 다른 레코드들과 중복되지 않도록 미리 작업해둠
+<br/>
+메시지가 많아서 위에 짤렸지만 각 메시지 개수가 모두 10개로 올바른 결과 출력
+<br/>
+원본에 있는 모든 레코드(행)는 다른 레코드들과 중복되지 않도록 미리 작업해둠
 
 ## 메시지 유실 테스트
 ### 프로듀서 서버
@@ -165,23 +169,23 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > #### 2. 프로듀서 서버가 소비할 테스트 메시지를 추가 생성
 > 
 > ![preparing_test_in_redis](https://github.com/user-attachments/assets/3c9bb67a-f8b3-4a74-ac79-28b37a927215)
-> 
+> <br/>
 > 세번째 메시지 "cccccc...cc" 부터 일곱번째 메시지 "ggggg...gg" 5개 추가
 > 
 > #### 3. 테스트를 위해 세번째 메시지를 저장에 실패 처리한 것처럼 콜백에서 조작 후 프로듀서 서버의 재전송 결과
 > 
 > ![not_persisted_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb9584b0-44e9-4bdc-929a-f47038d7435a)
-> 
+> <br/>
 > 세번째 메시지의 키를 "test_client"로 변경하고 이를 저장에 실패한 것처럼 유도
-> 
+> <br/>
 > 프로듀서는 적재에 실패한 세번째 메시지부터 다시 재전송
 > 
 > #### 4. 클라이언트 메시지 카운터에서 "test_client" 메시지에 대한 처리
 > 
 > ![not_persisted_message_failure_result_in_client_message_counter](https://github.com/user-attachments/assets/a484f35f-bde7-4794-ab07-65dff917229f)
-> 
+> <br/>
 > "test_client" 키에 대한 이전 데이터가 없으므로 유효하지 않은 것으로 처리
-> 
+> <br/>
 > 본래의 클라이언트 키에 대해 세번째 메시지가 도착하지 않았으므로 네번째 메시지 이후부터 유효하지 않은 것으로 처리
 > 
 > #### 5. "client_message" 토픽의 메시지 적재 결과
@@ -191,7 +195,7 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > #### 6. "message_aggregation" 토픽의 메시지 적재 결과
 > 
 > ![not_persisted_message_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/833e5f57-48a0-4557-ab6b-7c60426be1f7)
-> 
+> <br/>
 > "client_message" 토픽과 다르게 "message_aggregation" 토픽은 중복 없이 데이터 저장
 > 
 > #### 7. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
@@ -215,42 +219,30 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > #### 2. 테스트를 위해 세번째 메시지를 저장 도중 유실된 것처럼 콜백에서 조작 후 프로듀서 서버의 재전송 결과
 > 
 > ![missed_message_failure_result_in_redis](https://github.com/user-attachments/assets/ad21a801-c8ef-47ba-a921-ca7bc5fd5f83)
-> 
-> 레디스에서 유실된 메시지의 sn을 기다리는 다른 sn들을 "stored_msg_sn_tmp_list" sorted set에 임시 보관
-> 
-> 2분(설정된 시간) 동안 유실된 sn에 대한 결과를 받지 못하면 유실된 sn부터 재전송
->
 > <br/>
+> 레디스에서 유실된 메시지의 sn을 기다리는 다른 sn들을 "stored_msg_sn_tmp_list" sorted set에 임시 보관
+> <br/>
+> 2분(설정된 시간) 동안 유실된 sn에 대한 결과를 받지 못하면 유실된 sn부터 재전송
 > 
 > ![missed_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb68f297-d4c1-40fe-bd57-fc5571206d8b)
-> 
-> 프로듀서 서버가 유실된 sn부터 메시지들을 재전송
-> 
 > <br/>
+> 프로듀서 서버가 유실된 sn부터 메시지들을 재전송
 > 
 > #### 3. "client_message" 토픽의 메시지 적재 결과
 > 
 > ![missed_message_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/2fb16976-6bb7-4c10-85e1-4eda4f069245)
->
-> <br/>
 > 
 > #### 4. "message_aggregation" 토픽의 메시지 적재 결과
 > 
 > ![missed_message_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/3ad6c9d0-9d56-4903-ae32-13398d495c38)
->
-> <br/>
 > 
 > #### 5. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
 > 
 > ![missed_message_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/79cb6c96-4ea5-4bcb-b69b-20fcf919173c)
->
-> <br/>
 > 
 > #### 6. 최종적으로 메시지별로 저장된 메시지 개수 확인
 > 
 > ![missed_message_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/30cc8abf-9bf8-4304-9b3e-40e02862cd07)
-> 
-> <br/>
 > 
 </details>
 
@@ -263,53 +255,37 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > 
 > PC 사양마다 프로듀서 버퍼가 가득 차게 되는 메시지 용량이 다를 수 있으니 개인 PC 환경에 따라 클라이언트 개수를 조절하여 버퍼가 가득 차는 클라이언트 수를 찾아야 함
 > 
-> <br/>
-> 
 > #### 2. 프로듀서 서버에서 프로듀서 버퍼가 가득 차게 되어 발생하는 경고 로그 확인
 >
 > ![queue_full_failure_result_in_producer_server](https://github.com/user-attachments/assets/def2a8d8-1568-404d-a9fb-67848420f630)
-> 
+> <br/>
 > 메시지 프로듀싱하는 과정에서 -184 에러 발생
 > 
-> <br/>
-> 
 > ![queue_full_failure_result_2_in_producer_server](https://github.com/user-attachments/assets/df98b9bc-40da-4ad4-8abb-b3e47997aa10)
-> 
-> librdkafka에 정의된 -184 에러의 의미
->
 > <br/>
+> librdkafka에 정의된 -184 에러의 의미
 > 
 > #### 3. 프로듀서 서버에서 메시지 전송 결과
 > 
 > ![queue_full_failure_result_3_in_producer_server](https://github.com/user-attachments/assets/5e9b8b55-4b59-42a1-bc05-2d16ff433816)
-> 
-> 4422 * 30 = 132,660
->
 > <br/>
+> 4422 * 30 = 132,660
 > 
 > #### 4. "client_message" 토픽의 메시지 적재 결과
 > 
 > ![queue_full_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/8fc48cb9-eefe-4392-a112-4463bff9cf2a)
->
-> <br/>
 > 
 > #### 5. "message_aggregation" 토픽의 메시지 적재 결과
 > 
 > ![queue_full_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/fcd68013-56cc-4e18-adec-d9a576aa9214)
->
-> <br/>
 > 
 > #### 6. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
 > 
 > ![queue_full_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/e9b60a02-b0dd-4120-b5e8-4cfeee80e503)
->
-> <br/>
 > 
 > #### 7. 최종적으로 메시지별로 저장된 메시지 개수 확인
 > 
 > ![queue_full_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/af3b4857-e73e-4dfd-8267-60f61821431f)
-> 
-> <br/>
 > 
 </details>
   
@@ -324,119 +300,86 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > ![before_broker_failure_test_in_client_message_mq](https://github.com/user-attachments/assets/b85d1c31-ce9d-4d72-ab80-f7a26f197ff9)
 > <br/>
 > 각 파티션의 리더/팔로워 레플리카 할당 상태 확인
-> 1번 브로커(broker-1)의 ID는 4번으로 파티션 0, 4, 8, 9의 리더 레플리카가 1번 브로커에 할당되어 있음
-> 
 > <br/>
+> 1번 브로커(broker-1)의 ID는 4번으로 파티션 0, 4, 8, 9의 리더 레플리카가 1번 브로커에 할당되어 있음
 > 
 > #### 2. 프로듀서 서버와 클라이언트 메시지 카운터, 메시지 수집기가 메시지 큐로부터 메시지 처리를 하는 동안 1번 브로커 종료
 > 
 > ![during_broker_failure_test_in_broker_for_preparing_shutting_down](https://github.com/user-attachments/assets/4bccac34-6b1a-49d4-b76e-3681c50a00f7)
-> 
-> "SIGTERM" 시그널을 받아서 "STARTED" -> "PENDING_CONTROLLED_SHUTDOWN" 상태로 전환
->
 > <br/>
+> "SIGTERM" 시그널을 받아서 "STARTED" -> "PENDING_CONTROLLED_SHUTDOWN" 상태로 전환
 > 
 > ![during_broker_failure_test_in_broker_for_resigning_group_coordinator](https://github.com/user-attachments/assets/5f2e08e0-ecda-43e7-ac74-0cfecc9b5972)
->
+> <br/>
 > 그룹 코디네이터 사임중
 > 
-> <br/>
-> 
 > ![during_broker_failure_test_in_broker_for_resigning_tx_coordinator](https://github.com/user-attachments/assets/6d1d2fe9-e837-48e0-a9fb-86dc1b749712)
-> 
-> 트랜잭션 코디네이터 사임중
->
 > <br/>
+> 트랜잭션 코디네이터 사임중
 > 
 > ![during_broker_failure_test_in_broker_for_shutting_down](https://github.com/user-attachments/assets/96123e2f-7dbb-4df5-bb1b-a14faca05673)
-> 
-> "PENDING_CONTROLLED_SHUTDOWN" 상태에서 "SHUTTING_DOWN" 상태로 전환
->
 > <br/>
+> "PENDING_CONTROLLED_SHUTDOWN" 상태에서 "SHUTTING_DOWN" 상태로 전환
 > 
 > #### 3. 파티션의 모든 리더 레플리카는 1번 브로커(ID:4)로부터 다른 브로커들로 할당됨
 > 
 > ![during_broker_failure_test_in_client_message_mq](https://github.com/user-attachments/assets/00129448-d9c2-4837-b656-4339e8594cc7)
-> 
-> 모든 파티션이 4번(1번 브로커)에만 할당되어 있지 않음
-> 
-> 이와중에 메시지 적재와 소비는 문제없이 진행됨
-> 
-> 프로듀서와 컨슈머들은 클러스터와 메타데이터 동기화를 필요할 때 하기 때문에 리더 브로커가 바뀌면(리더 선출) 해당 브로커로 연결하여 작업을 이어 나감
-> 
-> REPLICATION FACTOR(ISR)를 3으로 유지하고 있기 때문에 리더 브로커가 종료되더라도 다른 브로커가 리더 브로커의 역할을 매끄럽게 계속 이어나갈 수 있음
->
 > <br/>
+> 모든 파티션이 4번(1번 브로커)에만 할당되어 있지 않음
+> <br/>
+> 이와중에 메시지 적재와 소비는 문제없이 진행됨
+> <br/>
+> 프로듀서와 컨슈머들은 클러스터와 메타데이터 동기화를 필요할 때 하기 때문에 리더 브로커가 바뀌면(리더 선출) 해당 브로커로 연결하여 작업을 이어 나감
+> <br/>
+> REPLICATION FACTOR(ISR)를 3으로 유지하고 있기 때문에 리더 브로커가 종료되더라도 다른 브로커가 리더 브로커의 역할을 매끄럽게 계속 이어나갈 수 있음
 > 
 > #### 4. 1분 후 1번 브로커 재시작
 > 
 > ![during_broker_failure_test_in_broker_for_starting](https://github.com/user-attachments/assets/8edb6a78-acfc-496a-a43f-2b15bb52141a)
-> 
-> "SHUTDOWN" 상태에서 "STARTING" 상태로 전환되면서 브로커 시작
->
 > <br/>
+> "SHUTDOWN" 상태에서 "STARTING" 상태로 전환되면서 브로커 시작
 > 
 > ![during_broker_failure_test_in_broker_for_recovery](https://github.com/user-attachments/assets/4483719b-ae1c-4371-b98c-d24387d4323d)
-> 
-> 클러스터 메타데이터를 동기화하면서(catch up) "STARTING" 상태에서 "RECOVERY" 상태로 전환
->
 > <br/>
+> 클러스터 메타데이터를 동기화하면서(catch up) "STARTING" 상태에서 "RECOVERY" 상태로 전환
 > 
 > ![during_broker_failure_test_in_broker_for_recovering](https://github.com/user-attachments/assets/ed3bf956-c5cb-491e-bdeb-4a64977f34c3)
-> 
-> 파티션,오프셋,트랜잭션 등의 데이터를 로드하는 중 (recovering)
->
 > <br/>
+> 파티션,오프셋,트랜잭션 등의 데이터를 로드하는 중 (recovering)
 > 
 > ![during_broker_failure_test_in_broker_for_starting_group_and_tx_coordinator](https://github.com/user-attachments/assets/1c845f1f-0a53-4813-a5e9-f61838ac7aca)
-> 
-> 그룹 코디네이터, 트랜잭션 코디네이터 등을 시작
->
 > <br/>
+> 그룹 코디네이터, 트랜잭션 코디네이터 등을 시작
 > 
 > ![during_broker_failure_test_in_broker_for_fetching_data_from_other_brokers](https://github.com/user-attachments/assets/8c002ce6-b6ad-4e6f-89d6-385608a588e2)
-> 
+> <br/>
 > 다른 브로커로부터 데이터 동기화를 위해 복제 시작
 >
-> <br/>
->
 > ![during_broker_failure_test_in_broker_for_broker_server_started](https://github.com/user-attachments/assets/deecb62a-faf8-4993-89c7-f511bdcca883)
-> 
-> 클러스터에 브로커 참여함으로써 최종적으로 "STARTING" 상태에서 "STARTED" 상태로 전환
->
 > <br/>
+> 클러스터에 브로커 참여함으로써 최종적으로 "STARTING" 상태에서 "STARTED" 상태로 전환
 >  
 > ![during_broker_failure_test_in_broker_for_electing_group_coordinator](https://github.com/user-attachments/assets/7617adfb-64c8-47d7-89f8-34ff5aa325ff)
-> 
-> 그룹 코디네이터 선출
->
 > <br/>
+> 그룹 코디네이터 선출
 > 
 > ![during_broker_failure_test_in_broker_for_electing_tx_coordinator](https://github.com/user-attachments/assets/a590ddd3-7493-46bf-9a2a-d7685a3dd8e7)
-> 
-> 트랜잭션 코디네이터도 마찬가지로 선출
->
 > <br/>
+> 트랜잭션 코디네이터도 마찬가지로 선출
 > 
 > #### 5. "client_message" 토픽의 메시지 적재
 > 
 > ![broker_failure_test_result_in_client_message_mq](https://github.com/user-attachments/assets/6dd7fd58-2e33-4202-a745-3c8a3199c6f4)
-> 
-> 파티션 0, 4, 8, 9번에 대한 리더 레플리카가 1번 브로커(ID:4)로 복귀
->
 > <br/>
+> 파티션 0, 4, 8, 9번에 대한 리더 레플리카가 1번 브로커(ID:4)로 복귀
 > 
 > #### 6. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
 > 
 > ![broker_failure_test_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/7e2a8d08-eaf4-4383-9e4c-c64fe7e1ffc2)
->
-> <br/>
 > 
 > #### 7. 최종적으로 메시지별로 저장된 메시지 개수 확인
 >
 > ![broker_failure_test_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/55834c28-3bdb-46ab-9fad-1d602751e7c0)
->
-> <br/>
 > 
 </details>
 
