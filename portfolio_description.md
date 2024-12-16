@@ -321,7 +321,7 @@
 > #### 1. 테스트 클라이언트 수를 제외한 나머지 환경은 기본 테스트와 동일 (테스트 클라이언트 10개 -> 50개)
 >
 > ![before_broker_failure_test_in_client_message_mq](https://github.com/user-attachments/assets/b85d1c31-ce9d-4d72-ab80-f7a26f197ff9)
-> 
+> <br/>
 > 각 파티션의 리더/팔로워 레플리카 할당 상태 확인
 > 1번 브로커(broker-1)의 ID는 4번으로 파티션 0, 4, 8, 9의 리더 레플리카가 1번 브로커에 할당되어 있음
 > 
