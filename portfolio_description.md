@@ -321,6 +321,14 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > <br/>
 > "PENDING_CONTROLLED_SHUTDOWN" 상태에서 "SHUTTING_DOWN" 상태로 전환
 > 
+> ![during_broker_failure_test_in_producer](https://github.com/user-attachments/assets/d5b9db20-acef-4e47-ba88-be4c7a1a1fb1)
+> <br/>
+> 프로듀서 서버에서 브로커와 일시적 연결 끊김 로그 확인
+> 
+> ![during_broker_failure_test_in_consumer](https://github.com/user-attachments/assets/68359220-3536-4217-b0be-2d39f63f6513)
+> <br/>
+> 컨슈머(클라이언트 메시지 카운터, 메시지 수집기)에서도 연결이 단절되었다는 로그 확인
+> 
 > #### 3. 파티션의 모든 리더 레플리카는 1번 브로커(ID:4)로부터 다른 브로커들로 할당됨
 > 
 > ![during_broker_failure_test_in_client_message_mq](https://github.com/user-attachments/assets/00129448-d9c2-4837-b656-4339e8594cc7)
@@ -329,7 +337,7 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > <br/>
 > 이와중에 메시지 적재와 소비는 문제없이 진행됨
 > <br/>
-> 프로듀서와 컨슈머들은 클러스터와 메타데이터 동기화를 필요할 때 하기 때문에 리더 브로커가 바뀌면(리더 선출) 해당 브로커로 연결하여 작업을 이어 나감
+> 프로듀서와 컨슈머들은 클러스터와 메타데이터 동기화를 필요할 때 하기 때문에 리더 브로커가 바뀌면(리더 재선출) 해당 브로커로 연결하여 작업을 이어 나감
 > <br/>
 > REPLICATION FACTOR(ISR)를 3으로 유지하고 있기 때문에 리더 브로커가 종료되더라도 다른 브로커가 리더 브로커의 역할을 매끄럽게 계속 이어나갈 수 있음
 > 
@@ -383,7 +391,34 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > 
 </details>
 
-#### 전체 브로커 재시작
+#### 강제 브로커 재시작
+
+<details>
+<summary>펼쳐보기</summary>
+
+> #### 1. 테스트 클라이언트 수를 제외한 나머지 환경은 기본 테스트와 동일 (테스트 클라이언트 10개 -> 50개)
+> 
+> #### 2. 프로듀서 서버와 클라이언트 메시지 카운터, 메시지 수집기가 메시지 큐로부터 메시지 처리를 하는 동안 !!1번 브로커 강제 종료!!
+> 
+> ![during_broker_failure_test_2_in_producer_server](https://github.com/user-attachments/assets/dc928b8e-5027-4f7a-997d-2b692417033f)
+> <br/>
+> 프로듀서 서버에서 브로커와 연결이 단절되었다는 로그 확인
+> 
+> ![during_broker_failure_test_2_in_consumer](https://github.com/user-attachments/assets/de3f24a1-8015-4e30-b63c-8ce50191f5cb)
+> <br/>
+> 컨슈머(클라이언트 메시지 카운터, 메시지 수집기)에서도 연결이 단절되었다는 로그 확인
+> 
+> #### 3. 전반적인 작업 흐름은 우아한 브로커 재시작과 크게 다르지 않은 것 같음
+> 
+> 우아한 브로커 종료와 강제 브로커 종료의 차이는 종료하는 브로커가 안전하게 데이터를 디스크에 저장하느냐와 다른 브로커들이 이를 통보 받고 미리 대응을 할 수 있는지의 차이 정도로 보임
+> <br/>
+> 그 외 리더 레플리카가 다른 브로커에게 할당되고 (리더 재선출) 클러스터 메타데이터가 업데이트되며 프로듀서와 컨슈머들이 리디렉션되는 과정을 로그 등을 확인해봤을 때 거의 동일한 흐름으로 진행됨
+> 
+> #### 4. 최종적으로 메시지 큐에 저장된 데이터 및 레디스에 저장된 데이터 모두 일관성 유지
+> 
+> 결과는 우아한 브로커 재시작과 동일
+</details>
+  
 ### 클라이언트 메시지 카운터 & 메시지 수집기 (준비중)
 #### 컨슈머 리밸런스 유도 (컨슈머 추가/재시작(장애) 등의 사유)
 
