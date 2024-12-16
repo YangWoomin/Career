@@ -218,26 +218,38 @@
 > 레디스에서 유실된 메시지의 sn을 기다리는 다른 sn들을 "stored_msg_sn_tmp_list" sorted set에 임시 보관
 > 
 > 2분(설정된 시간) 동안 유실된 sn에 대한 결과를 받지 못하면 유실된 sn부터 재전송
+>
+> <br/>
 > 
 > ![missed_message_failure_result_in_producer_server](https://github.com/user-attachments/assets/cb68f297-d4c1-40fe-bd57-fc5571206d8b)
 > 
 > 프로듀서 서버가 유실된 sn부터 메시지들을 재전송
->
+> 
+> <br/>
+> 
 > #### 3. "client_message" 토픽의 메시지 적재 결과
 > 
 > ![missed_message_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/2fb16976-6bb7-4c10-85e1-4eda4f069245)
 >
+> <br/>
+> 
 > #### 4. "message_aggregation" 토픽의 메시지 적재 결과
 > 
 > ![missed_message_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/3ad6c9d0-9d56-4903-ae32-13398d495c38)
+>
+> <br/>
 > 
 > #### 5. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
 > 
 > ![missed_message_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/79cb6c96-4ea5-4bcb-b69b-20fcf919173c)
 >
+> <br/>
+> 
 > #### 6. 최종적으로 메시지별로 저장된 메시지 개수 확인
 > 
 > ![missed_message_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/30cc8abf-9bf8-4304-9b3e-40e02862cd07)
+> 
+> <br/>
 > 
 </details>
 
@@ -250,38 +262,54 @@
 > 
 > PC 사양마다 프로듀서 버퍼가 가득 차게 되는 메시지 용량이 다를 수 있으니 개인 PC 환경에 따라 클라이언트 개수를 조절하여 버퍼가 가득 차는 클라이언트 수를 찾아야 함
 > 
+> <br/>
+> 
 > #### 2. 프로듀서 서버에서 프로듀서 버퍼가 가득 차게 되어 발생하는 경고 로그 확인
 >
 > ![queue_full_failure_result_in_producer_server](https://github.com/user-attachments/assets/def2a8d8-1568-404d-a9fb-67848420f630)
 > 
 > 메시지 프로듀싱하는 과정에서 -184 에러 발생
->
+> 
+> <br/>
+> 
 > ![queue_full_failure_result_2_in_producer_server](https://github.com/user-attachments/assets/df98b9bc-40da-4ad4-8abb-b3e47997aa10)
 > 
 > librdkafka에 정의된 -184 에러의 의미
+>
+> <br/>
 > 
 > #### 3. 프로듀서 서버에서 메시지 전송 결과
 > 
 > ![queue_full_failure_result_3_in_producer_server](https://github.com/user-attachments/assets/5e9b8b55-4b59-42a1-bc05-2d16ff433816)
 > 
 > 4422 * 30 = 132,660
+>
+> <br/>
 > 
 > #### 4. "client_message" 토픽의 메시지 적재 결과
 > 
 > ![queue_full_failure_result_in_client_message_mq](https://github.com/user-attachments/assets/8fc48cb9-eefe-4392-a112-4463bff9cf2a)
+>
+> <br/>
 > 
 > #### 5. "message_aggregation" 토픽의 메시지 적재 결과
 > 
 > ![queue_full_failure_result_in_message_aggregation_mq](https://github.com/user-attachments/assets/fcd68013-56cc-4e18-adec-d9a576aa9214)
+>
+> <br/>
 > 
 > #### 6. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
 > 
 > ![queue_full_failure_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/e9b60a02-b0dd-4120-b5e8-4cfeee80e503)
+>
+> <br/>
 > 
 > #### 7. 최종적으로 메시지별로 저장된 메시지 개수 확인
 > 
 > ![queue_full_failure_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/af3b4857-e73e-4dfd-8267-60f61821431f)
->
+> 
+> <br/>
+> 
 </details>
   
 ### 메시지 큐 (준비중)
@@ -304,18 +332,26 @@
 > ![during_broker_failure_test_in_broker_for_preparing_shutting_down](https://github.com/user-attachments/assets/4bccac34-6b1a-49d4-b76e-3681c50a00f7)
 > 
 > "SIGTERM" 시그널을 받아서 "STARTED" -> "PENDING_CONTROLLED_SHUTDOWN" 상태로 전환
+>
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_resigning_group_coordinator](https://github.com/user-attachments/assets/5f2e08e0-ecda-43e7-ac74-0cfecc9b5972)
 >
-> 그룹 코디네이터 사임중..
+> 그룹 코디네이터 사임중
+> 
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_resigning_tx_coordinator](https://github.com/user-attachments/assets/6d1d2fe9-e837-48e0-a9fb-86dc1b749712)
 > 
-> 트랜잭션 코디네이터 사임중..
+> 트랜잭션 코디네이터 사임중
 >
+> <br/>
+> 
 > ![during_broker_failure_test_in_broker_for_shutting_down](https://github.com/user-attachments/assets/96123e2f-7dbb-4df5-bb1b-a14faca05673)
 > 
 > "PENDING_CONTROLLED_SHUTDOWN" 상태에서 "SHUTTING_DOWN" 상태로 전환
+>
+> <br/>
 > 
 > #### 3. 파티션의 모든 리더 레플리카는 1번 브로커(ID:4)로부터 다른 브로커들로 할당됨
 > 
@@ -328,54 +364,78 @@
 > 프로듀서와 컨슈머들은 클러스터와 메타데이터 동기화를 필요할 때 하기 때문에 리더 브로커가 바뀌면(리더 선출) 해당 브로커로 연결하여 작업을 이어 나감
 > 
 > REPLICATION FACTOR(ISR)를 3으로 유지하고 있기 때문에 리더 브로커가 종료되더라도 다른 브로커가 리더 브로커의 역할을 매끄럽게 계속 이어나갈 수 있음
+>
+> <br/>
 > 
 > #### 4. 1분 후 1번 브로커 재시작
 > 
 > ![during_broker_failure_test_in_broker_for_starting](https://github.com/user-attachments/assets/8edb6a78-acfc-496a-a43f-2b15bb52141a)
 > 
 > "SHUTDOWN" 상태에서 "STARTING" 상태로 전환되면서 브로커 시작
+>
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_recovery](https://github.com/user-attachments/assets/4483719b-ae1c-4371-b98c-d24387d4323d)
 > 
 > 클러스터 메타데이터를 동기화하면서(catch up) "STARTING" 상태에서 "RECOVERY" 상태로 전환
+>
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_recovering](https://github.com/user-attachments/assets/ed3bf956-c5cb-491e-bdeb-4a64977f34c3)
 > 
 > 파티션,오프셋,트랜잭션 등의 데이터를 로드하는 중 (recovering)
+>
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_starting_group_and_tx_coordinator](https://github.com/user-attachments/assets/1c845f1f-0a53-4813-a5e9-f61838ac7aca)
 > 
 > 그룹 코디네이터, 트랜잭션 코디네이터 등을 시작
+>
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_fetching_data_from_other_brokers](https://github.com/user-attachments/assets/8c002ce6-b6ad-4e6f-89d6-385608a588e2)
 > 
 > 다른 브로커로부터 데이터 동기화를 위해 복제 시작
-> 
+>
+> <br/>
+>
 > ![during_broker_failure_test_in_broker_for_broker_server_started](https://github.com/user-attachments/assets/deecb62a-faf8-4993-89c7-f511bdcca883)
 > 
 > 클러스터에 브로커 참여함으로써 최종적으로 "STARTING" 상태에서 "STARTED" 상태로 전환
-> 
+>
+> <br/>
+>  
 > ![during_broker_failure_test_in_broker_for_electing_group_coordinator](https://github.com/user-attachments/assets/7617adfb-64c8-47d7-89f8-34ff5aa325ff)
 > 
 > 그룹 코디네이터 선출
+>
+> <br/>
 > 
 > ![during_broker_failure_test_in_broker_for_electing_tx_coordinator](https://github.com/user-attachments/assets/a590ddd3-7493-46bf-9a2a-d7685a3dd8e7)
 > 
 > 트랜잭션 코디네이터도 마찬가지로 선출
+>
+> <br/>
 > 
 > #### 5. "client_message" 토픽의 메시지 적재
 > 
 > ![broker_failure_test_result_in_client_message_mq](https://github.com/user-attachments/assets/6dd7fd58-2e33-4202-a745-3c8a3199c6f4)
->
+> 
 > 파티션 0, 4, 8, 9번에 대한 리더 레플리카가 1번 브로커(ID:4)로 복귀
+>
+> <br/>
 > 
 > #### 6. 최종적으로 클라이언트별로 저장된 메시지 개수 확인
 > 
 > ![broker_failure_test_result_in_message_verifier_for_client](https://github.com/user-attachments/assets/7e2a8d08-eaf4-4383-9e4c-c64fe7e1ffc2)
 >
+> <br/>
+> 
 > #### 7. 최종적으로 메시지별로 저장된 메시지 개수 확인
 >
 > ![broker_failure_test_result_in_message_verifier_for_message](https://github.com/user-attachments/assets/55834c28-3bdb-46ab-9fad-1d602751e7c0)
+>
+> <br/>
 > 
 </details>
 
