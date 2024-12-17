@@ -420,8 +420,44 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > 결과는 우아한 브로커 재시작과 동일
 </details>
   
-### 클라이언트 메시지 카운터 & 메시지 수집기 (준비중)
+### 클라이언트 메시지 카운터 & 메시지 수집기
 #### 컨슈머 리밸런스 유도 (컨슈머 추가/재시작(장애) 등의 사유)
+
+<details>
+<summary>펼쳐보기</summary>
+
+> #### 1. 테스트 클라이언트 수를 제외한 나머지 환경은 기본 테스트와 동일 (테스트 클라이언트 10개 -> 50개)
+> 
+> #### 2. 클라이언트 메시지 카운터(mq_test_consumer)를 기존에는 1개 어플리케이션(프로세스)으로 진행하였지만 리밸런스 테스트를 위해 중간에 1개 어플리케이션을 더 추가하고 제거해보는 것으로 테스트 진행
+> 
+> 클라이언트 메시지 카운터의 경우 1개 어플리케이션당 3개의 프로듀서/컨슈머가 실행되며 이들은 트랜잭션을 사용하여 소비한 메시지들의 오프셋과 추가로 프로듀싱한 메시지들을 묶어서 원자적으로 처리
+> 
+> #### 3. 두번째 클라이언트 메시지 카운터를 추가
+>
+> ![during_consumer_rebalance_test_in_mq_for_adding_consumers](https://github.com/user-attachments/assets/302fd1eb-6a3e-4b02-8b43-fd0943251fe3)
+> <br/>
+> transactional.id가 tid2_0, tid2_1, tid2_2인 컨슈머들이 추가되면서 "mq_test_consumer"의 그룹 멤버가 6으로 증가하여 리밸런스 수행
+> 
+> ![during_consumer_rebalance_test_in_consumer_for_transaction_rollback](https://github.com/user-attachments/assets/cafeb237-98f1-4605-84c2-8c032caa1f7d)
+> <br/>
+> 클라이언트 메시지 카운터들은 리밸런스 콜백이 호출되며 진행 중이던 트랜잭션을 모두 롤백하고 여전히 소유하는 파티션들에 대해서 offset을 트랜잭션 처리하기 전으로 되돌려 메시지를 다시 소비하도록 유도 (중복 메시지 발생)
+> 
+> ![during_consumer_rebalance_test_in_consumer_for_processing_duplicated_messages](https://github.com/user-attachments/assets/37a296c9-a6f8-414f-9e26-f9bca0a6815e)
+> <br/>
+> 클라이언트 메시지 카운터들이 중복 메시지를 처리했다는 로그 발생 (메시지 중복이 일어나더라도 멱등적 처리로 데이터 무결성 유지)
+> 
+> #### 4. 두번째 클라이언트 메시지 카운터를 제거
+> 
+> ![during_consumer_rebalance_test_in_mq_for_leaving_consumers](https://github.com/user-attachments/assets/5755b23c-0b15-42b6-8044-71dccb07f655)
+> <br/>
+> 컨슈머들이 떠났다는 로그와 함께 "mq_test_consumer" 그룹의 멤버 수가 3으로 감소
+> 
+> 이에 따라 첫번째 클라이언트 메시지 카운터에서 다시 리밸런스가 발생하게 되며 두번째 클라이언트 메시지 카운터를 추가했을 때와 동일하게 중복 메시지가 발생
+>
+> #### 5. 최종적으로 메시지 큐에 저장된 데이터 및 레디스에 저장된 데이터 모두 일관성 유지
+> 
+> mq_test_verifier로 결과 확인시 우아한 브로커 재시작, 강제 브로커 재시작 때와 마찬가지로 데이터 무결성과 일관성이 유지된 결과를 출력
+</details>
 
 ## 성능 테스트 (준비중)
 ### 기본 테스트 성능 측정
