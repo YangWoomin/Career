@@ -69,7 +69,7 @@
 
 ### 기본 테스트
 
-#### 환경
+#### 세팅
 <details>
 <summary>details</summary>
 
