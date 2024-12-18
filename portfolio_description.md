@@ -465,7 +465,7 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 </details>
 
 
-## 성능 테스트 (준비중)
+## 성능 테스트
 
 ### 성능 테스트 시나리오
 * 기본 테스트 수행시 초당 프로듀싱/컨슈밍 되는 메시지 수와 컨슈머 그룹의 랙(lag)을 측정
@@ -475,24 +475,38 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 ### 성능 측정 방법
 * kafka exporter + prometheus + grafana
 #### 초당 프로듀싱 메시지 개수 계산식
-* sum(rate(kafka_topic_partition_current_offset{instance=~"$instance", topic=~"$topic"}[1m])) by (topic)
+* sum(rate(kafka_topic_partition_current_offset{instance=\~"$instance", topic=\~"$topic"}[1m])) by (topic)
 #### 초당 컨슈밍 메시지 개수 계산식
-* sum(delta(kafka_consumergroup_current_offset{instance=~'$instance',topic=~"$topic"}[1m])/60) by (consumergroup, topic)
+* sum(delta(kafka_consumergroup_current_offset{instance=\~'$instance',topic=\~"$topic"}[1m])/60) by (consumergroup, topic)
 #### 컨슈머 그룹의 아직 처리하지 못한 메시지 개수 계산식
-* sum(kafka_consumergroup_lag{instance=~"$instance$",topic=~"$topic"}) by (consumergroup, topic) 
+* sum(kafka_consumergroup_lag{instance=\~"$instance$",topic=\~"$topic"}) by (consumergroup, topic) 
 
 ### 기본 테스트 성능 측정 (클라이언트수 50)
 #### 초당 프로듀싱 메시지 개수
-
+![image](https://github.com/user-attachments/assets/885466e6-4032-47ad-9bc2-475e5df9415e)
 <br/>
-프로듀서 서버가 2개의 프로듀서 스레드로 약 2ms 마다 각각 한번에 100개씩 메시지를 전달하기 때문에 client_message 토픽의 메시지 적재량이 최대 4K/s까지 치솟음
+프로듀서 서버가 2개의 프로듀서 스레드로 약 2ms 마다 각각 한번에 100개씩 메시지를 레디스로부터 조회해와서 적재하기 때문에 client_message 토픽의 메시지 적재량이 최대 4.68K/s까지 치솟음
 <br/>
-반면 클라이언트 메시지 카운터는 
+반면 클라이언트 메시지 카운터는 메시지 소비량이 프로듀서 서버의 적재량보다 현저히 낮은 관계로 message_aggregation 토픽의 메시지 적재량이 client_message 토픽의 메시지 적재량보다 낮음
+<br/>
+클라이언트 메시지 카운터의 소비량이 낮은 이유는 메시지 1개를 소비한 후 레디스에 동기적으로 호출하여 데이터를 업데이트하고 프로듀싱하는 과정을 트랜잭션으로 묶어서 처리하기 때문에 처리량이 떨어짐
 
-### 프로듀서 서버 설정 튜닝
+#### 초당 컨슈밍 메시지 개수
+![image](https://github.com/user-attachments/assets/30be6ca3-740b-43be-8f57-6957e0611b08)
+<br/>
+클라이언트 메시지 카운터는 최대 642/s의 메시지 처리량을 가지며 클라이언트 메시지 카운터가 전체 데이터 파이프라인의 병목점이기 때문에 메시지 수집기도 클라이언트 메시지 카운터의 처리량에 맞춰지는 것을 확인할 수 있음
+
+#### 컨슈머 그룹 랙 측정
+![image](https://github.com/user-attachments/assets/2827afb1-03fa-4f3e-a069-6ffc336205d5)
+<br/>
+최대 205K개까지 프로듀서 서버의 메시지 적재 개수와 클라이언트 메시지 카운터의 소비 개수 차이가 벌어지고 어느 시점부터 프로듀서 서버가 더이상 메시지를 적재하지 않게 되면서 차이가 점점 좁혀지는 것을 확인할 수 있음
+<br/>
+메시지 수집기의 소비량은 클라이언트 메시지 카운터의 적재량을 앞서기 때문에 메시지 적재/소비에 대한 랙이 없음
+
+### 프로듀서 서버 설정 튜닝 (준비중)
 
 
-### 클라이언트 메시지 카운터 & 메시지 수집기 설정 튜닝
+### 클라이언트 메시지 카운터 & 메시지 수집기 설정 튜닝 (준비중)
 
 
 ## 더 고민해볼 것들
