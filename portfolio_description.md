@@ -110,6 +110,7 @@
   + enable.idempotence=true
   + transactional.id=[임의 문자열]
   + group.id=[임의의 문자열] (클라이언트 메시지 카운터와 메시지 수집기는 서로 다른 컨슈머 그룹)
+  + fetch.min.bytes=50KB
   + 그 외 나머지 설정들은 모두 기본값
 
 </details>
@@ -463,10 +464,36 @@ message_aggregation 토픽의 레코드 개수는 전송한 메시지 개수인 
 > mq_test_verifier로 결과 확인시 우아한 브로커 재시작, 강제 브로커 재시작 때와 마찬가지로 데이터 무결성과 일관성이 유지된 결과를 출력
 </details>
 
+
 ## 성능 테스트 (준비중)
-### 기본 테스트 성능 측정
+
+### 성능 테스트 시나리오
+* 기본 테스트 수행시 초당 프로듀싱/컨슈밍 되는 메시지 수와 컨슈머 그룹의 랙(lag)을 측정
+* 프로듀서 서버의 프로듀서 설정을 바꿔가며 처리량 증가시켜 보기 (프로듀서 서버 설정 튜닝)
+* 컨슈머 서버(클라이언트 메시지 카운터 및 메시지 수집기)의 컨슈머 개수와 컨슈머 서버 개수 자체, 컨슈머 설정 등을 바꿔가며 처리량 증가시켜 보기
+
+### 성능 측정 방법
+* kafka exporter + prometheus + grafana
+#### 초당 프로듀싱 메시지 개수 계산식
+* sum(rate(kafka_topic_partition_current_offset{instance=~"$instance", topic=~"$topic"}[1m])) by (topic)
+#### 초당 컨슈밍 메시지 개수 계산식
+* sum(delta(kafka_consumergroup_current_offset{instance=~'$instance',topic=~"$topic"}[1m])/60) by (consumergroup, topic)
+#### 컨슈머 그룹의 아직 처리하지 못한 메시지 개수 계산식
+* sum(kafka_consumergroup_lag{instance=~"$instance$",topic=~"$topic"}) by (consumergroup, topic) 
+
+### 기본 테스트 성능 측정 (클라이언트수 50)
+#### 초당 프로듀싱 메시지 개수
+
+<br/>
+프로듀서 서버가 2개의 프로듀서 스레드로 약 2ms 마다 각각 한번에 100개씩 메시지를 전달하기 때문에 client_message 토픽의 메시지 적재량이 최대 4K/s까지 치솟음
+<br/>
+반면 클라이언트 메시지 카운터는 
+
 ### 프로듀서 서버 설정 튜닝
+
+
 ### 클라이언트 메시지 카운터 & 메시지 수집기 설정 튜닝
+
 
 ## 더 고민해볼 것들
 
