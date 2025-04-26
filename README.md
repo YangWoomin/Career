@@ -99,6 +99,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가 |
 |----------|----------|----------|----------|----------|----------|
+| 25.02 ~ 재직중 | PUBG | 0 | - | - | - |
 | 19.01 ~ 24.09 | NCSOFT | 5 | [career_y_ncsoft.md](career_y_ncsoft.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) ([설명서](https://github.com/YangWoomin/Career/blob/master/portfolio_description.md)) | A -> A -> A -> E -> E |
 | 17.01 ~ 18.12 | JOYCITY | 2 | [career_z_joycity.md](career_z_joycity.md) | - | GE -> GE |
 | ~ 2016.12 | 학생 | - | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | - |
