@@ -33,7 +33,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 * C/C++, C#, Make/CMake, Vue.js, Golang, Python, Batch Script, Shell Script
 * libcurl, openssl3, redisplusplus, librdkafka, odbc
 * MySQL, MSSQL, Redis, Kafka
-* TeamCity, Perforce
+* Git, TeamCity, Perforce
 * InfluxDB, Prometheus, Grafana, Elasticsearch, Fluentd, Kibana
 * Docker, K8s, Ansible
 * OAuth 2.0
@@ -42,8 +42,8 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 ## 경력 간단 요약
 
-#### PUBG STUDIOS (2025.02\~재직중, ~1년)
-* 재직중
+#### PUBG STUDIOS (2025.02\~재직중)
+* 신규 프로젝트 백엔드 서버 개발
 
 #### NCSOFT (2019.01\~2024.09, 5년\~)
 ##### 담당 업무 - LLL 서버 개발 및 운영
@@ -102,7 +102,7 @@ C/C++ 서버 개발부터 웹 프론트엔드, 툴, CI/CD, 인프라... 회사�
 
 | 기간 | 재직 회사 | 근속년수 | 경력 기술서 | 포트폴리오 | 평가 |
 |----------|----------|----------|----------|----------|----------|
-| 25.02 ~ 재직중 | PUBG | 0 | - | - | - |
+| 25.02 ~ | PUBG | 0 | - | - | - |
 | 19.01 ~ 24.09 | NCSOFT | 5 | [career_y_ncsoft.md](career_y_ncsoft.md) | [ZilliaxServer](https://github.com/YangWoomin/ZilliaxServer) ([설명서](https://github.com/YangWoomin/Career/blob/master/portfolio_description.md)) | A -> A -> A -> E -> E |
 | 17.01 ~ 18.12 | JOYCITY | 2 | [career_z_joycity.md](career_z_joycity.md) | - | GE -> GE |
 | ~ 2016.12 | 학생 | - | - | [Portfolio](https://github.com/YangWoomin/Portfolio) | - |
